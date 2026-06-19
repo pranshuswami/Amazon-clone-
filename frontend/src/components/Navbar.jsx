@@ -7,9 +7,9 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    if (keyword.trim() !== "") {
+    
       navigate(`/search/${keyword}`);
-    }
+    
   };
 
   return (
@@ -30,17 +30,13 @@ const Navbar = () => {
             placeholder="Search Product..."
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleSearch();
-              }
-            }}
-            className="w-full px-4 py-2 rounded-l-md border border-gray-700 outline-none text-white"
+            
+            className="w-full px-4 py-2 rounded-l-md border border-gray-700  text-white"
           />
 
           <button
             onClick={handleSearch}
-            className="bg-yellow-400 px-5 rounded-r-md text-black font-semibold"
+            className="bg-yellow-400 px-5 active:scale-95 rounded-r-md text-black font-semibold"
           >
             Search
           </button>
@@ -51,24 +47,19 @@ const Navbar = () => {
 
           <Link
             to="/"
-            className="hover:text-yellow-400"
+            className="hover:text-blue-400 hover:font-medium"
           >
             Home
           </Link>
 
           <Link
             to="/cart"
-            className="hover:text-yellow-400"
+            className="hover:text-blue-400 hover:font-medium"
           >
             Cart
           </Link>
 
-          <Link
-            to="/orders"
-            className="hover:text-yellow-400"
-          >
-            Orders
-          </Link>
+          
 
         </div>
 

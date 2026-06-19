@@ -51,7 +51,7 @@ const CategoryPage = () => {
            <img
                 src={product.image_url}
                 alt={product.product_name}
-                className="w-full h-40 rounded-lg object-cover"
+                className="w-full h-70 rounded-lg object-cover"
             />
 
             <h2 className="font-bold text-gray-100 mt-3">
@@ -59,7 +59,7 @@ const CategoryPage = () => {
             </h2>
 
             <p className="text-green-600 font-bold">
-              ₹{product.price}
+              {product.price} Rs
             </p>
 
             <p className="text-sm text-gray-300">
@@ -76,7 +76,7 @@ const CategoryPage = () => {
      
 
     </div>
-  );
-};
+  )
+}
 
-export default CategoryPage;
+export default CategoryPage

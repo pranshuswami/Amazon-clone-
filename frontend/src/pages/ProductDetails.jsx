@@ -1,12 +1,31 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ProductDetails = () => {
   const { id } = useParams();
 
   const [product, setProduct] = useState(null);
+  const navigate =useNavigate()
+  const addToCart = ()=>{
 
+
+axios.post(
+"http://localhost:5000/cart/add",
+{
+product_id:product.product_id
+}
+
+)
+.then(()=>{
+
+navigate("/cart");
+
+})
+
+
+}
   useEffect(() => {
     axios
       .get(`http://localhost:5000/products/${id}`)
@@ -55,7 +74,7 @@ const ProductDetails = () => {
              
 
               <span className="text-yellow-400 font-medium">
-                Ratings:4.5/5
+                Ratings:{product.rating}/5
               </span>
             </div>
 
@@ -99,7 +118,7 @@ const ProductDetails = () => {
 
               <div className="mt-6 space-y-3">
 
-                <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black py-3 rounded-full font-semibold transition"
+                <button onClick={addToCart} className="w-full bg-yellow-400 hover:bg-yellow-500 text-black py-3 rounded-full font-semibold transition"
                     >
                       Add to Cart
                 </button>
