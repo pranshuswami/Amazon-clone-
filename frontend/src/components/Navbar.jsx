@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
 
         <Link to="/">
-          <h1 className="text-2xl font-bold cursor-pointer">
+          <h1 className="text-2xl font-bold ">
             Amazon Clone
           </h1>
         </Link>
