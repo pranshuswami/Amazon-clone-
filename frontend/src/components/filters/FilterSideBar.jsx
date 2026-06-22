@@ -105,28 +105,54 @@ onChange={()=>selectBrand(brand)}
 
 
 <h2 className="font-bold text-xl mb-4">
-Price
+    Price
 </h2>
 
 
-
 <label className="block mb-3 cursor-pointer">
 
+    <input
+        type="checkbox"
+        checked={
+            filters.minPrice === 10000 &&
+            filters.maxPrice === 50000
+        }
+        onChange={(e)=>{
 
-<input
+            if(e.target.checked){
 
-type="radio"
+                setFilters({
 
-name="price"
+                    ...filters,
 
-onChange={()=>priceFilter(0,10000)}
+                    minPrice:10000,
 
-/>
+                    maxPrice:50000
+
+                });
+
+            }
+            else{
+
+                setFilters({
+
+                    ...filters,
+
+                    minPrice:"",
+
+                    maxPrice:""
+
+                });
+
+            }
+
+        }}
+    />
 
 
-<span className="ml-2">
-Under ₹10000
-</span>
+    <span className="ml-2">
+        ₹10000 - ₹50000
+    </span>
 
 
 </label>
@@ -136,21 +162,48 @@ Under ₹10000
 
 <label className="block mb-3 cursor-pointer">
 
+    <input
+        type="checkbox"
+        checked={
+            filters.minPrice === 50000 &&
+            filters.maxPrice === ""
+        }
+        onChange={(e)=>{
 
-<input
+            if(e.target.checked){
 
-type="radio"
+                setFilters({
 
-name="price"
+                    ...filters,
 
-onChange={()=>priceFilter(10000,50000)}
+                    minPrice:50000,
 
-/>
+                    maxPrice:""
+
+                });
+
+            }
+            else{
+
+                setFilters({
+
+                    ...filters,
+
+                    minPrice:"",
+
+                    maxPrice:""
+
+                });
+
+            }
+
+        }}
+    />
 
 
-<span className="ml-2">
-₹10000 - ₹50000
-</span>
+    <span className="ml-2">
+        Above ₹50000
+    </span>
 
 
 </label>
@@ -161,56 +214,51 @@ onChange={()=>priceFilter(10000,50000)}
 
 <label className="block mb-3 cursor-pointer">
 
+    <input
+        type="checkbox"
+        checked={
+            filters.minPrice === 0 &&
+            filters.maxPrice === 10000
+        }
+        onChange={(e)=>{
 
-<input
+            if(e.target.checked){
 
-type="radio"
+                setFilters({
 
-name="price"
+                    ...filters,
 
-onChange={()=>priceFilter(50000,"")}
+                    minPrice:0,
 
-/>
+                    maxPrice:10000
 
+                });
 
-<span className="ml-2">
-Above ₹50000
-</span>
+            }
+            else{
 
+                setFilters({
 
-</label>
+                    ...filters,
 
+                    minPrice:"",
 
+                    maxPrice:""
 
-<label className="block mb-3 cursor-pointer">
+                });
 
+            }
 
-<input
-
-type="radio"
-
-name="price"
-
-onChange={()=>setFilters({
-
-...filters,
-
-minPrice:"",
-maxPrice:""
-
-})}
-
-/>
+        }}
+    />
 
 
-<span className="ml-2">
-Clear Price Filter
-</span>
+    <span className="ml-2">
+        Under ₹10000
+    </span>
 
 
 </label>
-
-
 
 </div>
 

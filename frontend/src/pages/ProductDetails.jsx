@@ -95,12 +95,12 @@ navigate("/cart");
 
                 <span>Offers</span>
                 <div className="flex flex-cols items-center justify-center gap-5">
-                    <div className="border-2 w-fit border-white rounded-lg p-2">
+                    <div className="border-2 w-1/2 border-white rounded-lg p-2">
                         Cashback<br />
                      Upto ₹158.00 cashback as Amazon Pay Balance when you pay with select Credit Cards<br />
                       <span className="text-blue-500 hover:underline cursor-pointer"> 4 offers</span>
                     </div>
-                    <div className="border-2 w-fit h-41 border-white rounded-lg p-2">
+                    <div className="border-2 w-1/2 h-35 border-white rounded-lg p-2">
                         Bank Offer<br />
                         Upto ₹2,500.00 discount on select Credit Cards, SBI Debit Cards<br />
                       <span className="text-blue-500 hover:underline cursor-pointer"> 4 offers</span>
