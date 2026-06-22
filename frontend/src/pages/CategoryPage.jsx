@@ -1,82 +1,113 @@
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
+import FilterSidebar from "../components/filters/FilterSideBar";
+import ProductGrid from "../components/products/ProductGrid";
+
+import API from "../api/axios";
+
 
 const CategoryPage = () => {
 
-  const { slug } = useParams();
 
-  const [products, setProducts] = useState([]);
-  const navigate = useNavigate();
+const { slug } = useParams();
 
-  useEffect(() => {
 
-    axios
-      .get(
-        `http://localhost:5000/products/category/${slug}`
-      )
-      .then((res) => {
 
-        setProducts(res.data.data);
+const [products,setProducts] = useState([]);
 
-      })
-      .catch((err) => {
+const [brands,setBrands] = useState([]);
 
-        console.log(err);
 
-      });
 
-  }, [slug]);
+const [filters,setFilters] = useState({
 
-  return (
-    <div className="bg-black min-h-screen p-6">
+brand:[],
 
-      <h1 className="text-white text-3xl font-bold mb-6">
-        {slug}
-      </h1>
+minPrice:"",
 
-      <div className="grid grid-cols-4  gap-6">
+maxPrice:""
 
-        {products.map((product) => (
+});
 
-          <div
-            key={product.product_id}
-            className="bg-gray-900 border  border-gray-800 p-4 rounded"
-             onClick={() =>
-             navigate(`/product/${product.product_id}`)
-  }
-          >
+useEffect(()=>{
 
-           <img
-                src={product.image_url}
-                alt={product.product_name}
-                className="w-full h-70 rounded-lg object-cover"
-            />
 
-            <h2 className="font-bold text-gray-100 mt-3">
-              {product.product_name}
-            </h2>
+getProducts();
 
-            <p className="text-green-600 font-bold">
-              {product.price} Rs
-            </p>
 
-            <p className="text-sm text-gray-300">
-              {product.brand}
-            </p>
-          
+},[slug,filters]);
 
-          </div>
-          
+const getProducts = async()=>{
 
-        ))}
-        
-      </div>
-     
 
-    </div>
-  )
+try{
+
+
+const res = await API.get(
+
+`/products/category/${slug}`,
+
+{
+
+params:{
+brand:filters.brand.join(","),
+minPrice:filters.minPrice,
+maxPrice:filters.maxPrice
 }
 
-export default CategoryPage
+}
+
+);
+
+
+
+
+console.log(res.data);
+
+
+
+
+setProducts(res.data.data);
+
+
+
+setBrands(res.data.brands || []);
+
+
+
+
+}
+catch(error){
+console.log(error);
+}
+};
+return (
+<div className="bg-black text-white min-h-screen p-5">
+<div className="grid grid-cols-12 gap-5">
+<div className="col-span-3">
+<FilterSidebar
+filters={filters}
+setFilters={setFilters}
+brands={brands}
+/>
+</div>
+<div className="col-span-9 ">
+<h1 className="text-3xl font-bold mb-5 capitalize">
+{slug.replace("-"," ")}
+</h1>
+<ProductGrid
+
+products={products}
+
+/>
+</div>
+</div>
+</div>
+)
+
+}
+
+
+
+export default CategoryPage;

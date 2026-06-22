@@ -7,10 +7,11 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    
-      navigate(`/search/${keyword}`);
-    
-  };
+    if(keyword.trim()){
+      navigate(`/search/${keyword.trim()}`);
+
+    }
+};
 
   return (
     <nav className="bg-gray-900 text-white px-6 py-4 sticky top-0 z-50 shadow-lg">

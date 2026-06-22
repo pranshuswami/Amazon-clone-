@@ -5,6 +5,7 @@ import CategoryPage from "./pages/CategoryPage";
 import ProductDetails from "./pages/ProductDetails";
 import SearchPage from "./pages/SearchPage";
 import Cart from "./pages/Cart";
+import SearchResult from "./pages/SearchResult";
 
 function App() {
   return (
@@ -35,6 +36,10 @@ function App() {
         path="/cart"
         element={<Cart />}
        />
+       <Route
+        path="/search/:keyword"
+        element={<SearchResult />}
+      />
        
       </Routes>
      
