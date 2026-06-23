@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect,useState } from "react";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 
 const Cart =()=>{
+  
 
 
-const [cart,setCart] = useState([]);
+const [cart,setCart]=useState([]);
+const navigate=useNavigate()
 
 useEffect(()=>{
 
@@ -22,7 +24,21 @@ try{
 
 
 const res = await axios.get(
-"http://localhost:5000/cart"
+
+"http://localhost:5000/cart",
+
+{
+
+headers:{
+
+Authorization:
+
+`Bearer ${localStorage.getItem("token")}`
+
+}
+
+}
+
 );
 
 
@@ -30,178 +46,341 @@ setCart(res.data.data);
 
 
 }
-catch(err){
+catch(error){
 
-console.log(err);
+console.log(error);
 
 }
+
 
 };
+const updateQuantity=async(cart_id,quantity)=>{
 
-const updateQuantity = async(cart_id, quantity)=>{
 
+if(quantity<1){
 
-if(quantity < 1){
-    return;
+return;
+
 }
+
+
+
 try{
+
+
 await axios.put(
 "http://localhost:5000/cart/update",
 {
 cart_id,
 quantity
+},
+{
+
+headers:{
+
+Authorization:
+
+`Bearer ${localStorage.getItem("token")}`
+
+}
+
 }
 );
 
-getCart();
+
+setCart(
+
+cart.map((item)=>
+
+item.cart_id===cart_id
+
+?
+
+{
+...item,
+quantity:quantity
+}
+
+:
+
+item
+
+)
+
+);
+
 
 
 }
-catch(err){
+catch(error){
 
-console.log(err);
+console.log(error);
 
 }
+
 };
 
-const deleteItem = async(id)=>{
+
+
+
+const deleteItem=async(id)=>{
+
+
 try{
 
+
 await axios.delete(
-`http://localhost:5000/cart/remove/${id}`
+
+`http://localhost:5000/cart/remove/${id}`,
+{
+
+headers:{
+
+Authorization:
+
+`Bearer ${localStorage.getItem("token")}`
+
+}
+
+}
+
 );
 
 
-getCart();
+setCart(
+
+cart.filter(
+
+(item)=>item.cart_id!==id
+
+)
+
+);
 
 
 }
-catch(err){
+catch(error){
 
-console.log(err);
+console.log(error);
 
 }
+
 };
 
-const deleteAll = async()=>{
+
+
+
+const deleteAll=async()=>{
+
+
 try{
+
+
 await axios.delete(
-"http://localhost:5000/cart/clear"
+"http://localhost:5000/cart/clear",
+{
+
+headers:{
+
+Authorization:
+
+`Bearer ${localStorage.getItem("token")}`
+
+}
+
+}
 );
+
+
 setCart([]);
-}
-catch(err){
 
-console.log(err);
 
 }
+catch(error){
+
+console.log(error);
+
+}
+
 };
 
-const subtotal = cart.reduce(
-(total,item)=> total + Number(item.price)* item.quantity,
+
+
+
+
+const subtotal=cart.reduce(
+
+(total,item)=>
+
+total+(Number(item.price)*item.quantity),
+
 0
+
 );
 
-return (
-<div className="bg-black text-white min-h-screen p-6 ">
+
+
+return(
+
+
+<div className="bg-black text-white min-h-screen p-6">
 
 
 <div className="grid grid-cols-12 gap-6">
-<div className="col-span-9 bg-gray-800 p-6 rounded">
 
-<h1 className="text-3xl font-semibold mb-5">
+
+
+<div className="col-span-9 bg-gray-800 p-6 rounded-lg">
+
+
+
+<h1 className="text-3xl font-bold mb-5">
 
 Shopping Cart
 
 </h1>
 
-<p onClick={deleteAll} className="text-blue-600 mb-5 cursor-pointer">
+
+
+
+<p
+
+onClick={deleteAll}
+
+className="text-blue-400 cursor-pointer mb-5"
+
+>
 
 Delete all items
 
 </p>
-<hr/>
+
+<hr className="border-gray-700 " />
 
 {
+
 cart.map((item)=>(
 
 
-<div 
+<div
+
 key={item.cart_id}
-className="flex gap-6 py-6 border-b"
+
+className="grid grid-cols-12 gap-5 border-b py-6"
+
 >
-<div className="w-52">
+
+
+<div className="col-span-3">
 
 
 <img
-
+onClick={() => navigate(`/product/${item.product_id}`)}
 src={item.image_url}
 
-className="w-full h-48 object-contain"
-/>
+className="w-full h-64 object-contain cursor-pointer"
+
+ />
+
+
 </div>
 
-<div className="flex-1">
 
 
-<h2 className="text-xl font-semibold">
+<div className="col-span-6">
+
+
+<h2 
+onClick={() => navigate(`/product/${item.product_id}`)} className="text-xl font-bold cursor-pointer" >
 
 {item.product_name}
 
 </h2>
 
-<p className="text-gray-100 font-medium mt-2">
+<p 
+onClick={() => navigate(`/product/${item.product_id}`)} className="text-gray-300 mt-2 cursor-pointer">
 
 {item.brand}
 
 </p>
+ <p 
+ onClick={() => navigate(`/product/${item.product_id}`)} className="text-gray-300 mt-2 text-xl line-clamp-2 cursor-pointer">
 
-<p className="text-green-700 font-bold mt-3">
+                {item.description}
+
+            </p>
+
+
+<p className="text-green-500 font-bold mt-3">
 
 In stock
 
 </p>
 
-<p className="mt-3 font-bold">
 
-Rs {item.price}
+<p className="text-gray-300 mt-2">
+
+FREE delivery Wed, 24 Jun
 
 </p>
+
+
 <div className="flex gap-3 mt-5">
 
 
 <button
 
+disabled={item.quantity===1}
+
 onClick={()=>updateQuantity(
+
 item.cart_id,
+
 item.quantity-1
+
 )}
 
-className="border px-4 py-2 rounded-full">-
+className="border px-4 py-1 rounded disabled:opacity-40"
+
+>
+
+-
+
 </button>
 
-<span className="px-3 py-2 border">
+
+<span className="border px-4 py-1">
 
 {item.quantity}
 
 </span>
 
+
+
 <button
 
 onClick={()=>updateQuantity(
+
 item.cart_id,
+
 item.quantity+1
+
 )}
 
-className="border px-4 py-2 rounded-full"> +
+className="border px-4 py-1 rounded"
+
+>
+
++
 
 </button>
+
 
 <button
 
 onClick={()=>deleteItem(item.cart_id)}
 
-className="text-blue-600 hover:underline ml-5"
+className="text-blue-400 ml-5 hover:underline"
 
 >
 
@@ -209,63 +388,135 @@ Delete
 
 </button>
 
-</div>
+<button className="text-blue-400 ml-5 hover:underline">
+
+Save for later
+
+</button>
+
 
 </div>
 
-</div>
-))
-}
-<h2 className="text-xl  text-right mt-5 font-bold">
 
-Subtotal ({cart.length} item): {subtotal} Rs
 
-</h2>
+
+
 </div>
+
+
+
 
 <div className="col-span-3">
 
-<div className="bg-gray-700 p-5 rounded">
 
+<h2 className="text-xl font-bold">
 
-<h2 className="text-xl font-semibold">
-
-Subtotal ({cart.length} item):
+₹{item.price}
 
 </h2>
 
-<h1 className="text-2xl font-bold mt-2">
 
- {subtotal} Rs
+<p className="text-gray-400 line-through mt-2">
+
+M.R.P ₹1,50,000
+</p>
+
+
+<p className="text-green-400 mt-2">
+
+FREE delivery
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+))
+
+}
+
+
+
+
+
+<h2 className="text-right text-xl font-bold mt-5">
+
+Subtotal ({cart.length} items): ₹{subtotal}
+
+</h2>
+
+
+
+</div>
+
+
+
+
+
+<div className="col-span-3">
+
+
+<div className="bg-gray-700 p-5 rounded-lg">
+
+
+<h2 className="text-xl font-bold">
+
+Subtotal ({cart.length} items)
+
+</h2>
+
+
+
+<h1 className="text-3xl font-bold mt-3">
+
+₹{subtotal}
 
 </h1>
 
-<button
 
-className="bg-yellow-400 font-bold active:scale-95 w-full rounded-full py-3 mt-5"
 
->
+<button 
+onClick={()=>navigate("/checkout")}
+className="bg-yellow-400 text-black rounded-full w-full py-3 mt-5 font-bold">
 
 Proceed to Buy
 
 </button>
-<p className="mt-2">Save <span className="font-bold"> ₹10</span>  extra using 💎<span className="font-bold "> 100 </span></p>
+<p className="mt-2">Save <span className="font-bold">₹10</span> extra using 💎<span className="font-bold">100</span>Details</p>
+
+
+</div>
+<div className="bg-blue-500 p-5 mt-3 ">
+  <p className="text-2xl">Hurry! <span className="font-bold"> Limited Period Offer - get ₹100 off on Prime Shopping Edition!</span>
+  <br />
+FREE delivery, offers and multiple benefits - all in ONE membership!
+
+</p>
+<button className="bg-yellow-300 w-full px-2 py-1  mt-3 rounded-full font-medium text-black">Join Prime Shopping Edition At
+  <br />
+  <span className="line-through">₹399</span> ₹299/year</button>
+</div>
+
+
+</div>
 
 
 
+</div>
+
 
 </div>
-<div className="bg-blue-700 mt-5 rounded px-3 py-2 text-2xl">Hurry!<span className="font-bold "> Limited Period Offer - get ₹100 off on Prime Shopping Edition!
-</span><br />
-<span className="">FREE delivery, offers and multiple benefits - all in ONE membership!</span>
-<button className="bg-yellow-300 rounded-full text-black my-3 text-lg w-85 px-4 py-3">Join Prime Shopping Edition at<br /><span className="line-through">₹399</span> ₹299/year</button>
-</div>
-</div>
-</div>
-</div>
+
+
 )
 
 }
+
 
 
 export default Cart;
