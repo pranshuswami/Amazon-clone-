@@ -68,10 +68,10 @@ alert("Invalid Login");
 return(
 
 
-<div className="bg-black text-white min-h-screen flex items-center justify-center">
+<div className=" min-h-screen flex items-center justify-center">
 
 
-<div className="bg-gray-800 p-8 rounded-lg w-96">
+<div className="bg-gray-200 dark:bg-gray-800 p-8 rounded-lg w-96">
 
 
 <h1 className="text-3xl font-bold mb-6">

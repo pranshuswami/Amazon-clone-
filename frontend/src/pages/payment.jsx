@@ -38,7 +38,7 @@ navigate("/orders");
 return(
 
 
-<div className="bg-black text-white min-h-screen p-6">
+<div className=" min-h-screen p-6">
 
 
 <h1 className="text-3xl font-bold mb-6">
@@ -49,7 +49,7 @@ Choose Payment Method
 
 
 
-<div className="bg-gray-800 p-6 rounded-lg max-w-xl">
+<div className=" bg-gray-200 dark:bg-gray-800 text-black dark:text-white p-6 rounded-lg max-w-xl">
 
 
 
@@ -67,7 +67,7 @@ onChange={()=>setMethod("UPI")}
 />
 
 
-<span className="ml-3">
+<span className=" text-black dark:text-gray-100 ml-3">
 
 UPI
 
@@ -93,7 +93,7 @@ onChange={()=>setMethod("Card")}
 />
 
 
-<span className="ml-3">
+<span className=" text-black dark:text-gray-100 ml-3">
 
 Credit / Debit Card
 
@@ -120,7 +120,7 @@ onChange={()=>setMethod("COD")}
 />
 
 
-<span className="ml-3">
+<span className=" text-black dark:text-gray-100 ml-3">
 
 Cash on Delivery
 

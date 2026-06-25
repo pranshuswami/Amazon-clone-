@@ -22,7 +22,7 @@ const App = () => {
 
     return (
 
-        <>
+        <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-900 dark:text-white">
 
 
              <Navbar />
@@ -53,7 +53,7 @@ const App = () => {
                 path="/search/:keyword"
                 element={<SearchPage />}
                 />
-                
+
                 <Route
 
                   path="/products/:slug"
@@ -122,7 +122,7 @@ const App = () => {
             </Routes>
 
 
-        </>
+        </div>
 
     );
 

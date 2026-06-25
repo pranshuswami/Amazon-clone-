@@ -213,10 +213,10 @@ const buyNow = async()=>{
 
     return (
 
-        <div className="bg-black  text-white min-h-screen p-6">
+        <div className=" min-h-screen p-6">
 
             <div className="flex">
-                <div className="bg-gray-800 w-1/3 p-6 ">
+                <div className="bg-gray-200 dark:bg-gray-800 w-1/3 p-6 ">
 
                 <img 
                     src={product.image_url}
@@ -224,11 +224,11 @@ const buyNow = async()=>{
                 />
                 
             </div>
-            <div className="bg-gray-800 w-1/2 p-6">
+            <div className="bg-gray-200 dark:bg-gray-800 w-1/2 p-6">
                 <h1 className="text-3xl font-bold mt-5">
                     {product.product_name}
                 </h1>
-                <p className="text-gray-300  mt-1.5 font-medium">{product.brand}</p>
+                <p className=" text-black dark:text-gray-300  mt-1.5 font-medium">{product.brand}</p>
 
                 
 
@@ -258,7 +258,7 @@ const buyNow = async()=>{
             </div>
             <hr className="mt-5 border-gray-600"></hr>
             <h2 className="font-bold text-2xl mt-3">About this item</h2>
-            <p className="mt-3 text-lg text-gray-300">
+            <p className="mt-3 text-lg text-black dark:text-gray-300">
                     {product.description}
                 </p>
 
@@ -266,7 +266,7 @@ const buyNow = async()=>{
             </div>
 
             
-            <div className="bg-gray-800 w-1/4 px-6 py-10 ">
+            <div className="bg-gray-200 dark:bg-gray-800 w-1/4 px-6 py-10 ">
                 <div className=" border mt-20 border-gray-100 p-6 mb-5 flex-row items-center justify-center
                 rounded-lg">
                     <h2 className="text-2xl font-bold ">
@@ -296,7 +296,7 @@ const buyNow = async()=>{
 
             </div>
             
-                <div className="mt-8 mx-90 flex flex-col items-center justify-center h-35 bg-gray-800 p-6 rounded-lg">
+                <div className="mt-8 mx-90 flex flex-col items-center justify-center h-35 bg-gray-200 dark:bg-gray-800 p-6 rounded-lg">
                     <h2 className=" text-center text-2xl font-semibold">Write a review</h2>
                  <button
 
@@ -328,7 +328,7 @@ const buyNow = async()=>{
 
                         <div
                             key={review.review_id}
-                            className="bg-gray-800 p-5 rounded mb-4"
+                            className="bg-gray-200 dark:bg-gray-800 p-5 rounded mb-4"
                         >
                              <p className="mt-3">
                                 {index + 1}
@@ -350,10 +350,10 @@ const buyNow = async()=>{
             {
                 showReviewBox && (
 
-                <div className="fixed inset-0  bg-black bg-opacity-70 flex items-center justify-center z-50">
+                <div className="fixed inset-0 bg-white dark:bg-black bg-opacity-70 flex items-center justify-center z-50">
 
 
-                    <div className="bg-gray-800 mt-5 p-6 rounded-lg w-180 h-120">
+                    <div className="bg-gray-200 dark:bg-gray-800 mt-5 p-6 rounded-lg w-180 h-120">
 
 
                         <h2 className="text-2xl text-center font-bold mb-5">

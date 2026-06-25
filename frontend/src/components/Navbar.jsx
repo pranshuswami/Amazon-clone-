@@ -15,8 +15,28 @@ const [token,setToken]=useState(
 );
 
 
+
 const navigate=useNavigate();
 
+const [theme,setTheme]=useState(
+    localStorage.getItem("theme") || "light"
+);
+
+
+useEffect(()=>{
+
+    document.documentElement.classList.toggle(
+        "dark",
+        theme==="dark"
+    );
+
+    localStorage.setItem(
+        "theme",
+        theme
+    );
+
+
+},[theme]);
 
 
 useEffect(()=>{
@@ -40,7 +60,7 @@ useEffect(()=>{
     };
 
 
-},[]);
+},[token]);
 
 
 
@@ -91,13 +111,15 @@ const logout=()=>{
 
     navigate("/login");
 
+    setCartCount(0);
+
 };
 
 
 
 return(
 
-<nav className="bg-gray-900 text-white px-6 py-4 sticky top-0 z-50 shadow-lg">
+<nav className="bg-white dark:bg-gray-900 text-black dark:text-white px-6 py-4 sticky top-0 z-50 shadow-lg">
 
 
 <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -128,7 +150,7 @@ value={keyword}
 
 onChange={(e)=>setKeyword(e.target.value)}
 
-className="w-full px-4 py-2 rounded-l-md border text-white"
+className="border-black dark:border-white w-full px-4 py-2 rounded-l-md border  text-black dark:text-white"
 
 />
 
@@ -188,7 +210,7 @@ onClick={
     ()=>navigate("/login")
 }
 
-className="bg-red-500 hover:bg-red-700 active:scale-95 px-4 py-2 rounded-xl"
+className="bg-blue-600 dark:bg-red-500 hover:bg-red-700 font-medium active:scale-95 px-4 py-2 rounded-xl"
 
 >
 
@@ -199,6 +221,35 @@ token
 "Logout"
 :
 "Login"
+
+}
+
+</button>
+<button
+
+onClick={()=>setTheme(
+    theme==="dark"
+    ?
+    "light"
+    :
+    "dark"
+)}
+
+className="bg-orange-500 text-white font-medium  px-4 py-2 rounded-xl"
+
+>
+
+{
+
+theme==="dark"
+
+?
+
+"☀️ Light"
+
+:
+
+"🌙 Dark"
 
 }
 

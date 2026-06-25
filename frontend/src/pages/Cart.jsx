@@ -223,14 +223,14 @@ total+(Number(item.price)*item.quantity),
 return(
 
 
-<div className="bg-black text-white min-h-screen p-6">
+<div className=" min-h-screen p-6">
 
 
 <div className="grid grid-cols-12 gap-6">
 
 
 
-<div className="col-span-9 bg-gray-800 p-6 rounded-lg">
+<div className="col-span-9 bg-gray-200 dark:bg-gray-800 p-6 rounded-lg">
 
 
 
@@ -255,7 +255,7 @@ Delete all items
 
 </p>
 
-<hr className="border-gray-700 " />
+<hr className="border-gray-300 dark:border-gray-700 " />
 
 {
 
@@ -266,7 +266,7 @@ cart.map((item)=>(
 
 key={item.cart_id}
 
-className="grid grid-cols-12 gap-5 border-b py-6"
+className="grid grid-cols-12 gap-5  py-6"
 
 >
 
@@ -298,13 +298,13 @@ onClick={() => navigate(`/product/${item.product_id}`)} className="text-xl font-
 </h2>
 
 <p 
-onClick={() => navigate(`/product/${item.product_id}`)} className="text-gray-300 mt-2 cursor-pointer">
+onClick={() => navigate(`/product/${item.product_id}`)} className="text-black dark:text-gray-300 mt-2 cursor-pointer">
 
 {item.brand}
 
 </p>
  <p 
- onClick={() => navigate(`/product/${item.product_id}`)} className="text-gray-300 mt-2 text-xl line-clamp-2 cursor-pointer">
+ onClick={() => navigate(`/product/${item.product_id}`)} className="text-black dark:text-gray-300 mt-2 text-xl line-clamp-2 cursor-pointer">
 
                 {item.description}
 
@@ -318,7 +318,7 @@ In stock
 </p>
 
 
-<p className="text-gray-300 mt-2">
+<p className="text-black dark:text-gray-300 mt-2">
 
 FREE delivery Wed, 24 Jun
 
@@ -461,7 +461,7 @@ Subtotal ({cart.length} items): ₹{subtotal}
 <div className="col-span-3">
 
 
-<div className="bg-gray-700 p-5 rounded-lg">
+<div className="bg-gray-200 dark:bg-gray-700 p-5 rounded-lg">
 
 
 <h2 className="text-xl font-bold">

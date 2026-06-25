@@ -106,7 +106,7 @@ const cancelOrder=async(id)=>{
 return(
 
 
-<div className="bg-black text-white min-h-screen px-60 ">
+<div className=" min-h-screen px-60 ">
 
 
 
@@ -134,7 +134,7 @@ orders.map((order)=>(
 
 key={order.order_id}
 
-className="bg-gray-800 p-5 rounded-lg"
+className="bg-gray-200 dark:bg-gray-800 p-5 rounded-lg"
 
 >
 
@@ -180,7 +180,7 @@ Address:
 
 
 
-<p className="text-gray-300 ">
+<p className="text-black dark:text-gray-300 ">
 
 {order.house},
 

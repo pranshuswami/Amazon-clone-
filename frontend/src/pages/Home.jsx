@@ -20,7 +20,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="bg-black min-h-screen p-6">
+    <div className=" min-h-screen p-6">
 
       {/* <h1 className="text-4xl text-white font-bold mb-8">
         Amazon Clone

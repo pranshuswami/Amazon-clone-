@@ -83,16 +83,16 @@ console.log(error);
 }
 };
 return (
-<div className="bg-black text-white min-h-screen p-5">
+<div className="bg-gray-100 dark:bg-black text-black dark:text-white min-h-screen">
 <div className="grid grid-cols-12 gap-5">
-<div className="col-span-3">
+<div className="col-span-3 mt-6 ml-3">
 <FilterSidebar
 filters={filters}
 setFilters={setFilters}
 brands={brands}
 />
 </div>
-<div className="col-span-9 ">
+<div className="col-span-9 mr-3 ">
 <h1 className="text-3xl font-bold mb-5 capitalize">
 {slug.replace("-"," ")}
 </h1>

@@ -31,23 +31,14 @@ const ProductCard = ({ product }) => {
     };
 
 
-    const discount = Math.round(
-        ((product.mrp - product.price) / product.mrp) * 100
-    );
+    
 
 
     return (
 
         <div
             onClick={() => navigate(`/product/${product.product_id}`)}
-            className="
-            bg-gray-800
-            p-4
-            rounded-lg
-            hover:scale-[1.02]
-            transition
-            cursor-pointer
-            "
+            className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg p-3"
         >
 
             <img
@@ -61,7 +52,7 @@ const ProductCard = ({ product }) => {
             />
 
 
-            <p className="text-xs text-gray-300 mt-2">
+            <p className="text-xs text-black dark:text-gray-300  mt-1">
                 Sponsored ⓘ
             </p>
 
@@ -73,7 +64,7 @@ const ProductCard = ({ product }) => {
             </h2>
 
 
-            <p className="text-gray-300 line-clamp-2">
+            <p className="text-black dark:text-gray-300 line-clamp-2">
 
                 {product.description}
 
@@ -91,7 +82,7 @@ const ProductCard = ({ product }) => {
 
                 </span>
 
-                <span className="ml-2 text-gray-400">
+                <span className="ml-2 text-black dark:text-gray-400">
 
                     ({product.reviews})
 
@@ -110,16 +101,16 @@ const ProductCard = ({ product }) => {
                 </span>
 
 
-                <span className="ml-2 text-gray-400 line-through">
+                <span className="ml-2 text-black dark:text-gray-300 line-through">
 
-                    ₹{product.mrp}
+                    ₹120000
 
                 </span>
 
 
-                <span className="text-green-400 ml-2">
+                <span className="text-green-400 text-sm ml-2">
 
-                    {discount}% off
+                    37% off
 
                 </span>
 

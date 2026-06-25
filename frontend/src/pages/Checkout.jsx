@@ -230,7 +230,7 @@ Authorization:
 
     return(
 
-        <div className="bg-black text-white min-h-screen p-6">
+        <div className=" min-h-screen p-6">
 
 
             <h1 className="text-3xl font-bold mb-6">
@@ -244,10 +244,10 @@ Authorization:
             <div className="grid grid-cols-12 gap-6">
 
 
-                <div className="col-span-8 bg-gray-800 p-6 rounded-lg">
+                <div className="col-span-8 bg-gray-200 dark:bg-gray-800 p-6 rounded-lg">
 
 
-                    <div className="bg-gray-700 p-5 rounded-lg">
+                    <div className="bg-gray-300 dark:bg-gray-700 text-black  dark:text-white p-5 rounded-lg">
 
 
                         <h2 className="text-xl font-bold">
@@ -264,7 +264,7 @@ Authorization:
 
                         (
 
-                        <p className="mt-3 text-gray-200">
+                        <p className="mt-3 text-black dark:text-gray-200">
 
                             {address.house}
 
@@ -330,7 +330,7 @@ Authorization:
 
 
                     </div>
-        <div className="bg-gray-700 p-5 rounded-lg mt-5">
+        <div className="bg-gray-300 dark:bg-gray-700 text-black  dark:text-white p-5 rounded-lg mt-5">
 
 
     <h2 className="text-xl font-bold mb-5">
@@ -375,7 +375,7 @@ Authorization:
 
 
 
-            <p className="text-gray-300 mt-2">
+            <p className="text-black dark:text-gray-300 mt-2">
 
                 {item.brand}
 
@@ -425,7 +425,7 @@ Authorization:
 
 
 
-                <div className="col-span-4 bg-gray-700 p-6 rounded-lg h-fit">
+                <div className="col-span-4 bg-gray-300 dark:bg-gray-700  dark:text-white p-6 rounded-lg h-fit">
 
 
                     <h2 className="text-2xl font-bold">

@@ -106,7 +106,7 @@ const OrderDetails = () => {
 
     return (
 
-        <div className="bg-black text-white min-h-screen px-20 py-10">
+        <div className=" min-h-screen px-20 py-10">
 
 
             <h1 className="text-4xl font-bold mb-5">
@@ -144,7 +144,7 @@ const OrderDetails = () => {
 
 
 
-            <div className="bg-gray-800 rounded-lg p-8 grid grid-cols-3 gap-10">
+            <div className="bg-gray-200 dark:bg-gray-800 rounded-lg p-8 grid grid-cols-3 gap-10">
 
                 <div>
 
@@ -265,7 +265,7 @@ const OrderDetails = () => {
 
             key={item.product_name}
 
-            className="bg-gray-800 rounded-lg p-6 mt-6 flex justify-between"
+            className="bg-gray-200 dark:bg-gray-800 rounded-lg p-6 mt-6 flex justify-between"
 
 
             >
@@ -298,7 +298,7 @@ const OrderDetails = () => {
 
 
 
-                        <p className="text-gray-300 mt-3 line line-clamp-2">
+                        <p className=" text-black dark:text-gray-300 mt-3 line line-clamp-2">
 
                             {item.description}
 
