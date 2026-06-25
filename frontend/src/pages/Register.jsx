@@ -79,7 +79,7 @@ Create Account
 
 <input
 
-className="w-full p-3 bg-gray-300 dark:bg-gray-700 rounded mb-4"
+className="w-full p-3 bg-white dark:bg-gray-700 rounded mb-4"
 
 placeholder="Name"
 
@@ -91,7 +91,7 @@ onChange={(e)=>setName(e.target.value)}
 
 <input
 
-className="w-full p-3 bg-gray-300 dark:bg-gray-700 rounded mb-4"
+className="w-full p-3 bg-white dark:bg-gray-700 rounded mb-4"
 
 placeholder="Email"
 
@@ -103,7 +103,7 @@ onChange={(e)=>setEmail(e.target.value)}
 
 <input
 
-className="w-full p-3 bg-gray-300 dark:bg-gray-700 rounded mb-4"
+className="w-full p-3 bg-white dark:bg-gray-700 rounded mb-4"
 
 placeholder="Password"
 
@@ -126,6 +126,8 @@ className="bg-yellow-400 text-black w-full py-3 rounded font-bold"
 Create Account
 
 </button>
+<p className="mt-2">Already have a account? 
+    <span onClick={()=>navigate(`/login`)} className="text-blue-500 font-medium cursor-pointer"> Login</span></p>
 
 
 

@@ -6,108 +6,107 @@ import ProductGrid from "../components/products/ProductGrid";
 
 import API from "../api/axios";
 
-
 const CategoryPage = () => {
 
+    const { slug } = useParams();
 
-const { slug } = useParams();
+    const [products, setProducts] = useState([]);
 
+    const [brands, setBrands] = useState([]);
 
+    const [filters, setFilters] = useState({
 
-const [products,setProducts] = useState([]);
+        brand: [],
 
-const [brands,setBrands] = useState([]);
+        minPrice: "",
 
+        maxPrice: ""
 
+    });
 
-const [filters,setFilters] = useState({
+    useEffect(() => {
 
-brand:[],
+        getProducts();
 
-minPrice:"",
+    }, [slug, filters]);
 
-maxPrice:""
+    const getProducts = async () => {
 
-});
+        try {
 
-useEffect(()=>{
+            const res = await API.get(
 
+                `/products/category/${slug}`,
 
-getProducts();
+                {
 
+                    params: {
 
-},[slug,filters]);
+                        brand: filters.brand.join(","),
 
-const getProducts = async()=>{
+                        minPrice: filters.minPrice,
 
+                        maxPrice: filters.maxPrice
 
-try{
+                    }
 
+                }
 
-const res = await API.get(
+            )
 
-`/products/category/${slug}`,
+            console.log(res.data);
 
-{
+            setProducts(res.data.data);
 
-params:{
-brand:filters.brand.join(","),
-minPrice:filters.minPrice,
-maxPrice:filters.maxPrice
-}
+            setBrands(res.data.brands || []);
 
-}
+        } catch (error) {
 
-);
+            console.log(error);
 
+        }
 
+    }
 
+    return (
 
-console.log(res.data);
+        <div className="bg-gray-100 dark:bg-black text-black dark:text-white min-h-screen">
 
+            <div className="grid grid-cols-12 gap-5">
 
+                <div className="col-span-3 mt-6 ml-3">
 
+                    <FilterSidebar
 
-setProducts(res.data.data);
+                        filters={filters}
 
+                        setFilters={setFilters}
 
+                        brands={brands}
 
-setBrands(res.data.brands || []);
+                    />
 
+                </div>
 
+                <div className="col-span-9 mr-3">
 
+                    <h1 className="text-3xl font-bold mb-5 mt-3 capitalize">
 
-}
-catch(error){
-console.log(error);
-}
+                        {slug.replace("-", " ")}
+
+                    </h1>
+
+                    <ProductGrid
+
+                        products={products}
+
+                    />
+
+                </div>
+
+            </div>
+
+        </div>
+    );
 };
-return (
-<div className="bg-gray-100 dark:bg-black text-black dark:text-white min-h-screen">
-<div className="grid grid-cols-12 gap-5">
-<div className="col-span-3 mt-6 ml-3">
-<FilterSidebar
-filters={filters}
-setFilters={setFilters}
-brands={brands}
-/>
-</div>
-<div className="col-span-9 mr-3 ">
-<h1 className="text-3xl font-bold mb-5 capitalize">
-{slug.replace("-"," ")}
-</h1>
-<ProductGrid
-
-products={products}
-
-/>
-</div>
-</div>
-</div>
-)
-
-}
-
-
-
 export default CategoryPage;

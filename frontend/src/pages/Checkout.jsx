@@ -436,14 +436,14 @@ Authorization:
 
 
 
-                    <p className="mt-5">
+                    <p className="mt-3">
 
                         Items : {cart.length}
 
                     </p>
 
 
-                    <h2 className="text-2xl font-bold mt-5">
+                    <h2 className="text-2xl font-bold mt-3">
 
                         ₹{total}
 
@@ -479,10 +479,10 @@ Authorization:
 
             (
 
-            <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+            <div className="fixed inset-0 bg-white  dark:bg-black bg-opacity-70 flex items-center justify-center z-50">
 
 
-                <div className="bg-gray-800 p-6 rounded-lg w-96">
+                <div className="bg-gray-200 dark:bg-gray-800 p-6 rounded-lg w-96">
 
 
                     <h2 className="text-2xl font-bold mb-5">
@@ -546,7 +546,7 @@ Authorization:
 
                     }
 
-                    className="w-full bg-gray-700 p-3 rounded mb-3"
+                    className="w-full bg-white dark:bg-gray-700 p-3 rounded mb-3"
 
                     />
 

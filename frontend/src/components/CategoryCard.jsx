@@ -6,7 +6,7 @@ const CategoryCard = ({ category }) => {
   return (
     <div onClick={() =>
           navigate(`/products/${category.slug}`)
-        } className="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-lg">
+        } className="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-lg cursor-pointer">
 
       <h2 className="text-lg text-gray-900 dark:text-gray-100 font-bold mb-3">
         {category.category_name}

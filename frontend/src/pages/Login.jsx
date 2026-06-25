@@ -84,7 +84,7 @@ Login
 
 <input
 
-className="w-full p-3 bg-gray-700 rounded mb-4"
+className="w-full p-3 bg-white dark:bg-gray-700 rounded mb-4"
 
 placeholder="Email"
 
@@ -98,7 +98,7 @@ onChange={(e)=>setEmail(e.target.value)}
 
 <input
 
-className="w-full p-3 bg-gray-700 rounded mb-4"
+className="w-full p-3 bg-white dark:bg-gray-700 rounded mb-4"
 
 placeholder="Password"
 
@@ -137,7 +137,7 @@ Don't have an account?
 
 onClick={()=>navigate("/register")}
 
-className="text-blue-400 cursor-pointer ml-2"
+className="text-blue-400 cursor-pointer ml-2 hover-underline"
 
 >
 

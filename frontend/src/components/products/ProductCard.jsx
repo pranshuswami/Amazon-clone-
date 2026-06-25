@@ -29,16 +29,15 @@ const ProductCard = ({ product }) => {
         }
 
     };
-
-
+    const discount = Math.round(
+    ((product.mrp - product.price) / product.mrp) * 100
+);
     
-
-
     return (
 
         <div
             onClick={() => navigate(`/product/${product.product_id}`)}
-            className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg p-3"
+            className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg p-3 shadow-lg cursor-pointer hover:scale-101"
         >
 
             <img
@@ -103,14 +102,14 @@ const ProductCard = ({ product }) => {
 
                 <span className="ml-2 text-black dark:text-gray-300 line-through">
 
-                    ₹120000
+                    ₹{product.mrp}
 
                 </span>
 
 
                 <span className="text-green-400 text-sm ml-2">
 
-                    37% off
+                    {discount}% OFF
 
                 </span>
 

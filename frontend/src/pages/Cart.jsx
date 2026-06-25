@@ -247,7 +247,7 @@ Shopping Cart
 
 onClick={deleteAll}
 
-className="text-blue-400 cursor-pointer mb-5"
+className="text-blue-400 cursor-pointer mb-3"
 
 >
 
@@ -304,7 +304,8 @@ onClick={() => navigate(`/product/${item.product_id}`)} className="text-black da
 
 </p>
  <p 
- onClick={() => navigate(`/product/${item.product_id}`)} className="text-black dark:text-gray-300 mt-2 text-xl line-clamp-2 cursor-pointer">
+ onClick={() => navigate(`/product/${item.product_id}`)} 
+ className="text-black dark:text-gray-300 mt-2 text-xl line-clamp-2 cursor-pointer">
 
                 {item.description}
 
@@ -394,16 +395,9 @@ Save for later
 
 </button>
 
-
 </div>
 
-
-
-
-
 </div>
-
-
 
 
 <div className="col-span-3">
@@ -443,7 +437,7 @@ FREE delivery
 
 
 
-
+<hr className="border-gray-300 dark:border-gray-700" />
 <h2 className="text-right text-xl font-bold mt-5">
 
 Subtotal ({cart.length} items): ₹{subtotal}
@@ -492,7 +486,7 @@ Proceed to Buy
 
 </div>
 <div className="bg-blue-500 p-5 mt-3 ">
-  <p className="text-2xl">Hurry! <span className="font-bold"> Limited Period Offer - get ₹100 off on Prime Shopping Edition!</span>
+  <p className="text-2xl text-white">Hurry! <span className="font-bold"> Limited Period Offer - get ₹100 off on Prime Shopping Edition!</span>
   <br />
 FREE delivery, offers and multiple benefits - all in ONE membership!
 

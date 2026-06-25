@@ -83,6 +83,7 @@ const OrderDetails = () => {
     }
 
 };
+        
 
 
 
@@ -305,7 +306,7 @@ const OrderDetails = () => {
                         </p>
 
 
-                        <p className="text-green-400 mt-3">
+                        <p className="dark:text-green-400 text-green-600 font-semibold mt-3">
 
                             Status : {item.order_status}
 
@@ -349,8 +350,8 @@ const OrderDetails = () => {
 
                             </button>
 
-                    }              
-
+                    } 
+                    
             
 
 

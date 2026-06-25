@@ -106,6 +106,7 @@ const ProductDetails = () => {
 
 
                 alert("Added to cart");
+                
 
 
         }
@@ -201,6 +202,10 @@ const buyNow = async()=>{
 
     };
 
+    const discount = Math.round(
+    ((product.mrp - product.price) / product.mrp) * 100
+);
+
 
 
     if(!product) {
@@ -232,31 +237,32 @@ const buyNow = async()=>{
 
                 
 
-                <h2 className="text-2xl font-bold mt-5">
-                    ₹{product.price}
+                <h2 className="text-2xl font-bold mt-3 mb-1">
+                    <span className="text-2xl text-red-400 font-medium">-{discount}%</span> ₹{product.price}
                 </h2>
-                <p className="mt-2 text-lg">Save <span className="font-bold">₹10</span> extra using <span className="font-bold">💎100</span> <span className="text-blue-400 hover:underline cursor-pointer">Details</span></p>
+                <p className="text-sm">M.R.P:<span className="line-through">{product.mrp}</span></p>
+                <p className="mt-2 text-lg">Save <span className="font-bold">₹10</span> extra using <span className="font-bold">💎100</span> <span className="text-blue-500 hover:underline cursor-pointer">Details</span></p>
                 <p className=" mt-2 text-lg ">Inclusive of all taxes
                     <br />
-                <span className="text-blue-400 hover:underline cursor-pointer">Save up to 18% with business pricing and GST input tax credit. Sign up for a free Amazon Business account</span>
+                <span className="text-blue-500 hover:underline cursor-pointer">Save up to 18% with business pricing and GST input tax credit. Sign up for a free Amazon Business account</span>
                 </p>
                 <div className="flex flex-cold items-center justify-center w-fit mt-3 gap-2">
-                <div className="border  border-gray-100 rounded-lg px-2 py-1"><span className="font-bold">Cashback</span>
+                <div className="border  border-gray-400 dark:border-gray-100 rounded-lg px-2 py-1"><span className="font-bold">Cashback</span>
                     <br />
 
             Upto ₹50.00 cashback as Amazon Pay Balance when you pay with select Credit CardsUpto ₹50.00 cashback as Amazon Pay Balance when…<br />
-                <span className="text-blue-400 hover:underline cursor-pointer">3 offers</span>
+                <span className="text-blue-500 hover:underline cursor-pointer">3 offers</span>
                 </div>
-                <div className="border h-38 border-gray-100 rounded-lg px-2 py-1"><span className="font-bold">Bank Offers</span>
+                <div className="border h-38 border-gray-400 dark:border-gray-100 rounded-lg px-2 py-1"><span className="font-bold">Bank Offers</span>
                     <br />
 
             10% Instant Discount up to INR 1000 on ICICI Bank Credit Card (excluding Amazon Pay ICICI Credit Card) EMI Trxns. Min purchase value INR 7490<br />
-                <span className="text-blue-400 hover:underline cursor-pointer">16 offers</span>
+                <span className="text-blue-500 hover:underline cursor-pointer">16 offers</span>
                 </div>
 
                 
             </div>
-            <hr className="mt-5 border-gray-600"></hr>
+            <hr className="mt-5 border-gray-300 dark:border-gray-600"></hr>
             <h2 className="font-bold text-2xl mt-3">About this item</h2>
             <p className="mt-3 text-lg text-black dark:text-gray-300">
                     {product.description}
@@ -267,11 +273,12 @@ const buyNow = async()=>{
 
             
             <div className="bg-gray-200 dark:bg-gray-800 w-1/4 px-6 py-10 ">
-                <div className=" border mt-20 border-gray-100 p-6 mb-5 flex-row items-center justify-center
+                <div className=" border mt-20 border-gray-400 dark:border-gray-100 p-6 mb-5 flex-row items-center justify-center
                 rounded-lg">
                     <h2 className="text-2xl font-bold ">
                     ₹{product.price}
                 </h2>
+                <p className="">FREE delivery tomorrow June to <span className="text-blue-500 hover:underline cursor-pointer">Bikaner 334001</span>. Order within 10 hrs 31 mins. <span className="text-blue-500 hover:underline cursor-pointer">Details</span></p>
                 <p className="text-red-400 font-bold">{product.stock} left in stock</p>
 
                 <button onClick={addToCart}
@@ -283,11 +290,11 @@ const buyNow = async()=>{
                 className="bg-orange-400 mt-3 h-9 text-black font-bold active:scale-95 hover:bg-yellow-600 px-2 py-1 rounded-full w-full">Buy Now</button>
 
                 </div>
-                <div className="border border-gray-100 p-2  flex-row items-center justify-center
+                <div className="border border-gray-400 dark:border-gray-100 p-2  flex-row items-center justify-center
                 rounded-lg">
                     <img className="rounded-lg object-cover" src="https://i.pinimg.com/736x/ed/1e/3e/ed1e3e53ec7837cb55d7167bec051f0b.jpg"/>
                     <p className="mt-2 font-medium">Save up to 18% on this product with business pricing and GST input tax credit</p>
-                    <button className="border border-gray-100 hover:border-blue-400  rounded-lg px-2 py-1  mt-2 ml-10">
+                    <button className="border dark:border-gray-100 hover:border-blue-500  rounded-lg px-2 py-1  mt-2 ml-10">
                         Create a free account
                     </button>
                 </div>
@@ -372,7 +379,7 @@ const buyNow = async()=>{
 
                             placeholder="Write your review..."
 
-                            className="w-full  bg-gray-700 p-3 rounded h-76"
+                            className="w-full   bg-white dark:bg-gray-700 p-3 rounded h-76"
 
                         />
 
