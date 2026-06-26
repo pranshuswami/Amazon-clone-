@@ -412,7 +412,7 @@ Save for later
 
 <p className="text-gray-400 line-through mt-2">
 
-M.R.P ₹1,50,000
+M.R.P ₹{item.mrp}
 </p>
 
 

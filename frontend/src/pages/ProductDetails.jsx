@@ -202,27 +202,20 @@ const buyNow = async()=>{
 
     };
 
-    const discount = Math.round(
-    ((product.mrp - product.price) / product.mrp) * 100
-);
-
-
-
     if(!product) {
 
         return <h1>Loading...</h1>;
 
     }
 
-
-
     return (
 
         <div className=" min-h-screen p-6">
 
             <div className="flex">
+                
                 <div className="bg-gray-200 dark:bg-gray-800 w-1/3 p-6 ">
-
+                
                 <img 
                     src={product.image_url}
                     className=" w-full h-120 object-contain"
@@ -230,6 +223,7 @@ const buyNow = async()=>{
                 
             </div>
             <div className="bg-gray-200 dark:bg-gray-800 w-1/2 p-6">
+            
                 <h1 className="text-3xl font-bold mt-5">
                     {product.product_name}
                 </h1>
@@ -237,10 +231,9 @@ const buyNow = async()=>{
 
                 
 
-                <h2 className="text-2xl font-bold mt-3 mb-1">
-                    <span className="text-2xl text-red-400 font-medium">-{discount}%</span> ₹{product.price}
+                <h2 className="text-2xl font-bold mt-3">
+                    ₹{product.price}
                 </h2>
-                <p className="text-sm">M.R.P:<span className="line-through">{product.mrp}</span></p>
                 <p className="mt-2 text-lg">Save <span className="font-bold">₹10</span> extra using <span className="font-bold">💎100</span> <span className="text-blue-500 hover:underline cursor-pointer">Details</span></p>
                 <p className=" mt-2 text-lg ">Inclusive of all taxes
                     <br />
@@ -273,6 +266,7 @@ const buyNow = async()=>{
 
             
             <div className="bg-gray-200 dark:bg-gray-800 w-1/4 px-6 py-10 ">
+            
                 <div className=" border mt-20 border-gray-400 dark:border-gray-100 p-6 mb-5 flex-row items-center justify-center
                 rounded-lg">
                     <h2 className="text-2xl font-bold ">

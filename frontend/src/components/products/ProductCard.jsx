@@ -107,7 +107,7 @@ const ProductCard = ({ product }) => {
                 </span>
 
 
-                <span className="text-green-400 text-sm ml-2">
+                <span className=" text-green-500 dark:text-green-400 font-medium text-sm ml-2">
 
                     {discount}% OFF
 
@@ -117,7 +117,7 @@ const ProductCard = ({ product }) => {
 
 
 
-            <p className="text-green-500 mt-2">
+            <p className="text-green-500 font-medium mt-2">
 
                 FREE delivery tomorrow
 
