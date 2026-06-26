@@ -154,9 +154,40 @@ console.log(error);
 }
 };
 
+const getProductImages = (req, res) => {
+
+    const { id } = req.params;
+
+    const sql = `
+        SELECT *
+        FROM product_images
+        WHERE product_id = ?
+    `;
+
+    db.query(sql, [id], (err, result) => {
+
+        if (err) {
+
+            return res.status(500).json({
+                success: false,
+                message: err.message
+            });
+
+        }
+
+        res.json({
+            success: true,
+            data: result
+        });
+
+    });
+
+};
+
 module.exports = {
     getProductsByCategory,
     searchProducts,
     getSingleProduct,
-    getProducts
+    getProducts,
+    getProductImages
 };

@@ -481,7 +481,7 @@ className="bg-yellow-400 text-black rounded-full w-full py-3 mt-5 font-bold">
 Proceed to Buy
 
 </button>
-<p className="mt-2">Save <span className="font-bold">₹10</span> extra using 💎<span className="font-bold">100</span>Details</p>
+<p className="mt-2">Save <span className="font-bold">₹10</span> extra using 💎<span className="font-bold">100</span> Details</p>
 
 
 </div>

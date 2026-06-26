@@ -221,6 +221,7 @@ const buyNow = async()=>{
                     className=" w-full h-120 object-contain"
                 />
                 
+                
             </div>
             <div className="bg-gray-200 dark:bg-gray-800 w-1/2 p-6">
             
@@ -288,7 +289,7 @@ const buyNow = async()=>{
                 rounded-lg">
                     <img className="rounded-lg object-cover" src="https://i.pinimg.com/736x/ed/1e/3e/ed1e3e53ec7837cb55d7167bec051f0b.jpg"/>
                     <p className="mt-2 font-medium">Save up to 18% on this product with business pricing and GST input tax credit</p>
-                    <button className="border dark:border-gray-100 hover:border-blue-500  rounded-lg px-2 py-1  mt-2 ml-10">
+                    <button className="border dark:border-gray-100 hover:border-blue-500  rounded-lg px-2 py-1  mt-2 mx-15">
                         Create a free account
                     </button>
                 </div>

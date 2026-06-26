@@ -6,9 +6,10 @@ const categoryRoutes = require("./routes/categoryRoutes");
 const productRoutes = require("./routes/productRoutes");
 const cartRoutes=require("./routes/cartRoutes")
 const orderRoutes=require("./routes/orderRoutes");
-const reviewRoutes=require("./routes/reviewRoutes")
+const reviewRoutes=require("./routes/reviewRoutes");
 const addressRoutes = require("./routes/addressRoutes");
-const authRoutes=require("./routes/authRotes")
+const authRoutes=require("./routes/authRotes");
+const adminRoutes = require("./routes/adminRoutes");
 const app = express();
 
 app.use(cors());
@@ -20,7 +21,8 @@ app.use("/cart",cartRoutes);
 app.use("/order",orderRoutes);
 app.use("/reviews",reviewRoutes);
 app.use("/address",addressRoutes);
-app.use("/auth",authRoutes)
+app.use("/auth",authRoutes);
+app.use("/admin",adminRoutes);
 
 const PORT = 5000;
 

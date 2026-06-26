@@ -7,7 +7,8 @@ const {
     getProductsByCategory,
     getSingleProduct,
     searchProducts,
-    getProducts
+    getProducts,
+    getProductImages
 
 } = require("../controllers/productController");
 
@@ -34,6 +35,11 @@ router.get(
 router.get(
     "/",
     getProducts
+);
+
+router.get(
+    "/:id/images",
+    getProductImages
 );
 
 
