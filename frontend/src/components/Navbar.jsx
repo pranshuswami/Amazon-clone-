@@ -1,7 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import logo from "../assets/Amazon Clone logo.png"
 
 const Navbar = () => {
 
@@ -126,25 +126,21 @@ const Navbar = () => {
     return (
 
 
-        <nav className="bg-white dark:bg-gray-900 text-black dark:text-white px-6 py-4 sticky top-0 z-50 shadow-lg">
+        <nav className="bg-gray-900 text-white px-6 py-2 sticky top-0 z-50 shadow-lg">
 
 
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <div className="flex items-center justify-between">
 
                 <Link to="/">
 
 
-                    <h1 className="text-2xl font-bold">
-
-                        Amazon Clone
-
-                    </h1>
+                    <img className="h-15 w-40" src={logo } />
 
 
                 </Link>
 
 
-                <div className="flex w-1/2">
+                <div className="flex w-1/2 ">
 
                     <input
 
@@ -156,7 +152,7 @@ const Navbar = () => {
 
                         onChange={(e) => setKeyword(e.target.value)}
 
-                        className="border-black dark:border-white w-full px-4 py-2 rounded-l-md border text-black dark:text-white"
+                        className="border-white w-full px-4 py-2 rounded-l-md border  text-white"
 
                     />
 
@@ -179,44 +175,59 @@ const Navbar = () => {
 
                 <div className="flex gap-6">
 
-                    <Link
+                    <NavLink
 
                         to="/"
 
-                        className="hover:text-blue-400 "
+                        className={({isActive})=>
+                        isActive
+                    ?
+                    "text-blue-400 font-semibold"
+                    :
+                    "dark:text-white font-medium"}
 
                     >
 
                         Home
 
 
-                    </Link>
+                    </NavLink>
 
-                    <Link
+                    <NavLink
 
                         to="/cart"
 
-                        className="hover:text-blue-400"
+                        className={({isActive})=>
+                        isActive
+                    ?
+                    "text-blue-400 font-semibold"
+                    :
+                    "dark:text-white font-medium"}
 
                     >
 
                         Cart ({cartCount})
 
 
-                    </Link>
+                    </NavLink>
 
-                    <Link
+                    <NavLink
 
                         to="/orders"
 
-                        className="hover:text-blue-400"
+                       className={({isActive})=>
+                        isActive
+                    ?
+                    "text-blue-400 font-semibold"
+                    :
+                    "dark:text-white font-medium"}
 
                     >
 
                         Orders
 
 
-                    </Link>
+                    </NavLink>
 
                 </div>
 

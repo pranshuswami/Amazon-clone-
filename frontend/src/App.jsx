@@ -13,6 +13,7 @@ import Navbar from "./components/Navbar";
 import ProductDetails from "./pages/ProductDetails";
 import Payment from "./pages/Payment";
 import SearchPage from "./pages/SearchPage";
+import Footer from "./components/footer";
 
 const App = () => {
 
@@ -120,7 +121,7 @@ const App = () => {
 
 
             </Routes>
-
+            <Footer />
 
         </div>
 

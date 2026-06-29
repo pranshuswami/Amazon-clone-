@@ -12,9 +12,10 @@ const hashedPassword = await bcrypt.hash(
 );
 
 
-const sql ="INSERT INTO users (name,email,password,role) VALUES(?,?,?,'customer')"
+const sql ="INSERT INTO users (name,email,password) VALUES(?,?,?)"
 
 db.query(sql,[name,email,hashedPassword],(err,result)=>{
+
 
 if(err){
 
@@ -94,9 +95,7 @@ const token = jwt.sign(
 
 user_id:user.user_id,
 
-email:user.email,
-
-role:user.role
+email:user.email
 
 },
 
@@ -104,7 +103,7 @@ role:user.role
 
 {
 
-expiresIn:"7d"
+expiresIn:"1d"
 
 }
 

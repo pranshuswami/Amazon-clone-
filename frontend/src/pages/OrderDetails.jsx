@@ -279,9 +279,11 @@ const OrderDetails = () => {
                     <div className="w-1/4">
                         <img
 
+                    onClick={() => navigate(`/product/${item.product_id}`)}
+
                     src={item.image_url}
 
-                    className="w-full h-64 object-contain rounded"
+                    className="w-full h-64 object-contain rounded cursor-pointer"
 
                     />
                     </div>
@@ -291,7 +293,8 @@ const OrderDetails = () => {
                     <div className="w-250 mr-15">
 
 
-                        <h2 className="text-xl font-bold">
+                        <h2 onClick={() => navigate(`/product/${item.product_id}`)}
+                        className="text-xl font-bold cursor-pointer">
 
                             {item.product_name}
 
@@ -299,7 +302,8 @@ const OrderDetails = () => {
 
 
 
-                        <p className=" text-black dark:text-gray-300 mt-3 line line-clamp-2">
+                        <p onClick={() => navigate(`/product/${item.product_id}`)}
+                        className=" text-black dark:text-gray-300 mt-3 line line-clamp-2 cursor-pointer">
 
                             {item.description}
 

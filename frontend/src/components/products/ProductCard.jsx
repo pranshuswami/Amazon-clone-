@@ -8,27 +8,74 @@ const ProductCard = ({ product }) => {
 
     const addToCart = async (e) => {
 
-        e.stopPropagation();
 
-        try {
+    e.stopPropagation();
 
-            await axios.post(
-                "http://localhost:5000/cart/add",
-                {
-                    product_id: product.product_id
+
+    const token = localStorage.getItem("token");
+
+
+
+    if(!token){
+
+        navigate("/login");
+
+        return;
+
+    }
+
+
+
+    try {
+
+
+        await axios.post(
+
+            "http://localhost:5000/cart/add",
+
+            {
+                product_id: product.product_id,
+                quantity:1
+            },
+
+
+            {
+
+                headers:{
+
+
+                    Authorization:
+
+                    `Bearer ${token}`
+
+
                 }
-            );
 
-            alert("Added to cart");
+            }
 
-        }
-        catch(error){
 
-            console.log(error);
+        );
 
-        }
 
-    };
+        alert("Added to cart");
+        navigate(`/cart`)
+        window.location.reload()
+
+
+       
+    }
+
+
+    catch(error){
+
+
+        console.log(error);
+
+
+    }
+
+
+};
     const discount = Math.round(
     ((product.mrp - product.price) / product.mrp) * 100
 );
@@ -36,7 +83,9 @@ const ProductCard = ({ product }) => {
     return (
 
         <div
-            onClick={() => navigate(`/product/${product.product_id}`)}
+            onClick={() =>{ navigate(`/product/${product.product_id}`); 
+            window.scrollTo(0,0);}}
+            
             className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg p-3 shadow-lg cursor-pointer hover:scale-101"
         >
 

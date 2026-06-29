@@ -225,7 +225,7 @@ const getOrderDetails = (req,res)=>{
     addresses.state,
     addresses.country,
 
-
+    products.product_id,
     products.product_name,
     products.description,
     products.image_url,

@@ -107,6 +107,11 @@ const ProductDetails = () => {
 
                 alert("Added to cart");
                 
+                navigate("/cart");
+
+                window.location.reload()
+
+                
 
 
         }
