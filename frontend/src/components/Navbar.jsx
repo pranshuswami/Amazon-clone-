@@ -28,8 +28,6 @@ const Navbar = () => {
         localStorage.getItem("theme") || "light"
     );
 
-
-
     useEffect(() => {
 
         document.documentElement.classList.toggle(

@@ -44,7 +44,7 @@ const Footer = () => {
         <hr className="border-gray-700 " />
 
         <div className="bg-gray-800 flex items-center justify-center gap-8 ">
-            <img className="h-15 w-40 my-10" src={logo} />
+            <img className="h-14 w-36 object-contain my-5" src={logo} />
             <button className="border border-gray-500 px-4 py-2 rounded hover:bg-gray-800">🌐 English</button>
             <button className="border border-gray-500 px-4 py-2 rounded hover:bg-gray-800">🇮🇳 India</button>
         </div>
