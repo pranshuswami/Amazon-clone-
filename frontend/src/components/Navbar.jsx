@@ -28,6 +28,7 @@ const Navbar = () => {
         localStorage.getItem("theme") || "light"
     );
 
+
     useEffect(() => {
 
         document.documentElement.classList.toggle(
@@ -187,7 +188,7 @@ const Navbar = () => {
                     
                 </Link>
 
-                <div className="flex w-[45%] relative">
+                <div className="flex w-[50%] relative">
 
                     <button
 
@@ -354,7 +355,7 @@ const Navbar = () => {
 
                     >
 
-                    Orders
+                    📦Orders
 
                     </NavLink>
 
@@ -412,7 +413,7 @@ const Navbar = () => {
 
                 )}
 
-                className="bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg"
+                className="bg-gray-500 hover:bg-gray-600 px-3 py-2 rounded-lg"
 
                 >
 

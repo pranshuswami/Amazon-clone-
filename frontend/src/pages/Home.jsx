@@ -24,8 +24,8 @@ const Home = () => {
 
       {/* <h1 className="text-4xl text-white font-bold mb-8">
         Amazon Clone
-      </h1> */}
-
+      </h1> */} 
+      
       <div className="grid grid-cols-3  gap-6">
 
         {categories.map((category) => (
@@ -38,6 +38,7 @@ const Home = () => {
       </div>
 
     </div>
+      
   );
 };
 
