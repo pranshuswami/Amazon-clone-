@@ -51,7 +51,7 @@ message:"Address saved"
 const getAddress = (req,res)=>{
 
 
-const user_id=1;
+const user_id=req.user.user_id;
 
 
 

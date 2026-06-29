@@ -171,7 +171,7 @@ const Navbar = () => {
     return (
 
 
-        <nav className="bg-gray-900 text-white px-6 py-2 sticky top-0 z-50 shadow-lg">
+        <nav className="bg-gray-900 text-white px-6 py-3 sticky top-0 z-50 shadow-lg">
 
 
             <div className="flex items-center justify-between">
@@ -182,14 +182,14 @@ const Navbar = () => {
 
                     <img 
                     
-                    className="h-15 w-40" 
+                    className="h-14 w-36 object-contain" 
                     
                     src={logo} />
 
                     
                 </Link>
 
-                <div className="flex w-1/2 relative">
+                <div className="flex w-[45%] relative">
 
                     <button
 
@@ -213,7 +213,7 @@ const Navbar = () => {
 
                     onChange={(e)=>setKeyword(e.target.value)}
 
-                    className="border-white w-full px-4 py-2 bg-white border text-black"
+                    className="w-full px-4 py-3 bg-white text-black outline-none"
 
                     />
 
@@ -221,7 +221,7 @@ const Navbar = () => {
 
                     onClick={handleSearch}
 
-                    className="bg-yellow-400 px-5 rounded-r-md text-black font-semibold cursor-pointer"
+                    className="bg-yellow-400 px-6 rounded-r-md text-black hover:bg-yellow-500 cursor-pointer"
 
                     >
 
@@ -240,7 +240,7 @@ const Navbar = () => {
 
                     <div
 
-                    className="absolute top-12 left-0 bg-white dark:bg-gray-800 text-black dark:text-white w-52 shadow-lg rounded-lg p-4 z-50"
+                    className="absolute top-14 left-0 bg-white dark:bg-gray-800 text-black dark:text-white w-60 shadow-xl rounded-lg p-3 z-50"
 
                     >
 
@@ -263,7 +263,7 @@ const Navbar = () => {
                     }}
 
 
-                    className="cursor-pointer p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded"
+                    className="cursor-pointer px-3 py-2 hover:bg-yellow-400 hover:text-black rounded"
 
                     >
 
@@ -286,7 +286,7 @@ const Navbar = () => {
 
                 </div>
 
-                <div className="flex gap-6">
+                <div className="flex gap-6 items-center">
 
                     <NavLink
 
@@ -332,7 +332,7 @@ const Navbar = () => {
 
                     >
 
-                    Cart ({cartCount})
+                    🛒 Cart ({cartCount})
 
                     </NavLink>
 
@@ -414,7 +414,7 @@ const Navbar = () => {
 
                 )}
 
-                className="bg-orange-500 text-white font-semibold px-4 py-2 rounded-xl cursor-pointer"
+                className="bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg"
 
                 >
 
@@ -424,11 +424,11 @@ const Navbar = () => {
 
                 ?
 
-                "☀️ Light"
+                "☀️"
 
                 :
 
-                "🌙 Dark"
+                "🌙"
 
                 }
 
@@ -436,7 +436,7 @@ const Navbar = () => {
                 </button>
 
             </div>
-            
+
         </nav>
 
     );
