@@ -15,6 +15,7 @@ import SearchPage from "./pages/SearchPage";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/footer";
+// import Profile from "./pages/Profile";
 
 const App = () => {
 
@@ -118,6 +119,10 @@ const App = () => {
                     <Navigate to="/login" />
                 }
                 />
+                {/* <Route
+                path="/profile"
+                element={<Profile />}
+                /> */}
 
 
             </Routes>

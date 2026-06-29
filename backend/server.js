@@ -9,6 +9,7 @@ const orderRoutes=require("./routes/orderRoutes");
 const reviewRoutes=require("./routes/reviewRoutes")
 const addressRoutes = require("./routes/addressRoutes");
 const authRoutes=require("./routes/authRotes");
+const profileRoutes =require("./routes/profileRoutes")
 const app = express();
 
 app.use(cors());
@@ -21,6 +22,7 @@ app.use("/order",orderRoutes);
 app.use("/reviews",reviewRoutes);
 app.use("/address",addressRoutes);
 app.use("/auth",authRoutes);
+app.use("/profile",profileRoutes)
 
 
 const PORT = 5000;

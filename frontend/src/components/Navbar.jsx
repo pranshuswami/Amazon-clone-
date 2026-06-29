@@ -3,12 +3,18 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "../assets/Amazon Clone logo.png"
 
+
 const Navbar = () => {
 
 
     const [keyword, setKeyword] = useState("");
 
     const [cartCount, setCartCount] = useState(0);
+
+    const [showCategory, setShowCategory] = useState(false);
+
+    const [categories, setCategories] = useState([]);
+
 
     const [token, setToken] = useState(
         localStorage.getItem("token")
@@ -40,10 +46,15 @@ const Navbar = () => {
 
     }, [theme]);
 
+
+
     useEffect(() => {
 
 
         getCartCount();
+
+        getCategories();
+
 
         window.addEventListener(
             "storage",
@@ -65,6 +76,34 @@ const Navbar = () => {
 
     }, [token]);
 
+
+
+
+    const getCategories = async()=>{
+
+        try{
+
+
+            const res = await axios.get(
+                "http://localhost:5000/categories"
+            );
+
+
+            setCategories(res.data.data);
+
+
+        }
+        catch(error){
+
+            console.log(error);
+
+        }
+
+    };
+
+
+
+
     const getCartCount = async () => {
 
         try {
@@ -77,7 +116,7 @@ const Navbar = () => {
 
                         Authorization:
 
-                            `Bearer ${localStorage.getItem("token")}`
+                        `Bearer ${localStorage.getItem("token")}`
 
                     }
 
@@ -85,7 +124,9 @@ const Navbar = () => {
 
             );
 
+
             setCartCount(res.data.count);
+
 
         }
         catch (error) {
@@ -96,6 +137,8 @@ const Navbar = () => {
 
     };
 
+
+
     const handleSearch = () => {
 
 
@@ -103,6 +146,7 @@ const Navbar = () => {
 
 
     };
+
 
 
     const logout = () => {
@@ -123,6 +167,7 @@ const Navbar = () => {
     };
 
 
+
     return (
 
 
@@ -131,101 +176,187 @@ const Navbar = () => {
 
             <div className="flex items-center justify-between">
 
+
                 <Link to="/">
 
 
-                    <img className="h-15 w-40" src={logo } />
+                    <img 
+                    
+                    className="h-15 w-40" 
+                    
+                    src={logo} />
 
-
+                    
                 </Link>
 
+                <div className="flex w-1/2 relative">
 
-                <div className="flex w-1/2 ">
+                    <button
+
+                    onClick={()=>setShowCategory(!showCategory)}
+
+                    className="bg-gray-700 text-white px-4 rounded-l-md font-semibold flex items-center gap-2"
+
+                    >
+
+                        ☰ All
+
+                    </button>
 
                     <input
 
-                        type="text"
+                    type="text"
 
-                        placeholder="Search Product..."
+                    placeholder="Search Product..."
 
-                        value={keyword}
+                    value={keyword}
 
-                        onChange={(e) => setKeyword(e.target.value)}
+                    onChange={(e)=>setKeyword(e.target.value)}
 
-                        className="border-white w-full px-4 py-2 rounded-l-md border  text-white"
+                    className="border-white w-full px-4 py-2 bg-white border text-black"
 
                     />
 
                     <button
 
-                        onClick={handleSearch}
+                    onClick={handleSearch}
 
-                        className="bg-yellow-400 px-5 rounded-r-md text-black font-semibold cursor-pointer"
+                    className="bg-yellow-400 px-5 rounded-r-md text-black font-semibold cursor-pointer"
 
                     >
 
-                        🔍Search
+                        <span className="text-3xl">
+
+                            🔍
+
+                        </span>
 
 
                     </button>
 
+                    {
+
+                    showCategory && (
+
+                    <div
+
+                    className="absolute top-12 left-0 bg-white dark:bg-gray-800 text-black dark:text-white w-52 shadow-lg rounded-lg p-4 z-50"
+
+                    >
+
+                    {
+
+
+                    categories.map((category)=>(
+
+                    <p
+
+                    key={category.category_id}
+
+
+                    onClick={()=>{
+
+                        navigate(`/products/${category.slug}`);
+
+                        setShowCategory(false);
+
+                    }}
+
+
+                    className="cursor-pointer p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded"
+
+                    >
+
+                        {category.category_name}
+
+
+                    </p>
+
+
+                    ))
+
+
+                    }
+
+                    </div>
+
+                    )
+
+                    }
 
                 </div>
-
 
                 <div className="flex gap-6">
 
                     <NavLink
 
-                        to="/"
+                    to="/"
 
-                        className={({isActive})=>
-                        isActive
+                    className={({isActive})=>
+
+                    isActive
+
                     ?
+
                     "text-blue-400 font-semibold"
+
                     :
-                    "dark:text-white font-medium"}
+
+                    "dark:text-white font-medium"
+
+                    }
 
                     >
 
-                        Home
-
+                    Home
 
                     </NavLink>
 
                     <NavLink
 
-                        to="/cart"
+                    to="/cart"
 
-                        className={({isActive})=>
-                        isActive
+                    className={({isActive})=>
+
+                    isActive
+
                     ?
+
                     "text-blue-400 font-semibold"
+
                     :
-                    "dark:text-white font-medium"}
+
+                    "dark:text-white font-medium"
+
+                    }
 
                     >
 
-                        Cart ({cartCount})
-
+                    Cart ({cartCount})
 
                     </NavLink>
 
                     <NavLink
 
-                        to="/orders"
+                    to="/orders"
 
-                       className={({isActive})=>
-                        isActive
+                    className={({isActive})=>
+
+                    isActive
+
                     ?
+
                     "text-blue-400 font-semibold"
+
                     :
-                    "dark:text-white font-medium"}
+
+                    "dark:text-white font-medium"
+
+                    }
 
                     >
 
-                        Orders
-
+                    Orders
 
                     </NavLink>
 
@@ -233,91 +364,83 @@ const Navbar = () => {
 
                 <button
 
-                    onClick={
+                onClick={
 
-                        token
+                    token
 
-                            ?
+                    ?
 
-                            logout
+                    logout
 
-                            :
+                    :
 
-                            () => navigate("/login")
+                    ()=>navigate("/login")
 
-                    }
+                }
 
-
-                    className="bg-red-400 hover:bg-red-500 font-medium active:scale-95 px-4 py-2 rounded-xl cursor-pointer"
-
+                className="bg-red-400 hover:bg-red-500 font-medium active:scale-95 px-4 py-2 rounded-xl cursor-pointer"
 
                 >
 
+                {
 
-                    {
+                token
 
+                ?
 
-                        token
+                "Logout"
 
-                            ?
+                :
 
-                            "Logout"
+                "Login"
 
-                            :
-
-                            "Login"
-
-
-                    }
-
-
+                }
 
                 </button>
 
                 <button
 
+                onClick={()=>setTheme(
 
-                    onClick={() => setTheme(
+                    theme==="dark"
 
-                        theme === "dark"
+                    ?
 
-                            ?
+                    "light"
 
-                            "light"
+                    :
 
-                            :
+                    "dark"
 
-                            "dark"
+                )}
 
-                    )}
-
-
-                    className="bg-orange-500 text-white font-semibold px-4 py-2 rounded-xl cursor-pointer"
+                className="bg-orange-500 text-white font-semibold px-4 py-2 rounded-xl cursor-pointer"
 
                 >
 
-                    {
+                {
 
-                        theme === "dark"
+                theme==="dark"
 
-                            ?
+                ?
 
-                            "☀️ Light"
+                "☀️ Light"
 
-                            :
+                :
 
-                            "🌙 Dark"
+                "🌙 Dark"
 
-                    }
+                }
+
 
                 </button>
 
             </div>
-
-
+            
         </nav>
-    );
-};
 
+    );
+
+};
 
 export default Navbar;

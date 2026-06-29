@@ -224,7 +224,7 @@ const buyNow = async()=>{
                 
                 <img 
                     src={product.image_url}
-                    className=" w-full h-120 object-contain"
+                    className=" w-full h-120 object-contain sticky top-20 "
                 />
                 
                 
