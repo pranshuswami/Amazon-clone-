@@ -7,38 +7,38 @@ const Footer = () => {
         className="bg-gray-600 mt-5 text-center py-4 cursor-pointer font-medium">Back to top</div>
         <div className="bg-gray-800 grid grid-cols- md:grid-cols-4 gap-8 px-10 py-10">
             <div className="ml-30">
-                <h2 className="text-xl font-bold">Get to Know Us</h2>
-                <p className="text-lg hover:underline cursor-pointer mt-2">About Amazon</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Careers</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Press Releases</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Amazon Science</p>
+                <h2 className="text-xl font-bold mb-2">Get to Know Us</h2>
+                <a className="text-lg hover:underline cursor-pointer mt-2">About Amazon</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Careers</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Press Releases</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Amazon Science</a>
             </div>
             <div className="ml-15">
-                <h2 className="text-xl font-bold">Connect with Us</h2>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Facebook</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Twitter</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Instagram</p>
+                <h2 className="text-xl font-bold mb-2">Connect with Us</h2>
+                <a className="text-lg hover:underline cursor-pointer mt-2">Facebook</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Twitter</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Instagram</a>
             </div>
             <div className="ml-15">
-                <h2 className="text-xl font-bold">Make Money with Us</h2>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Sell on Amazon</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Sell under Amazon Accelerator</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Protect and Build Your Brand</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Amazon Global Selling</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Supply to Amazon</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Become an Affiliate</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Fulfilment by Amazon</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Advertise Your Products</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Amazon Pay on Merchants</p>
+                <h2 className="text-xl font-bold mb-2">Make Money with Us</h2>
+                <a className="text-lg hover:underline cursor-pointer mt-2">Sell on Amazon</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Sell under Amazon Accelerator</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Protect and Build Your Brand</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Amazon Global Selling</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Supply to Amazon</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Become an Affiliate</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Fulfilment by Amazon</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Advertise Your Products</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Amazon Pay on Merchants</a>
             </div>
             <div className="ml-15 mr-30">
-                <h2 className="text-xl font-bold">Let Us Help You</h2>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Your Account</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Returns Centre</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Recalls and Product Safety Alerts</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">100% Purchase Protection</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Amazon App Download</p>
-                <p className="text-lg hover:underline cursor-pointer mt-2">Help</p>
+                <h2 className="text-xl font-bold mb-2">Let Us Help You</h2>
+                <a className="text-lg hover:underline cursor-pointer mt-2">Your Account</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Returns Centre</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Recalls and Product Safety Alerts</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">100% Purchase Protection</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Amazon App Download</a><br />
+                <a className="text-lg hover:underline cursor-pointer mt-2">Help</a>
             </div>
         </div>
         <hr className="border-gray-700 " />

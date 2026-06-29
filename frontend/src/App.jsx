@@ -9,10 +9,11 @@ import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
 import OrderDetails from "./pages/OrderDetails";
 import CategoryPage from "./pages/CategoryPage";
-import Navbar from "./components/Navbar";
 import ProductDetails from "./pages/ProductDetails";
 import Payment from "./pages/Payment";
 import SearchPage from "./pages/SearchPage";
+
+import Navbar from "./components/Navbar";
 import Footer from "./components/footer";
 
 const App = () => {
@@ -26,8 +27,7 @@ const App = () => {
         <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-900 dark:text-white">
 
 
-             <Navbar />
-            
+             <Navbar />     
 
 
             <Routes>

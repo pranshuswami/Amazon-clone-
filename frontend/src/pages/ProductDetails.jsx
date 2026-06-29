@@ -206,6 +206,7 @@ const buyNow = async()=>{
         }
 
     };
+    
 
     if(!product) {
 
