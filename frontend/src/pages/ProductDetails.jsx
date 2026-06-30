@@ -80,64 +80,64 @@ const ProductDetails = () => {
     navigate("/login");
 
 };
-//     const addWishlist = async()=>{
+    const addWishlist = async()=>{
 
 
-//     const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
 
-//     if(!token){
+    if(!token){
 
-//         navigate("/login");
+        navigate("/login");
 
-//         return;
+        return;
 
-//     }
-
-
-
-//     try{
+    }
 
 
-//         await axios.post(
 
-//             "http://localhost:5000/wishlist/add",
-
-//             {
-
-//                 product_id:product.product_id
-
-//             },
-
-//             {
-
-//                 headers:{
-
-//                     Authorization:
-
-//                     `Bearer ${token}`
-
-//                 }
-
-//             }
-
-//         );
+    try{
 
 
-//         alert("Added to Wishlist");
+        await axios.post(
+
+            "http://localhost:5000/wishlist/add",
+
+            {
+
+                product_id:product.product_id
+
+            },
+
+            {
+
+                headers:{
+
+                    Authorization:
+
+                    `Bearer ${token}`
+
+                }
+
+            }
+
+        );
 
 
-//     }
+        alert("Added to Wishlist");
 
 
-//     catch(error){
-
-//         console.log(error);
-
-//     }
+    }
 
 
-// };
+    catch(error){
+
+        console.log(error);
+
+    }
+
+
+};
 
     const addToCart = async () => {
 
@@ -360,8 +360,8 @@ const ProductDetails = () => {
                 <button onClick={buyNow}
                 className="bg-orange-400 mt-3 h-9 text-black font-bold active:scale-95 hover:bg-yellow-600 px-2 py-1 rounded-full w-full">Buy Now</button>
 
-                {/* <button onClick={addWishlist}
-                className="border border-gray-400 mt-3 h-9 font-bold px-2 py-1 rounded-full w-full hover:bg-gray-300 dark:hover:bg-gray-700">❤️ Add to Wishlist</button> */}
+                <button onClick={addWishlist}
+                className="border border-gray-400 mt-3 h-9 font-bold px-2 py-1 rounded-full w-full hover:bg-gray-300 dark:hover:bg-gray-700">❤️ Add to Wishlist</button>
 
                 </div>
                 <div className="border border-gray-400 dark:border-gray-100 p-2  flex-row items-center justify-center

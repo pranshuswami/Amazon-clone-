@@ -262,7 +262,7 @@ const Wishlist =()=>{
                                 className="text-xl font-bold text-blue-600 cursor-pointer">
 
 
-                                    {item.product_name}
+                                    {item.product_name ||"No item in wishlist"}
 
 
                                 </h2>

@@ -6,20 +6,20 @@ const Footer = () => {
         <div onClick={()=>window.scrollTo(0,0)}
         className="bg-gray-600 mt-5 text-center py-4 cursor-pointer font-medium">Back to top</div>
         <div className="bg-gray-800 grid grid-cols- md:grid-cols-4 gap-8 px-10 py-10">
-            <div className="ml-30">
+            <div className="ml-30 gap-4">
                 <h2 className="text-xl font-bold mb-2">Get to Know Us</h2>
                 <a className="text-lg hover:underline cursor-pointer mt-2">About Amazon</a><br />
                 <a className="text-lg hover:underline cursor-pointer mt-2">Careers</a><br />
                 <a className="text-lg hover:underline cursor-pointer mt-2">Press Releases</a><br />
                 <a className="text-lg hover:underline cursor-pointer mt-2">Amazon Science</a>
             </div>
-            <div className="ml-15">
+            <div className="ml-15 gap-4">
                 <h2 className="text-xl font-bold mb-2">Connect with Us</h2>
                 <a className="text-lg hover:underline cursor-pointer mt-2">Facebook</a><br />
                 <a className="text-lg hover:underline cursor-pointer mt-2">Twitter</a><br />
                 <a href='https://www.instagram.com/amazondotin?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' className="text-lg hover:underline cursor-pointer mt-2">Instagram</a>
             </div>
-            <div className="ml-15">
+            <div className="ml-15 gap-4">
                 <h2 className="text-xl font-bold mb-2">Make Money with Us</h2>
                 <a className="text-lg hover:underline cursor-pointer mt-2">Sell on Amazon</a><br />
                 <a className="text-lg hover:underline cursor-pointer mt-2">Sell under Amazon Accelerator</a><br />
@@ -31,7 +31,7 @@ const Footer = () => {
                 <a className="text-lg hover:underline cursor-pointer mt-2">Advertise Your Products</a><br />
                 <a className="text-lg hover:underline cursor-pointer mt-2">Amazon Pay on Merchants</a>
             </div>
-            <div className="ml-15 mr-30">
+            <div className="ml-15 mr-30 gap-4">
                 <h2 className="text-xl font-bold mb-2">Let Us Help You</h2>
                 <a className="text-lg hover:underline cursor-pointer mt-2">Your Account</a><br />
                 <a className="text-lg hover:underline cursor-pointer mt-2">Returns Centre</a><br />
