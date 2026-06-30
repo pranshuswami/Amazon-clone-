@@ -15,67 +15,71 @@ const ProductCard = ({ product }) => {
     const token = localStorage.getItem("token");
 
 
+if(!token){
 
-    if(!token){
+localStorage.setItem(
 
-        navigate("/login");
+"pendingProduct",
 
-        return;
+product.product_id
 
-    }
-
-
-
-    try {
+);
 
 
-        await axios.post(
+localStorage.setItem(
 
-            "http://localhost:5000/cart/add",
+"cartAction",
 
-            {
-                product_id: product.product_id,
-                quantity:1
-            },
+"cart"
 
-
-            {
-
-                headers:{
+);
 
 
-                    Authorization:
-
-                    `Bearer ${token}`
+navigate("/login");
 
 
-                }
+return;
 
-            }
-
-
-        );
+}
 
 
-        alert("Added to cart");
-        navigate(`/cart`)
-        window.location.reload()
+
+await axios.post(
+
+"http://localhost:5000/cart/add",
+
+{
+
+product_id:product.product_id,
+
+quantity:1
+
+},
+
+{
+
+headers:{
+
+Authorization:
+
+`Bearer ${token}`
+
+}
+
+}
+
+);
+
+
+navigate("/cart");
 
 
        
-    }
-
-
-    catch(error){
-
-
-        console.log(error);
-
-
-    }
+    
 
 
 };
+
     const discount = Math.round(
     ((product.mrp - product.price) / product.mrp) * 100
 );

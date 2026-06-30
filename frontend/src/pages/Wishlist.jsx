@@ -157,8 +157,10 @@ const Wishlist =()=>{
 
         <div className="min-h-screen p-6 bg-gray-100 dark:bg-black">
 
+           
 
-            <div className="flex border px-2 py-2 gap-6">
+
+            <div className="flex border rounded-2xl px-2 py-2 gap-6">
 
 
 
@@ -219,7 +221,7 @@ const Wishlist =()=>{
                     </div>
 
 
-
+                <hr className="border-gray-300 mt-7" />
 
 
 
