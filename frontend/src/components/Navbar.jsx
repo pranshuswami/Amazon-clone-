@@ -172,10 +172,10 @@ const Navbar = () => {
     return (
 
 
-        <nav className="bg-gray-900 text-white px-6 py-3 sticky top-0 z-50 shadow-lg">
+        <nav className="bg-gray-900 text-white px-3 py-3 sticky top-0 z-50 shadow-lg">
 
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-3">
 
 
                 <Link to="/">
@@ -183,14 +183,14 @@ const Navbar = () => {
 
                     <img 
                     onClick={window.scrollTo(0,0)}
-                    className="h-14 w-36 object-contain" 
+                    className="h-10 md:h-14 w-24 md:w-36 object-contain" 
                     
                     src={logo} />
 
                     
                 </Link>
 
-                <div className="flex w-[50%] relative"
+                <div className="order-3 md:order-none flex w-full md:w-[45%] relative"
                 >
 
                     <button
@@ -215,7 +215,7 @@ const Navbar = () => {
 
                     onChange={(e)=>setKeyword(e.target.value)}
 
-                    className="w-full px-4 py-3 bg-white text-black outline-none"
+                    className="w-full px-3 py-2 md:py-3 bg-white text-black outline-none"
 
                     />
 
@@ -223,7 +223,7 @@ const Navbar = () => {
 
                     onClick={handleSearch}
 
-                    className="bg-yellow-400 px-6 rounded-r-md text-black hover:bg-yellow-500 cursor-pointer"
+                    className="bg-yellow-400 px-3 md:px-6 rounded-r-md text-black hover:bg-yellow-500 cursor-pointer"
 
                     >
 
@@ -288,7 +288,7 @@ const Navbar = () => {
 
                 </div>
 
-                <div className="flex gap-6 items-center">
+                <div className="flex gap-3 md:gap-5 items-center whitespace-nowrap">
 
                     <NavLink
 
@@ -310,7 +310,9 @@ const Navbar = () => {
 
                     >
                     <FiHome className="text-2xl"/>
-                    Home
+                    <span className="hidden md:block">
+                        Home
+                    </span>
 
                     </NavLink>
 
@@ -334,7 +336,7 @@ const Navbar = () => {
 
                     >
                     <FiShoppingCart className="text-2xl"/>
-                    <span>Cart ({cartCount})</span>
+                    <span className="hidden md:block">Cart ({cartCount})</span>
 
                     </NavLink>
 
@@ -358,7 +360,9 @@ const Navbar = () => {
 
                     >
                     <FiPackage className="text-2xl"/>
-                    Orders
+                    <span className="hidden md:block">
+                        Orders
+                    </span>
 
                     </NavLink>
 
@@ -368,7 +372,7 @@ const Navbar = () => {
                 onMouseEnter={()=>setShowMenu(true)}
                 onMouseLeave={()=>setShowMenu(false)}>
                     <button onClick={()=>setShowMenu(!showMenu)}
-                      className="text-3xl cursor-pointer">
+                      className="text-2xl md:text-3xl cursor-pointer">
                         ☰
                       </button>
                     {

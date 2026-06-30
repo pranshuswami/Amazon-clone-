@@ -185,15 +185,15 @@ const Cart = () => {
 
     return (
 
-        <div className="min-h-screen p-6">
+        <div className="min-h-screen p-3 md:p-6">
 
-            <div className="grid grid-cols-12 gap-6">
-
-
-                <div className="col-span-9 bg-gray-200 dark:bg-gray-800 p-6 rounded-lg">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
 
-                    <h1 className="text-3xl font-bold mb-5">
+                <div className="lg:col-span-9 bg-gray-200 dark:bg-gray-800 p-4 md:p-6 rounded-lg">
+
+
+                    <h1 className="text-2xl md:text-3xl font-bold mb-5">
 
                         Shopping Cart
 
@@ -221,12 +221,12 @@ const Cart = () => {
 
                                 key={item.cart_id}
 
-                                className="grid grid-cols-12 gap-5 py-6"
+                                className="grid grid-cols-1 lg:grid-cols-12 gap-5 py-6"
 
                             >
 
 
-                                <div className="col-span-3">
+                                <div className="lg:col-span-3">
 
 
                                     <img
@@ -237,7 +237,7 @@ const Cart = () => {
 
                                         src={item.image_url}
 
-                                        className="w-full h-64 object-contain cursor-pointer"
+                                        className="w-full h-48 md:h-64 object-contain cursor-pointer"
 
                                     />
 
@@ -254,7 +254,7 @@ const Cart = () => {
                                             navigate(`/product/${item.product_id}`)
                                         }
 
-                                        className="text-xl font-bold cursor-pointer"
+                                        className="text-lg md:text-xl font-bold cursor-pointer"
 
                                     >
 
@@ -284,7 +284,7 @@ const Cart = () => {
                                             navigate(`/product/${item.product_id}`)
                                         }
 
-                                        className="text-black dark:text-gray-300 mt-2 text-xl line-clamp-2 cursor-pointer"
+                                        className="text-black dark:text-gray-300 mt-2 text-base md:text-xl line-clamp-2 cursor-pointer"
 
                                     >
 
@@ -307,7 +307,7 @@ const Cart = () => {
                                     </p>
 
 
-                                    <div className="flex gap-3 mt-5">
+                                    <div className="flex flex-wrap gap-3 mt-5">
 
 
                                         <button
@@ -361,7 +361,7 @@ const Cart = () => {
                                                 deleteItem(item.cart_id)
                                             }
 
-                                            className="text-blue-400 ml-5 hover:underline"
+                                            className="text-blue-400 hover:underline"
 
                                         >
 
@@ -383,7 +383,7 @@ const Cart = () => {
                                 </div>
 
 
-                                <div className="col-span-3">
+                                <div className="lg:col-span-3">
 
 
                                     <h2 className="text-xl font-bold">
@@ -421,7 +421,7 @@ const Cart = () => {
                     <hr className="border-gray-300 dark:border-gray-700"/>
 
 
-                    <h2 className="text-right text-xl font-bold mt-5">
+                    <h2 className="text-right text-lg md:text-xl font-bold mt-5">
 
                         Subtotal ({cart.length} items): ₹{subtotal}
 
@@ -431,7 +431,7 @@ const Cart = () => {
                 </div>
 
 
-                <div className="col-span-3">
+                <div className="lg:col-span-3">
 
 
                     <div className="bg-gray-200 dark:bg-gray-700 p-5 rounded-lg">
@@ -478,7 +478,7 @@ const Cart = () => {
                     <div className="bg-blue-500 p-5 mt-3">
 
 
-                        <p className="text-2xl text-white">
+                        <p className="text-lg md:text-2xl text-white">
 
                             Hurry!
 

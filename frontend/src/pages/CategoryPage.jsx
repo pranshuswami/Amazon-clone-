@@ -70,11 +70,11 @@ const CategoryPage = () => {
 
     return (
 
-        <div className="bg-gray-100 dark:bg-black text-black dark:text-white min-h-screen">
+        <div className="bg-gray-100 dark:bg-black text-black dark:text-white min-h-screen p-3 md:p-5">
 
-            <div className="grid grid-cols-12 gap-5">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
 
-                <div className="col-span-3 mt-6 ml-3">
+                <div className="lg:col-span-3 mt-4 lg:mt-6">
 
                     <FilterSidebar
 
@@ -88,9 +88,9 @@ const CategoryPage = () => {
 
                 </div>
 
-                <div className="col-span-9 mr-3">
+                <div className="lg:col-span-9">
 
-                    <h1 className="text-3xl font-bold mb-5 mt-3 capitalize">
+                    <h1 className="text-2xl md:text-3xl font-bold mb-5 mt-3 capitalize">
 
                         {slug.replace("-", " ")}
 

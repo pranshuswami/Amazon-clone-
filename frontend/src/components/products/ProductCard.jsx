@@ -90,14 +90,13 @@ navigate("/cart");
             onClick={() =>{ navigate(`/product/${product.product_id}`); 
             window.scrollTo(0,0);}}
             
-            className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg p-3 shadow-lg cursor-pointer hover:scale-101"
-        >
+            className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg p-3 shadow-lg cursor-pointer hover:scale-101 w-full">
 
             <img
                 src={product.image_url}
                 className="
                 w-full
-                h-60
+                h-48 sm:h-60
                 object-contain
                 rounded
                 "
@@ -109,7 +108,7 @@ navigate("/cart");
             </p>
 
 
-            <h2 className="font-bold text-lg mt-2">
+            <h2 className="font-bold text-base sm:text-lg mt-2">
 
                 {product.product_name}
 

@@ -255,10 +255,10 @@ Authorization:
 
 
 
-            <div className="grid grid-cols-12 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
 
-                <div className="col-span-8 bg-gray-200 dark:bg-gray-800 p-6 rounded-lg">
+                <div className="lg:col-span-8 bg-gray-200 dark:bg-gray-800 p-6 rounded-lg">
 
 
                     <div className="bg-gray-300 dark:bg-gray-700 text-black  dark:text-white p-5 rounded-lg">
@@ -439,7 +439,7 @@ Authorization:
 
 
 
-                <div className="col-span-4 bg-gray-300 dark:bg-gray-700  dark:text-white p-6 rounded-lg h-fit">
+                <div className="lg:col-span-4 bg-gray-300 dark:bg-gray-700  dark:text-white p-6 rounded-lg h-fit">
 
 
                     <h2 className="text-2xl font-bold">

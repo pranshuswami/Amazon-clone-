@@ -285,20 +285,20 @@ const ProductDetails = () => {
 
     return (
 
-        <div className=" min-h-screen p-6">
+        <div className="min-h-screen p-3 md:p-6">
 
-            <div className="flex">
+            <div className="flex flex-col md:flex-row gap-4">
                 
-                <div className="bg-gray-200 dark:bg-gray-800 w-1/3 p-6 ">
+                <div className="bg-gray-200 dark:bg-gray-800 w-full lg:w-1/3 p-6 ">
                 
                 <img 
                     src={product.image_url}
-                    className=" w-full h-120 object-contain sticky top-20"
+                    className="w-full h-[400px] md:h-[500px] object-contain md:sticky md:top-20"
                 />
                 
                 
             </div>
-            <div className="bg-gray-200 dark:bg-gray-800 w-1/2 p-6">
+            <div className="bg-gray-200 dark:bg-gray-800 w-full lg:w-1/2 p-6">
             
                 <h1 className="text-3xl font-bold mt-5">
                     {product.product_name}
@@ -315,14 +315,14 @@ const ProductDetails = () => {
                     <br />
                 <span className="text-blue-500 hover:underline cursor-pointer">Save up to 18% with business pricing and GST input tax credit. Sign up for a free Amazon Business account</span>
                 </p>
-                <div className="flex flex-cold items-center justify-center w-fit mt-3 gap-2">
-                <div className="border  border-gray-400 dark:border-gray-100 rounded-lg px-2 py-1"><span className="font-bold">Cashback</span>
+                <div className="flex flex-col md:flex-row items-center justify-center w-full mt-3 gap-3">
+                <div className="border border-gray-400 dark:border-gray-100 rounded-lg px-3 py-2 w-full md:w-1/2"><span className="font-bold">Cashback</span>
                     <br />
 
             Upto ₹50.00 cashback as Amazon Pay Balance when you pay with select Credit CardsUpto ₹50.00 cashback as Amazon Pay Balance when…<br />
                 <span className="text-blue-500 hover:underline cursor-pointer">3 offers</span>
                 </div>
-                <div className="border h-38 border-gray-400 dark:border-gray-100 rounded-lg px-2 py-1"><span className="font-bold">Bank Offers</span>
+                <div className="border h-auto md:h-38 border-gray-400 dark:border-gray-100 rounded-lg px-3 py-2 w-full md:w-1/2"><span className="font-bold">Bank Offers</span>
                     <br />
 
             10% Instant Discount up to INR 1000 on ICICI Bank Credit Card (excluding Amazon Pay ICICI Credit Card) EMI Trxns. Min purchase value INR 7490<br />
@@ -341,7 +341,7 @@ const ProductDetails = () => {
             </div>
 
             
-            <div className="bg-gray-200 dark:bg-gray-800 w-1/4 px-6 py-10 ">
+            <div className="bg-gray-200 dark:bg-gray-800 w-full lg:w-1/4 px-6 py-10 ">
             
                 <div className=" border mt-20 border-gray-400 dark:border-gray-100 p-6 mb-5 flex-row items-center justify-center
                 rounded-lg">
@@ -376,7 +376,7 @@ const ProductDetails = () => {
 
             </div>
             
-                <div className="mt-8 mx-90 flex flex-col items-center justify-center h-35 bg-gray-200 dark:bg-gray-800 p-6 rounded-lg">
+                <div className="mt-8 mx-4 lg:mx-90 flex flex-col items-center justify-center h-35 bg-gray-200 dark:bg-gray-800 p-6 rounded-lg">
                     <h2 className=" text-center text-2xl font-semibold">Write a review</h2>
                  <button
 
