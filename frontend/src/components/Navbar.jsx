@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "../assets/Amazon Clone logo.png"
-import { FiLogOut,FiLogIn,FiUser, FiMoon } from "react-icons/fi";
+import { FiLogOut,FiLogIn,FiUser, FiMoon,FiShoppingCart,FiPackage,FiHome} from "react-icons/fi";
 
 const Navbar = () => {
 
@@ -191,8 +191,7 @@ const Navbar = () => {
                 </Link>
 
                 <div className="flex w-[50%] relative"
-                onMouseEnter={()=>setShowCategory(true)}
-                onMouseLeave={()=>setShowCategory(false)}>
+                >
 
                     <button
 
@@ -301,16 +300,16 @@ const Navbar = () => {
 
                     ?
 
-                    "text-blue-400 font-semibold"
+                    "text-blue-400 font-semibold flex items-center gap-2 whitespace-nowrap"
 
                     :
 
-                    "dark:text-white font-medium"
+                    "dark:text-white font-medium flex items-center gap-2 whitespace-nowrap"
 
                     }
 
                     >
-
+                    <FiHome className="text-2xl"/>
                     Home
 
                     </NavLink>
@@ -325,17 +324,17 @@ const Navbar = () => {
 
                     ?
 
-                    "text-blue-400 font-semibold"
+                    "text-blue-400 font-semibold flex items-center gap-2 whitespace-nowrap"
 
                     :
 
-                    "dark:text-white font-medium"
+                    "dark:text-white font-medium flex items-center gap-2 whitespace-nowrap"
 
                     }
 
                     >
-
-                    🛒 Cart ({cartCount})
+                    <FiShoppingCart className="text-2xl"/>
+                    <span>Cart ({cartCount})</span>
 
                     </NavLink>
 
@@ -349,17 +348,17 @@ const Navbar = () => {
 
                     ?
 
-                    "text-blue-400 font-semibold"
+                    "text-blue-400 font-semibold flex items-center gap-2 whitespace-nowrap"
 
                     :
 
-                    "dark:text-white font-medium"
+                    "dark:text-white font-medium flex items-center gap-2 whitespace-nowrap"
 
                     }
 
                     >
-
-                    📦Orders
+                    <FiPackage className="text-2xl"/>
+                    Orders
 
                     </NavLink>
 
