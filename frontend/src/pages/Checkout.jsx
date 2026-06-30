@@ -27,11 +27,25 @@ const Checkout = () => {
 
     useEffect(()=>{
 
-        getCart();
 
-        getAddress();
+    const token = localStorage.getItem("token");
 
-    },[]);
+
+    if(!token){
+
+        navigate("/login");
+
+        return;
+
+    }
+
+
+    getCart();
+
+    getAddress();
+
+
+},[]);
 
 
 

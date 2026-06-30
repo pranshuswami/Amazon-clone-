@@ -47,7 +47,66 @@ res.data.token
 alert("Login Successful");
 
 
-window.location.href="/";
+const action = localStorage.getItem("cartAction");
+
+const product_id = localStorage.getItem("pendingProduct");
+
+
+if(product_id){
+
+
+await axios.post(
+
+"http://localhost:5000/cart/add",
+
+{
+product_id:product_id,
+quantity:1
+},
+
+{
+
+headers:{
+
+Authorization:
+
+`Bearer ${res.data.token}`
+
+}
+
+}
+
+);
+
+
+localStorage.removeItem("pendingProduct");
+
+
+}
+
+
+
+localStorage.removeItem("cartAction");
+
+
+
+if(action==="cart"){
+
+navigate("/cart");
+
+}
+
+else if(action==="checkout"){
+
+navigate("/checkout");
+
+}
+
+else{
+
+navigate("/");
+
+}
 
 }
 catch(error){

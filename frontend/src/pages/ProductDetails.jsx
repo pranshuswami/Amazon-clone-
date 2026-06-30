@@ -65,92 +65,109 @@ const ProductDetails = () => {
 
     };
 
-    const addToCart = async () => {
+    const handleLoginRedirect = (action)=>{
 
-        const token = localStorage.getItem("token");
-
-
-            if(!token){
-
-                navigate("/login");
-
-                return;
-
-            }
-
-
-            try{
-
-                await axios.post(
-
-            "http://localhost:5000/cart/add",
-
-            {
-                product_id:product.product_id,
-                quantity:1
-            },
-
-            {
-
-                headers:{
-
-                Authorization:
-
-                `Bearer ${token}`
-
-                }
-
-            }
-
+        localStorage.setItem(
+            "pendingProduct",
+            product.product_id
         );
 
-
-                alert("Added to cart");
-                
-                navigate("/cart");
-
-                window.location.reload()
-
-                
-
-
-        }
-            catch(error){
-
-            console.log(error);
-
-        }
-
-};
-const buyNow = async()=>{
-
-    const token = localStorage.getItem("token");
-    if(!token){
+        localStorage.setItem(
+            "cartAction",
+            action
+        );
 
     navigate("/login");
 
-    return;
+};
+//     const addWishlist = async()=>{
 
-}
+
+//     const token = localStorage.getItem("token");
+
+
+//     if(!token){
+
+//         navigate("/login");
+
+//         return;
+
+//     }
+
+
+
+//     try{
+
+
+//         await axios.post(
+
+//             "http://localhost:5000/wishlist/add",
+
+//             {
+
+//                 product_id:product.product_id
+
+//             },
+
+//             {
+
+//                 headers:{
+
+//                     Authorization:
+
+//                     `Bearer ${token}`
+
+//                 }
+
+//             }
+
+//         );
+
+
+//         alert("Added to Wishlist");
+
+
+//     }
+
+
+//     catch(error){
+
+//         console.log(error);
+
+//     }
+
+
+// };
+
+    const addToCart = async () => {
+
+    const token = localStorage.getItem("token");
+
+
+    if(!token){
+
+        handleLoginRedirect("cart");
+
+        return;
+
+    }
+
 
     try{
 
         await axios.post(
-            "http://localhost:5000/cart/add",
-            {
-                product_id: product.product_id,
-                quantity:1
-            },
-            {
-                headers:{
-                    Authorization:
-                    `Bearer ${localStorage.getItem("token")}`
-                }
-            }
+
+        "http://localhost:5000/cart/add",
+
+        {
+            product_id:product.product_id,
+            quantity:1
+        }
+
         );
 
 
-        navigate("/checkout");
+        navigate("/cart");
 
 
     }
@@ -161,7 +178,60 @@ const buyNow = async()=>{
     }
 
 };
+    const buyNow = async()=>{
 
+    const token = localStorage.getItem("token");
+
+        if(!token){
+
+            handleLoginRedirect("checkout");
+
+            return;
+
+        }
+
+
+        try{
+
+
+            await axios.post(
+
+            "http://localhost:5000/cart/add",
+
+                {
+                product_id:product.product_id,
+                quantity:1
+                },
+
+                {
+
+                headers:{
+
+                Authorization:
+
+                `Bearer ${token}`
+
+                }
+
+                }
+
+                );
+
+
+                navigate("/checkout");
+
+
+        }
+
+        catch(error){
+
+            console.log(error);
+
+        }
+
+
+    };
+    
     const addReview = async () => {
         const token = localStorage.getItem("token");
           if(!token){
@@ -289,6 +359,9 @@ const buyNow = async()=>{
 
                 <button onClick={buyNow}
                 className="bg-orange-400 mt-3 h-9 text-black font-bold active:scale-95 hover:bg-yellow-600 px-2 py-1 rounded-full w-full">Buy Now</button>
+
+                {/* <button onClick={addWishlist}
+                className="border border-gray-400 mt-3 h-9 font-bold px-2 py-1 rounded-full w-full hover:bg-gray-300 dark:hover:bg-gray-700">❤️ Add to Wishlist</button> */}
 
                 </div>
                 <div className="border border-gray-400 dark:border-gray-100 p-2  flex-row items-center justify-center

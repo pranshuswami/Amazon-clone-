@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "../assets/Amazon Clone logo.png"
-import { FiLogOut,FiLogIn,FiUser, FiMoon,FiShoppingCart,FiPackage,FiHome} from "react-icons/fi";
+import { FiLogOut,FiLogIn,FiUser, FiMoon,FiShoppingCart,FiPackage,FiHome,FiHeart} from "react-icons/fi";
 
 const Navbar = () => {
 
@@ -388,6 +388,30 @@ const Navbar = () => {
                                     <FiUser/>
                                     My Profile
                                     </>
+                                </button>
+
+                                <button
+
+                                    onClick={()=>{
+
+                                    navigate("/wishlist");
+
+                                    setShowMenu(false);
+
+                                }}
+
+                                    className="w-full flex items-center gap-3 whitespace-nowrap px-3 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 font-medium rounded"
+
+                                >
+
+                                <>
+
+                                    <FiHeart/>
+
+                                    My Wishlist
+
+                                </>
+
                                 </button>
 
                                 <button

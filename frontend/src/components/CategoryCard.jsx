@@ -22,7 +22,7 @@ const CategoryCard = ({ category }) => {
         onClick={() =>
           navigate(`/products/${category.slug}`)
         }
-        className="text-white bg-blue-500 hover:bg-blue-800 font-bold rounded-lg px-2 py-1 mt-3"
+        className="text-blue-500 hover:underline cursor-pointer rounded-lg px-2 py-1 mt-3"
       >
         View More
       </button>

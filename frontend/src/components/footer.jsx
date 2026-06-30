@@ -17,7 +17,7 @@ const Footer = () => {
                 <h2 className="text-xl font-bold mb-2">Connect with Us</h2>
                 <a className="text-lg hover:underline cursor-pointer mt-2">Facebook</a><br />
                 <a className="text-lg hover:underline cursor-pointer mt-2">Twitter</a><br />
-                <a className="text-lg hover:underline cursor-pointer mt-2">Instagram</a>
+                <a href='https://www.instagram.com/amazondotin?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' className="text-lg hover:underline cursor-pointer mt-2">Instagram</a>
             </div>
             <div className="ml-15">
                 <h2 className="text-xl font-bold mb-2">Make Money with Us</h2>
