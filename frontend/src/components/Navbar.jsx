@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "../assets/Amazon Clone logo.png"
-
+import { FiLogOut,FiLogIn,FiUser, FiMoon } from "react-icons/fi";
 
 const Navbar = () => {
 
@@ -14,6 +14,8 @@ const Navbar = () => {
     const [showCategory, setShowCategory] = useState(false);
 
     const [categories, setCategories] = useState([]);
+
+    const [showMenu, setShowMenu] = useState(false);
 
 
     const [token, setToken] = useState(
@@ -177,10 +179,10 @@ const Navbar = () => {
 
 
                 <Link to="/">
-
+                   
 
                     <img 
-                    
+                    onClick={window.scrollTo(0,0)}
                     className="h-14 w-36 object-contain" 
                     
                     src={logo} />
@@ -188,7 +190,9 @@ const Navbar = () => {
                     
                 </Link>
 
-                <div className="flex w-[50%] relative">
+                <div className="flex w-[50%] relative"
+                onMouseEnter={()=>setShowCategory(true)}
+                onMouseLeave={()=>setShowCategory(false)}>
 
                     <button
 
@@ -361,78 +365,120 @@ const Navbar = () => {
 
                 </div>
 
-                <button
+                <div className="relative"
+                onMouseEnter={()=>setShowMenu(true)}
+                onMouseLeave={()=>setShowMenu(false)}>
+                    <button onClick={()=>setShowMenu(!showMenu)}
+                      className="text-3xl cursor-pointer">
+                        ☰
+                      </button>
+                    {
+                        showMenu &&  (
+                            <div className="absolute right-0 top-8 w-56 bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg shadow-lg p-3 z-50">
+                                <button
+                                onClick={()=>{
 
-                onClick={
+                                    navigate("/profile");
 
-                    token
+                                    setShowMenu(false);
 
-                    ?
+}}
 
-                    logout
+                                className="w-full flex items-center gap-3 whitespace-nowrap px-3 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 font-medium rounded">
+                                   <>
+                                    <FiUser/>
+                                    My Profile
+                                    </>
+                                </button>
 
-                    :
+                                <button
 
-                    ()=>navigate("/login")
+                                    onClick={()=>{
 
-                }
+                                        setTheme(
 
-                className="bg-red-400 hover:bg-red-500 font-medium active:scale-95 px-4 py-2 rounded-xl cursor-pointer"
+                                        theme==="dark"
 
-                >
+                                            ?
 
-                {
+                                        "light"
 
-                token
+                                            :
 
-                ?
+                                        "dark"
 
-                "Logout"
+                                        );
 
-                :
+                                    setShowMenu(false);
 
-                "Login"
+                                }}
 
-                }
+                                    className="w-full flex items-center gap-3 whitespace-nowrap px-3 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 font-medium  rounded"
 
-                </button>
+                                >
 
-                <button
+                                <>
+                                <FiMoon />
+                                Theme
+                                </>
 
-                onClick={()=>setTheme(
+                                </button>
 
-                    theme==="dark"
+                                <button
 
-                    ?
+                                    onClick={()=>{
 
-                    "light"
+                                if(token){
 
-                    :
+                                    logout();
 
-                    "dark"
+                                }
+                                else{
 
-                )}
+                                    navigate("/login");
 
-                className="bg-gray-500 hover:bg-gray-600 px-3 py-2 rounded-lg"
+                                }
 
-                >
+                            }}
 
-                {
+                                className="w-full flex items-center gap-3 px-3 py-2 hover:bg-red-400 dark:hover:bg-red-400 font-medium rounded"
 
-                theme==="dark"
+                            >
 
-                ?
+                            {
 
-                "☀️"
+                                token
 
-                :
+                                    ?
 
-                "🌙"
+                                <>
 
-                }
+                                    <FiLogOut/>
+
+                                    Logout
+
+                                </>
+
+                                    :
+
+                                <>
+
+                                    <FiLogIn/>
+
+                                    Login
+
+                                </>
+
+                            }
 
 
-                </button>
+                            </button>
+                                
+                            </div>
+                        )
+                    }
+
+                </div>
 
             </div>
 
