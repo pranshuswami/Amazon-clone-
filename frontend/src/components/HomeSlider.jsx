@@ -11,7 +11,7 @@ const HomeSlider = () => {
 
 const images = [
 
-"https://i.pinimg.com/736x/bb/02/3f/bb023f53a7e7c2b6ff1976d07a5813c4.jpg",
+"https://i.pinimg.com/1200x/2d/ca/48/2dca4800ef6f1d68ce7f52114999a03e.jpg",
 
 "https://i.pinimg.com/1200x/3d/44/a4/3d44a4163c09b34ab58586ffd06783dc.jpg",
 
