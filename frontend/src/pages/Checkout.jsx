@@ -389,7 +389,7 @@ Authorization:
 
 
 
-            <p className="text-black dark:text-gray-300 mt-2">
+            <p className="text-black dark:text-gray-300 ">
 
                 {item.brand}
 

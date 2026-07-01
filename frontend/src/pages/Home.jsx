@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <div className=" min-h-screen p-6">
       
-      <div className="hidden lg:block"><HomeSlider /></div>
+      <div className="hidden "><HomeSlider /></div>
 
       {/* <h1 className="text-4xl text-white font-bold mb-8">
         Amazon Clone
