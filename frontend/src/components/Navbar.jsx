@@ -175,7 +175,7 @@ const Navbar = () => {
         <nav className="bg-gray-900 text-white px-3 py-3 sticky top-0 z-50 shadow-lg">
 
 
-            <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-3 w-full">
 
 
                 <Link to="/">
@@ -190,7 +190,7 @@ const Navbar = () => {
                     
                 </Link>
 
-                <div className="order-3 md:order-none flex w-full md:w-[45%] relative"
+                <div className="order-5 md:order-none flex w-full md:w-[45%] min-w-0"
                 >
 
                     <button
@@ -288,7 +288,7 @@ const Navbar = () => {
 
                 </div>
 
-                <div className="flex gap-3 md:gap-5 items-center whitespace-nowrap">
+                <div className="flex gap-3 md:gap-5 justify-center items-center overflow-hidden">
 
                     <NavLink
 
@@ -368,7 +368,7 @@ const Navbar = () => {
 
                 </div>
 
-                <div className="relative"
+                <div className="order-3 md:order-none relative"
                 onMouseEnter={()=>setShowMenu(true)}
                 onMouseLeave={()=>setShowMenu(false)}>
                     <button onClick={()=>setShowMenu(!showMenu)}

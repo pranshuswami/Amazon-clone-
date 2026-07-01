@@ -106,7 +106,7 @@ const cancelOrder=async(id)=>{
 return(
 
 
-<div className=" min-h-screen px-60 ">
+<div className="min-h-screen px-4 md:px-10 lg:px-60">
 
 
 

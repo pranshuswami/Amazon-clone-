@@ -287,7 +287,7 @@ const ProductDetails = () => {
 
         <div className="min-h-screen p-3 md:p-6">
 
-            <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col md:flex-row">
                 
                 <div className="bg-gray-200 dark:bg-gray-800 w-full lg:w-1/3 p-6 ">
                 
@@ -343,7 +343,7 @@ const ProductDetails = () => {
             
             <div className="bg-gray-200 dark:bg-gray-800 w-full lg:w-1/4 px-6 py-10 ">
             
-                <div className=" border mt-20 border-gray-400 dark:border-gray-100 p-6 mb-5 flex-row items-center justify-center
+                <div className=" border mt-5 border-gray-400 dark:border-gray-100 p-6 mb-5 flex-row items-center justify-center
                 rounded-lg">
                     <h2 className="text-2xl font-bold ">
                     ₹{product.price}
@@ -376,7 +376,7 @@ const ProductDetails = () => {
 
             </div>
             
-                <div className="mt-8 mx-4 lg:mx-90 flex flex-col items-center justify-center h-35 bg-gray-200 dark:bg-gray-800 p-6 rounded-lg">
+                <div className="mt-8 mx-4 lg:mx-20 flex flex-col items-center justify-center h-35 bg-gray-200 dark:bg-gray-800 p-6 rounded-lg">
                     <h2 className=" text-center text-2xl font-semibold">Write a review</h2>
                  <button
 

@@ -107,7 +107,7 @@ const OrderDetails = () => {
 
     return (
 
-        <div className=" min-h-screen px-20 py-10">
+        <div className=" min-h-screen px-4 md:px-10 lg:px-20 py-10">
 
 
             <h1 className="text-4xl font-bold mb-5">
@@ -145,7 +145,7 @@ const OrderDetails = () => {
 
 
 
-            <div className="bg-gray-200 dark:bg-gray-800 rounded-lg p-8 grid grid-cols-3 gap-10">
+            <div className="bg-gray-200 dark:bg-gray-800 rounded-lg p-8 grid lg:grid-cols-3 gap-10">
 
                 <div>
 
@@ -164,7 +164,7 @@ const OrderDetails = () => {
                     </p>
 
 
-                    <p className="mt-0.5"> 
+                    <p className="mt-1"> 
 
                         {orderData.house},{orderData.street}
 
@@ -228,14 +228,14 @@ const OrderDetails = () => {
 
                     <p>
 
-                        Item(s) Subtotal:
+                        Item(s) Subtotal: {orderData.price}
 
                     </p>
 
 
                     <p className="mt-3">
 
-                        Shipping: ₹40
+                        Shipping: Free Shipping
 
                     </p>
 
@@ -266,17 +266,17 @@ const OrderDetails = () => {
 
             key={item.product_name}
 
-            className="bg-gray-200 dark:bg-gray-800 rounded-lg p-6 mt-6 flex justify-between"
+            className="bg-gray-200 dark:bg-gray-800 rounded-lg p-6 mt-6 flex flex-col lg:flex-row justify-between"
 
 
             >
                 
 
                    
-                <div className="flex gap-6 ">
+                <div className="flex flex-col lg:flex-row gap-6 ">
                     
 
-                    <div className="w-1/4">
+                    <div className="lg:w-1/2">
                         <img
 
                     onClick={() => navigate(`/product/${item.product_id}`)}
@@ -290,7 +290,7 @@ const OrderDetails = () => {
 
 
 
-                    <div className="w-250 mr-15">
+                    <div className="w-full md:w-3/4 md:mr-15">
 
 
                         <h2 onClick={() => navigate(`/product/${item.product_id}`)}
@@ -335,7 +335,7 @@ const OrderDetails = () => {
                 </div>
 
 
-                <div className="flex flex-col gap-3 w-1/2">
+                <div className="flex flex-row lg:flex-col gap-3 w-full lg:w-1/4 ">
 
 
                     {
@@ -354,9 +354,18 @@ const OrderDetails = () => {
 
                             </button>
 
+                            
+
                     } 
+                    <button className="active:scale-95 border text-black px-5 py-2 mt-5 lg:mt-0 rounded-full font-bold">Track package</button>
+                
+                <div className="flex flex-row lg:flex-col gap-3 w-full ">
+
+                    <button className="active:scale-95 border text-black px-5 py-2 mt-5 lg:mt-0 rounded-full font-bold">Ask Product Questions</button>
+
+                    <button className="active:scale-95 border text-black px-5 py-2 mt-5 lg:mt-0 rounded-full font-bold">Ask Product Questions</button>
                     
-            
+                </div>
 
 
 
