@@ -15,7 +15,7 @@ router.get(
 )
 
 router.put(
-    "/profile/update",
+    "/update",
     auth,
     updateProfile
 );

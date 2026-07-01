@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom"
 const Profile = () => {
 
     const [user, setUser] = useState(null)
+
+    const [edit, setEdit] = useState(false)
     const navigate=useNavigate()
 
     useEffect(()=>{
@@ -28,6 +30,47 @@ const Profile = () => {
         catch(error){
             console.log(error)
         }
+    }
+
+    const updateProfile = async()=>{
+
+        try{
+
+            await axios.put(
+
+            "http://localhost:5000/profile/update",
+
+            user,
+
+            {
+
+                headers:{
+
+                Authorization:
+
+                `Bearer ${localStorage.getItem("token")}`
+
+                }
+
+            }
+
+        );
+
+
+        alert("Profile Updated");
+
+        setEdit(false);
+
+
+        }
+
+        catch(error){
+
+        console.log(error);
+
+        }
+
+
     }
 
     if(!user){
@@ -98,8 +141,120 @@ const Profile = () => {
                     </p>
                 </div>
             </div>
-            <button className="bg-yellow-400 text-black font-bold px-8 py-3 rounded-full mt-8 hover:bg-yellow-500">Edit Profile</button>
+            <button onClick={()=>setEdit(true)}
+            className="bg-yellow-400 text-black font-bold px-8 py-3 rounded-full mt-8 hover:bg-yellow-500">Edit Profile</button>
+
+            
         </div>
+        {
+            edit && (
+                <div className="lg:w-1/2 lg:mx-96">
+                    <h1 className="text-xl font-bold mt-5 mb-2">Edit Profile</h1>
+                   <div className="grid grid-cols-2 gap-3">
+                     <input
+
+                        value={user.name}
+
+                        onChange={(e)=>setUser({...user,name:e.target.value})}
+
+                        className="border p-2 w-full mb-3"
+
+                    />
+
+                    <input
+
+                        value={user.phone}
+
+                        onChange={(e)=>setUser({...user,phone:e.target.value})}
+
+                        className="border p-2 w-full mb-3"
+
+                    />
+
+                    <input
+
+                        value={user.house}
+
+                        onChange={(e)=>setUser({...user,house:e.target.value})}
+
+                        className="border p-2 w-full mb-3"
+
+                    />
+
+                    <input
+
+                        value={user.street}
+
+                        onChange={(e)=>setUser({...user,street:e.target.value})}
+
+                        className="border p-2 w-full mb-3"
+
+                    />
+
+                    <input
+
+                        value={user.area}
+
+                        onChange={(e)=>setUser({...user,area:e.target.value})}
+
+                        className="border p-2 w-full mb-3"
+
+                    />
+
+                    <input
+
+                        value={user.district}
+
+                        onChange={(e)=>setUser({...user,district:e.target.value})}
+
+                        className="border p-2 w-full mb-3"
+
+                    />
+
+                    <input
+
+                        value={user.state}
+
+                        onChange={(e)=>setUser({...user,state:e.target.value})}
+
+                        className="border p-2 w-full mb-3"
+
+                    />
+
+                    <input
+
+                        value={user.country}
+
+                        onChange={(e)=>setUser({...user,country:e.target.value})}
+
+                        className="border p-2 w-full mb-3"
+
+                    />
+                   </div>
+                    <div className=" flex gap-2">
+                        <button
+
+                            onClick={updateProfile}
+
+                            className="bg-green-500 px-5 py-2 rounded font-semibold"
+
+                        >
+
+                            Save Changes
+
+                        </button>
+
+                        <button 
+                        onClick={()=>setEdit(false)}
+                        className="bg-red-400 px-5 py-2 rounded font-semibold">
+                            Cancel
+                        </button>
+
+                    </div>
+                
+                </div>
+            )
+        }
     </div>
   )
 }
