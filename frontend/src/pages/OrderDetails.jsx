@@ -118,7 +118,7 @@ const OrderDetails = () => {
 
 
 
-            <div className="flex gap-5 text-lg mb-5">
+            <div className="flex gap-3 lg:gap-5 text-lg mb-5">
 
 
                 <p>
@@ -335,7 +335,7 @@ const OrderDetails = () => {
                 </div>
 
 
-                <div className="flex flex-row lg:flex-col gap-3 w-full lg:w-1/4 ">
+                <div className="flex flex-wrap lg:flex-col gap-3 w-full lg:w-1/5 lg:h-52 ">
 
 
                     {
@@ -346,7 +346,7 @@ const OrderDetails = () => {
 
                                 onClick={()=>cancelOrder(order[0].order_id)}
 
-                                className="bg-red-500 active:scale-95 text-white px-5 py-2 rounded-full mt-5 font-bold"
+                                className="bg-yellow-300 active:scale-95 text-black px-3 py-1 rounded-full mt-5 font-medium text-sm lg:text-lg"
 
                             >
 
@@ -357,23 +357,18 @@ const OrderDetails = () => {
                             
 
                     } 
-                    <button className="active:scale-95 border text-black px-5 py-2 mt-5 lg:mt-0 rounded-full font-bold">Track package</button>
+                    <button className="active:scale-95 border text-black px-3 py-1 mt-5 lg:mt-0 rounded-full font-medium text-sm lg:text-lg">Track package</button>
                 
                 <div className="flex flex-row lg:flex-col gap-3 w-full ">
 
-                    <button className="active:scale-95 border text-black px-5 py-2 mt-5 lg:mt-0 rounded-full font-bold">Ask Product Questions</button>
+                    <button className="active:scale-95 border text-black px-3 py-1 mt-0.5 lg:mt-0 rounded-full font-medium text-sm lg:text-lg">Ask Product Questions</button>
 
-                    <button className="active:scale-95 border text-black px-5 py-2 mt-5 lg:mt-0 rounded-full font-bold">Ask Product Questions</button>
+                    <button className="active:scale-95 border text-black px-2 py-1 mt-0.5 lg:mt-0 rounded-full font-medium text-sm lg:text-lg">Ask Product Questions</button>
                     
                 </div>
 
-
-
                 </div>
-
-
-
-
+                
             </div>
 
 

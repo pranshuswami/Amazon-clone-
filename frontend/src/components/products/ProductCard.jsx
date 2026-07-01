@@ -94,13 +94,7 @@ navigate("/cart");
 
             <img
                 src={product.image_url}
-                className="
-                w-full
-                h-48 sm:h-60
-                object-contain
-                rounded
-                "
-            />
+                className="w-full h-48 sm:h-60 object-contain rounded"/>
 
 
             <p className="text-xs text-black dark:text-gray-300  mt-1">
@@ -108,14 +102,14 @@ navigate("/cart");
             </p>
 
 
-            <h2 className="font-bold text-base sm:text-lg mt-2">
+            <h2 className="font-bold text-base lg:text-xl mt-2">
 
                 {product.product_name}
 
             </h2>
 
 
-            <p className="text-black dark:text-gray-300 line-clamp-2">
+            <p className="text-black text-xs lg:text-sm mt-1.5 dark:text-gray-300 line-clamp-2">
 
                 {product.description}
 
@@ -125,15 +119,15 @@ navigate("/cart");
 
             <div className="mt-2">
 
-                ⭐⭐⭐⭐⭐
+                <span className="text-sm lg:text-lg">⭐⭐⭐⭐⭐</span>
 
-                <span className="ml-2">
+                <span className="ml-1 text-xs lg:text-sm">
 
-                    {product.rating}/5
+                    {product.rating}<span className="hidden lg:inline">/5</span>
 
                 </span>
 
-                <span className="ml-2 text-black dark:text-gray-400">
+                <span className="ml-1 text-xs lg:text-sm text-black dark:text-gray-400">
 
                     ({product.reviews})
 
@@ -145,14 +139,14 @@ navigate("/cart");
 
             <div className="mt-3">
 
-                <span className="text-2xl font-bold">
+                <span className=" text-lg lg:text-2xl font-bold">
 
                     ₹{product.price}
 
                 </span>
 
 
-                <span className="ml-2 text-black dark:text-gray-300 line-through">
+                <span className="ml-2 text-black dark:text-gray-300 text-xs lg:text-sm line-through">
 
                     ₹{product.mrp}
 
@@ -174,14 +168,6 @@ navigate("/cart");
                 FREE delivery tomorrow
 
             </p>
-
-
-            <p className="text-red-400 font-semibold">
-
-                {product.stock} left in stock
-
-            </p>
-
 
 
             <button

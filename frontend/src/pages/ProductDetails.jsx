@@ -161,11 +161,21 @@ const ProductDetails = () => {
         {
             product_id:product.product_id,
             quantity:1
+        },
+        {
+            headers:{
+
+                Authorization:
+
+                `Bearer ${token}`
+
+            }
+
         }
 
         );
 
-
+        alert("Product added to cart")
         navigate("/cart");
 
 
@@ -289,7 +299,7 @@ const ProductDetails = () => {
 
             <div className="flex flex-col md:flex-row">
                 
-                <div className="bg-gray-200 dark:bg-gray-800 w-full lg:w-1/3 p-6 ">
+                <div className="bg-gray-200 dark:bg-gray-800 w-full lg:w-1/3 p-3 lg:p-6">
                 
                 <img 
                     src={product.image_url}
@@ -300,7 +310,7 @@ const ProductDetails = () => {
             </div>
             <div className="bg-gray-200 dark:bg-gray-800 w-full lg:w-1/2 p-6">
             
-                <h1 className="text-3xl font-bold mt-5">
+                <h1 className="text-3xl font-bold mt-2 lg:mt-5">
                     {product.product_name}
                 </h1>
                 <p className=" text-blue-00 mt-1.5 font-medium">Brand: {product.brand}</p>
@@ -315,24 +325,30 @@ const ProductDetails = () => {
                     <br />
                 <span className="text-blue-500 hover:underline cursor-pointer">Save up to 18% with business pricing and GST input tax credit. Sign up for a free Amazon Business account</span>
                 </p>
+
                 <div className="flex flex-col md:flex-row items-center justify-center w-full mt-3 gap-3">
+
                 <div className="border border-gray-400 dark:border-gray-100 rounded-lg px-3 py-2 w-full md:w-1/2"><span className="font-bold">Cashback</span>
                     <br />
 
-            Upto ₹50.00 cashback as Amazon Pay Balance when you pay with select Credit CardsUpto ₹50.00 cashback as Amazon Pay Balance when…<br />
+                Upto ₹50.00 cashback as Amazon Pay Balance when you pay with select Credit CardsUpto ₹50.00 cashback as Amazon Pay Balance when…<br />
                 <span className="text-blue-500 hover:underline cursor-pointer">3 offers</span>
+
                 </div>
+
                 <div className="border h-auto md:h-38 border-gray-400 dark:border-gray-100 rounded-lg px-3 py-2 w-full md:w-1/2"><span className="font-bold">Bank Offers</span>
                     <br />
 
-            10% Instant Discount up to INR 1000 on ICICI Bank Credit Card (excluding Amazon Pay ICICI Credit Card) EMI Trxns. Min purchase value INR 7490<br />
+                10% Instant Discount up to INR 1000 on ICICI Bank Credit Card (excluding Amazon Pay ICICI Credit Card) EMI Trxns. Min purchase value INR 7490<br />
                 <span className="text-blue-500 hover:underline cursor-pointer">16 offers</span>
                 </div>
 
                 
             </div>
             <hr className="mt-5 border-gray-300 dark:border-gray-600"></hr>
+
             <h2 className="font-bold text-2xl mt-3">About this item</h2>
+
             <p className="mt-3 text-lg text-black dark:text-gray-300">
                     {product.description}
                 </p>
@@ -341,14 +357,17 @@ const ProductDetails = () => {
             </div>
 
             
-            <div className="bg-gray-200 dark:bg-gray-800 w-full lg:w-1/4 px-6 py-10 ">
+            <div className="bg-gray-200 dark:bg-gray-800 w-full lg:w-1/4 px-6 py-7 ">
             
-                <div className=" border mt-5 border-gray-400 dark:border-gray-100 p-6 mb-5 flex-row items-center justify-center
+                <div className=" border mt-1 lg:mt-5 border-gray-400 dark:border-gray-100 p-6 mb-5 flex-row items-center justify-center
                 rounded-lg">
                     <h2 className="text-2xl font-bold ">
                     ₹{product.price}
                 </h2>
-                <p className="">FREE delivery tomorrow June to <span className="text-blue-500 hover:underline cursor-pointer">Bikaner 334001</span>. Order within 10 hrs 31 mins. <span className="text-blue-500 hover:underline cursor-pointer">Details</span></p>
+                <p className="mt-2 text-lg lg:hidden">Save <span className="font-bold">₹10</span> extra using <span className="font-bold">💎100</span> <span className="text-blue-500 hover:underline cursor-pointer">Details</span></p>
+
+                <p className="mt-2">FREE delivery tomorrow June to <span className="text-blue-500 hover:underline cursor-pointer">Bikaner 334001</span>. Order within 10 hrs 31 mins. <span className="text-blue-500 hover:underline cursor-pointer">Details</span></p>
+
                 <p className="text-red-400 font-bold">{product.stock} left in stock</p>
 
                 <button onClick={addToCart}

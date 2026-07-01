@@ -5,7 +5,7 @@ const Footer = () => {
     <div className="text-white">
         <div onClick={()=>window.scrollTo(0,0)}
         className="bg-gray-600 mt-5 text-center py-4 cursor-pointer font-medium">Back to top</div>
-        <div className="bg-gray-800 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-5 md:px-10 py-10">
+        <div className="bg-gray-800 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 px-5 md:px-10 py-10">
             <div className="ml-0 gap-4">
                 <h2 className="text-xl font-bold mb-2">Get to Know Us</h2>
                 <a className="text-sm md:text-lg hover:underline cursor-pointer mt-2">About Amazon</a><br />
@@ -43,10 +43,10 @@ const Footer = () => {
         </div>
         <hr className="border-gray-700 " />
 
-        <div className="bg-gray-800 flex flex-col md:flex-row items-center justify-center gap-5 md:gap-8 ">
+        <div className="bg-gray-800 flex flex-row items-center justify-center gap-5 md:gap-8 ">
             <img className="h-14 w-36 object-contain my-5" src={logo} />
             <button className="border border-gray-500 px-4 py-2 rounded hover:bg-gray-800">🌐 English</button>
-            <button className="border border-gray-500 px-4 py-2 rounded hover:bg-gray-800">🇮🇳 India</button>
+            <button className="border border-gray-500 px-4 py-2 rounded hover:bg-gray-800 ">🇮🇳 India</button>
         </div>
 
         <div className="bg-gray-950 text-gray-300 px-5 md:px-20 py-10">
