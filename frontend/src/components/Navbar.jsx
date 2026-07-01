@@ -242,7 +242,7 @@ const Navbar = () => {
 
                     <div
 
-                    className="absolute top-14 left-0 bg-white dark:bg-gray-800 text-black dark:text-white w-60 shadow-xl rounded-lg p-3 z-50"
+                    className="absolute top-30 lg:top-14 left-0 bg-white dark:bg-gray-800 text-black dark:text-white w-60 shadow-xl rounded-lg p-3 z-50"
 
                     >
 

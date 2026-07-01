@@ -84,12 +84,19 @@ const Profile = () => {
     }
   return (
     <div className="min-h-screen p-10">
+
         <div className="max-w-4xl mx-auto bg-gray-200 dark:bg-gray-800 rounded-lg p-8">
+
             <h1 className="text-3xl font-bold">My Profile</h1>
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
                 <div className="flex flex-col gap-3">
+
                     <h2 className="text-xl font-bold mt-4">
+
                         Personal Details:-
+
                     </h2>
                     <p className="">
                         <span className="font-bold">Name:</span>
@@ -107,7 +114,9 @@ const Profile = () => {
                         {user.phone}
                     </p>
                 </div>
+
                 <div className="flex flex-col gap-3">
+
                     <h2 className="text-xl font-bold mt-4">Address:-</h2>
                     <p className=""> 
                         <span className="font-bold">House Number:</span>
@@ -139,8 +148,11 @@ const Profile = () => {
                          {" "}
                         {user.country}
                     </p>
+
                 </div>
+
             </div>
+
             <button onClick={()=>setEdit(true)}
             className="bg-yellow-400 text-black font-bold px-8 py-3 rounded-full mt-8 hover:bg-yellow-500">Edit Profile</button>
 
@@ -148,9 +160,20 @@ const Profile = () => {
         </div>
         {
             edit && (
-                <div className="lg:w-1/2 lg:mx-96">
-                    <h1 className="text-xl font-bold mt-5 mb-2">Edit Profile</h1>
-                   <div className="grid grid-cols-2 gap-3">
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+
+
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+
+
+            <h1 className="text-xl font-bold mb-5">
+                Edit Profile
+            </h1>
+
+                    <h1 className="text-center font-medium text-lg">Edit Personal Details</h1>
+
+                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                    
                      <input
 
                         value={user.name}
@@ -170,6 +193,11 @@ const Profile = () => {
                         className="border p-2 w-full mb-3"
 
                     />
+                    </div>
+
+                    <h1 className="text-center font-medium text-lg">Edit Address</h1>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
 
                     <input
 
@@ -231,7 +259,7 @@ const Profile = () => {
 
                     />
                    </div>
-                    <div className=" flex gap-2">
+                    <div className=" flex gap-2 items-center justify-center">
                         <button
 
                             onClick={updateProfile}
@@ -249,6 +277,9 @@ const Profile = () => {
                         className="bg-red-400 px-5 py-2 rounded font-semibold">
                             Cancel
                         </button>
+
+                        </div>
+
 
                     </div>
                 

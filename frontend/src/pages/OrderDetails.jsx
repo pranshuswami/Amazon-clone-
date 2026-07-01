@@ -346,7 +346,7 @@ const OrderDetails = () => {
 
                                 onClick={()=>cancelOrder(order[0].order_id)}
 
-                                className="bg-yellow-300 active:scale-95 text-black px-3 py-1 rounded-full mt-5 font-medium text-sm lg:text-lg"
+                                className="bg-yellow-300 active:scale-95 text-black px-3 py-1 rounded-full mt-5 text-sm lg:text-lg"
 
                             >
 
@@ -357,18 +357,18 @@ const OrderDetails = () => {
                             
 
                     } 
-                    <button className="active:scale-95 border text-black px-3 py-1 mt-5 lg:mt-0 rounded-full font-medium text-sm lg:text-lg">Track package</button>
+                    <button className="active:scale-95 border text-black px-3 py-1 mt-5 lg:mt-0 rounded-full text-sm lg:text-lg">Track package</button>
                 
                 <div className="flex flex-row lg:flex-col gap-3 w-full ">
 
-                    <button className="active:scale-95 border text-black px-3 py-1 mt-0.5 lg:mt-0 rounded-full font-medium text-sm lg:text-lg">Ask Product Questions</button>
+                    <button className="active:scale-95 border text-black px-2 py-1 mt-0.5 lg:mt-0 rounded-full  text-sm lg:text-lg">Ask Product Questions</button>
 
-                    <button className="active:scale-95 border text-black px-2 py-1 mt-0.5 lg:mt-0 rounded-full font-medium text-sm lg:text-lg">Ask Product Questions</button>
+                    <button className="active:scale-95 border text-black px-2 py-1 mt-0.5 lg:mt-0 rounded-full  text-sm lg:text-lg">Ask Product Questions</button>
                     
                 </div>
 
                 </div>
-                
+
             </div>
 
 
