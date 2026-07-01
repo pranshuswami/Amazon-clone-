@@ -43,55 +43,55 @@ const Profile = () => {
     <div className="min-h-screen p-10">
         <div className="max-w-4xl mx-auto bg-gray-200 dark:bg-gray-800 rounded-lg p-8">
             <h1 className="text-3xl font-bold">My Profile</h1>
-            <div className="grid grid-cols-2 gap-6">
-                <div>
-                    <h2 className="text-xl font-bold mt-3">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="flex flex-col gap-3">
+                    <h2 className="text-xl font-bold mt-4">
                         Personal Details:-
                     </h2>
-                    <p className="mt-4">
+                    <p className="">
                         <span className="font-bold">Name:</span>
                         {" "}
                         {user.name}
                     </p>
-                    <p className="mt-4">
+                    <p className="">
                         <span className="font-bold">Email:</span>
                         {" "}
                         {user.email}
                     </p>
-                    <p className="mt-4">
+                    <p className="">
                         <span className="font-bold">Phone Number:</span>
                         {" "}
                         {user.phone}
                     </p>
                 </div>
-                <div>
-                    <h2 className="text-xl font-bold">Address:-</h2>
-                    <p className="mt-2"> 
+                <div className="flex flex-col gap-3">
+                    <h2 className="text-xl font-bold mt-4">Address:-</h2>
+                    <p className=""> 
                         <span className="font-bold">House Number:</span>
                          {" "}
                         {user.house||" Address not found"}
                     </p>
-                    <p className="mt-2">
+                    <p className="">
                        <span className="font-bold">Street Number:</span>
                         {" "}
                        {user.street}
                     </p>
-                    <p className="mt-2"> 
+                    <p className=""> 
                         <span className="font-bold">Area:</span>
                          {" "}
                         {user.area}
                     </p>
-                    <p className="mt-2">
+                    <p className="">
                         <span className="font-bold">District:</span>
                          {" "}
                         {user.district}
                     </p>
-                    <p className="mt-2"> 
+                    <p className=""> 
                         <span className="font-bold">State:</span>
                         {" "}
                         {user.state}
                     </p>
-                    <p className="mt-2">
+                    <p className="">
                         <span className="font-bold">Country:</span>
                          {" "}
                         {user.country}

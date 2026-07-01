@@ -20,8 +20,56 @@ const getProfile=(req,res)=>{
      })
 }
 
+const updateProfile = (req,res)=>{
+
+    const user_id = req.user.user_id;
+
+    const {name,phone,email,house,street,landmark,area,district,state,country} = req.body;
+    
+    const updateUser = 
+    "UPDATE users SET name=?, phone=?, email=? WHERE user_id=?";
+
+    db.query(updateUser,[name,phone,email,user_id],(err)=>{
+
+            if(err){
+
+                return res.status(500).json({
+                    status:false,
+                    message:err
+                })
+
+            }
+
+            const updateAddress =
+            "UPDATE addresses SET house=?, street=?, landmark=?, area=?, district=?, state=?, country=? WHERE user_id=?";
+
+
+            db.query(updateAddress,[house,street,landmark,area,district,state,country,user_id],(err)=>{
+
+                    if(err){
+
+                        return res.status(500).json({
+                            status:false,
+                            message:err
+                        })
+
+                    }
+
+
+                    res.json({
+
+                        status:true,
+                        message:"Profile updated"
+
+                    })
+
+
+                }
+
+            )}
+    )}
+
 module.exports={
-
-    getProfile
-
-};
+    getProfile,
+    updateProfile
+}
