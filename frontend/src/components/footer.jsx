@@ -1,4 +1,4 @@
-import logo from '../assets/Amazon Clone logo.png'
+import logo from '../assets/Amazon logo.png'
 const Footer = () => {
   return (
     
