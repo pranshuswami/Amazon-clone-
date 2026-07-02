@@ -73,22 +73,95 @@ const CategoryPage = () => {
 
     return (
 
-        <div className="bg-gray-100 dark:bg-black text-black dark:text-white min-h-screen p-3 md:p-5">
+        <div className="bg-gray-100 dark:bg-black text-black dark:text-white min-h-screen md:p-5">
+
+        <div className="bg-white w-full dark:bg-black shadow-sm dark:shadow-white ">
+
+    <div className="flex items-center gap-2.5 px-1 py-2 overflow-x-auto scrollbar-hide">
+
+        <div className="flex flex-col gap-1">
+
+        <button
+            onClick={() => setShowFilter(true)}
+            className="lg:hidden flex items-center justify-center border border-gray-500 rounded-full h-8 px-5 shrink-0 bg-white dark:bg-black"
+        >
+                <LuSlidersHorizontal className="text-lg" />
+        </button>
+
+        <button className="lg:hidden h-8 px-3 rounded-full flex items-center gap-1 text-sm shrink-0">
+            <span className="text-blue-600 font-bold">✓Prime</span>
+        </button>
+
+        </div>
+        
+
+        <div className="flex flex-col gap-1">
+
+            <div className="flex gap-1.5">
+                <button className="lg:hidden h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black">
+                    Most Purchased
+                </button>
+
+                <button className="lg:hidden h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black">
+                    View Picks
+                </button>
+
+                <button className="lg:hidden h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black">
+                    ⭐⭐⭐⭐⭐ & Up
+                </button>
+
+                <button className="lg:hidden h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black">
+                    All Discounts
+                </button>
+
+                <button className="lg:hidden h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black">
+                    Today's Deal
+                </button>
+
+            </div>
+
+            <div className="flex gap-1.5">
+                <button className="lg:hidden w-fit h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black">
+                    Popular
+                </button>
+
+                <button className="lg:hidden  w-fit h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black">
+                    Brands
+                </button>
+
+                <button className="lg:hidden  w-fit h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black">
+                    Display
+                </button>
+
+                <button className="lg:hidden  w-fit h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black">
+                    Amazon Fashion
+                </button>
+
+                <button className="lg:hidden  w-fit h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black">
+                    Band material
+                </button>
+
+                <button className="lg:hidden  w-fit h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black">
+                    Band Color
+                </button>
+            </div>
+                
+
+            </div>
+
+    </div>
+
+</div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-5">
+                 
 
                 <div className="lg:col-span-3 mt-1 lg:mt-6">
 
-                    <button 
-                    onClick={()=>setShowFilter(true)}
-                    className="lg:hidden border rounded-full px-5 py-1 text-black dark:text-white dark:border-white font-bold ">
-                        
-                        <LuSlidersHorizontal className="text-2xl"/>
-
-                    </button>
+                   
 
                     <div className="hidden lg:block">
-                        
+
                         <FilterSidebar
 
                         filters={filters}
@@ -133,7 +206,7 @@ const CategoryPage = () => {
 
                 <div className="lg:col-span-9">
 
-                    <h1 className="text-xl md:text-2xl font-bold mb-3 mt-2 capitalize">
+                    <h1 className="lg:block text-lg md:text-2xl font-bold mb-3 mt-0.5 ml-5 capitalize">
 
                         {slug.replace("-", " ")}
 

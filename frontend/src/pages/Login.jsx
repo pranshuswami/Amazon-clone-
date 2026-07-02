@@ -87,7 +87,7 @@ localStorage.removeItem("pendingProduct");
 
 
 localStorage.removeItem("cartAction");
-window.location.reload()
+
 
 
 if(action==="cart"){

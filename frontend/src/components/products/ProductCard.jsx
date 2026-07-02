@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FiHeart } from "react-icons/fi";
 
 const ProductCard = ({ product }) => {
 
@@ -92,9 +93,12 @@ navigate("/cart");
             
             className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg p-3 shadow-lg cursor-pointer hover:scale-101 w-full">
 
-            <img
+            <div className="relative ">
+                <img
                 src={product.image_url}
                 className="w-full h-48 sm:h-60 object-contain rounded"/>
+                <FiHeart className=" bg-white text-3xl absolute bottom-3 right-2 rounded-xl px-1  shadow-2xl" />
+            </div>
 
 
             <p className="text-xs text-black dark:text-gray-300  mt-1">
@@ -109,7 +113,7 @@ navigate("/cart");
             </h2>
 
 
-            <p className="text-black text-xs lg:text-sm mt-1.5 dark:text-gray-300 line-clamp-2">
+            <p className="text-black text-xs lg:text-sm mt-1 dark:text-gray-300 line-clamp-2">
 
                 {product.description}
 
@@ -139,7 +143,7 @@ navigate("/cart");
 
             <div className="mt-3">
 
-                <span className=" text-lg lg:text-2xl font-bold">
+                <span className="text-xl font-medium lg:text-2xl lg:font-bold">
 
                     ₹{product.price}
 
@@ -153,7 +157,7 @@ navigate("/cart");
                 </span>
 
 
-                <span className=" text-green-500 dark:text-green-400 font-medium text-sm ml-2">
+                <span className=" text-red-400 dark:text-green-400 font-medium text-sm ml-2">
 
                     {discount}% OFF
 
@@ -174,8 +178,8 @@ navigate("/cart");
 
                 onClick={addToCart}
 
-                className="bg-yellow-500 hover:bg-yellow-400 active:scale-95 w-full rounded-full py-2
-                mt-4 font-bold"
+                className="bg-amber-300 hover:bg-yellow-400 active:scale-95 w-full rounded-full py-2
+                mt-4 lg:font-bold"
 
             >
 

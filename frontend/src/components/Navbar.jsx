@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "../assets/Amazon Clone logo.png"
-import { FiLogOut,FiLogIn,FiUser, FiMoon,FiShoppingCart,FiPackage,FiHome,FiHeart} from "react-icons/fi";
+import { FiLogOut,FiLogIn,FiUser, FiMoon,FiShoppingCart,FiPackage,FiHome,FiHeart,FiMapPin,FiSearch } from "react-icons/fi";
 
 const Navbar = () => {
 
@@ -171,14 +171,14 @@ const Navbar = () => {
 
     return (
 
-
-        <nav className="bg-gray-900 text-white px-3 py-3 sticky top-0 z-50 shadow-lg">
-
-
-            <div className="flex flex-wrap items-center justify-between gap-3 w-full">
+        <>
+        <nav className="bg-gray-800 text-white py-1 sticky top-0 z-50 shadow-lg">
 
 
-                <Link to="/">
+            <div className="flex flex-wrap items-center gap-3 w-full">
+
+
+                <Link to="/" className="order-2 md:order-none -ml-2 mt-1 -mb-2">
                    
 
                     <img 
@@ -189,19 +189,19 @@ const Navbar = () => {
 
                     
                 </Link>
-
-                <div className="order-5 md:order-none flex w-full md:w-[45%] min-w-0"
+                
+                <div className="order-4 md:order-none px-2  h-11 flex w-full md:w-[45%] min-w-0"
                 >
-
+                    
                     <button
 
                     onClick={()=>setShowCategory(!showCategory)}
 
-                    className="bg-gray-700 text-white px-4 rounded-l-md font-semibold flex items-center gap-2"
+                    className="bg-gray-600 hidden text-white px-4 rounded-l-md font-semibold lg:flex items-center gap-2"
 
                     >
 
-                        ☰ All
+                        <span className="text-sm">☰ All</span>
 
                     </button>
 
@@ -215,7 +215,7 @@ const Navbar = () => {
 
                     onChange={(e)=>setKeyword(e.target.value)}
 
-                    className="w-full px-3 py-2 md:py-3 bg-white text-black outline-none"
+                    className="w-full px-3 py-2 md:py-3  rounded-l-lg lg:rounded-none bg-white text-black "
 
                     />
 
@@ -223,15 +223,11 @@ const Navbar = () => {
 
                     onClick={handleSearch}
 
-                    className="bg-yellow-400 px-3 md:px-6 rounded-r-md text-black hover:bg-yellow-500 cursor-pointer"
+                    className="bg-amber-300 px-3 md:px-6  rounded-r-lg text-black hover:bg-amber-500 cursor-pointer"
 
                     >
 
-                        <span className="text-3xl">
-
-                            🔍
-
-                        </span>
+                        <FiSearch className="text-3xl" />
 
 
                     </button>
@@ -288,7 +284,7 @@ const Navbar = () => {
 
                 </div>
 
-                <div className="flex gap-3 md:gap-5 justify-center items-center overflow-hidden">
+                <div className="order-3 flex-1 flex justify-end gap-5 items-end overflow-hidden">
 
                     <NavLink
 
@@ -309,11 +305,22 @@ const Navbar = () => {
                     }
 
                     >
-                    <FiHome className="text-2xl"/>
+                    <FiHome className="hidden lg:block text-2xl"/>
                     <span className="hidden md:block">
                         Home
                     </span>
 
+                    </NavLink>
+
+                    <NavLink className=                   
+
+                    "dark:text-white font-medium flex items-center gap-2 whitespace-nowrap"
+                    
+                    >
+                        <span className="text-sm font-semibold">
+                            Pranshu<span className="tetx-xs -mr-2">{" >"}</span>
+                        </span>
+                        <FiUser className="lg:hidden text-3xl -mr-2"/>
                     </NavLink>
 
                     <NavLink
@@ -335,7 +342,7 @@ const Navbar = () => {
                     }
 
                     >
-                    <FiShoppingCart className="text-2xl"/>
+                    <FiShoppingCart className="text-3xl"/>
                     <span className="hidden md:block">Cart ({cartCount})</span>
 
                     </NavLink>
@@ -359,25 +366,28 @@ const Navbar = () => {
                     }
 
                     >
-                    <FiPackage className="text-2xl"/>
+                    <FiPackage className=" hidden md:block text-2xl"/>
                     <span className="hidden md:block">
                         Orders
                     </span>
 
                     </NavLink>
 
+                    
+
                 </div>
 
-                <div className="order-3 md:order-none relative"
+                <div className="order-1 ml-2 lg:ml-90 relative"
                 onMouseEnter={()=>setShowMenu(true)}
                 onMouseLeave={()=>setShowMenu(false)}>
+
                     <button onClick={()=>setShowMenu(!showMenu)}
-                      className="text-2xl md:text-3xl cursor-pointer">
+                      className="text-2xl  cursor-pointer">
                         ☰
                       </button>
                     {
                         showMenu &&  (
-                            <div className="absolute right-0 top-8 w-56 bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg shadow-lg p-3 z-50">
+                            <div className="absolute left-0 lg:right-0 top-8 w-56 bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg shadow-lg p-3 z-50">
                                 <button
                                 onClick={()=>{
 
@@ -508,9 +518,19 @@ const Navbar = () => {
                 </div>
 
             </div>
+            
 
         </nav>
-
+        <div className="lg:hidden bg-gray-700 text-white flex justify-between pl-3  h-11">
+                    <div className="flex">
+                        <FiMapPin className="mt-3.5 text-xl" />
+                    <h2 className="mt-3 pl-1 text-sm ">Deliver to 334001</h2>
+                    </div>
+                    <div className="my-2 mr-2">
+                        <button className="bg-blue-500 w-fit h-7 text-sm px-2 py-1 text-white rounded-full font-medium">Join Prime</button>
+                    </div>
+            </div>
+        </>
     );
 
 };
