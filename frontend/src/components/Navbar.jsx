@@ -528,7 +528,7 @@ const Navbar = () => {
             
 
         </nav>
-        <div className="lg:hidden bg-gray-700 text-white flex justify-between pl-3  h-11">
+        <div className="lg:hidden bg-[#37475A] text-white flex justify-between pl-3  h-11">
                     <div className="flex">
                         <FiMapPin className="mt-3.5 text-xl" />
                     <h2 className="mt-3 pl-1 text-sm ">Deliver to 334001 ⌵</h2>

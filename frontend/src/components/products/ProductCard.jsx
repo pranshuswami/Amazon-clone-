@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FiHeart } from "react-icons/fi";
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 const ProductCard = ({ product }) => {
 
@@ -121,11 +122,15 @@ navigate("/cart");
 
 
 
-            <div className="mt-2">
+            <div className="mt-2 flex items-center">
 
-                <span className="text-sm lg:text-lg">⭐⭐⭐⭐⭐</span>
+                <span className="text-sm lg:text-lg flex items-center"><FaStar className="text-yellow-600 " />
+                                        <FaStar className="text-yellow-600" />
+                                        <FaStar className="text-yellow-600" />
+                                        <FaStar className="text-yellow-600" />
+                                        <FaRegStar className="text-yellow-600 mr-1.5" /></span>
 
-                <span className="ml-1 text-xs lg:text-sm">
+                <span className=" text-xs lg:text-sm">
 
                     {product.rating}<span className="hidden lg:inline">/5</span>
 

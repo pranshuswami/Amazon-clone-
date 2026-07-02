@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { LuSlidersHorizontal } from "react-icons/lu";
+import filter from "../assets/filter.png"
 
 import FilterSidebar from "../components/filters/FilterSideBar";
 import ProductGrid from "../components/products/ProductGrid";
@@ -83,15 +84,17 @@ const CategoryPage = () => {
 
         <div className="bg-white w-full dark:bg-black shadow-sm dark:shadow-white ">
 
-    <div className="flex items-center gap-2.5 px-1 py-2 overflow-x-auto scrollbar-hide">
+    <div className="flex items-center gap-1 px-1 py-2 overflow-x-auto scrollbar-hide">
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3.5">
 
         <button
             onClick={() => setShowFilter(true)}
-            className="lg:hidden flex items-center justify-center border border-gray-500 rounded-full h-8 px-5 shrink-0 bg-white dark:bg-black"
+            className="lg:hidden flex items-center justify-center border border-gray-500 rounded-full h-8 shrink-0 bg-white dark:bg-black mx-1"
         >
-                <PiSlidersHorizontal className="text-xl font-bold" />
+                <PiSlidersHorizontal className=" hidden text-xl font-bold" />
+                <img className="w-7 object-contain"
+                src={filter} />
         </button>
 
         <div className="flex items-center gap-2 ml-1.5">
@@ -118,12 +121,12 @@ const CategoryPage = () => {
 </div>
 
         </div>
-        
+        <div className="w-px h-[68px] bg-gray-200  shrink-0"></div>
 
         <div className="flex flex-col gap-1">
 
             <div className="flex gap-1.5">
-                <button className="lg:hidden h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black">
+                <button className="lg:hidden h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black ">
                     Most Purchased
                 </button>
 
@@ -145,7 +148,7 @@ const CategoryPage = () => {
                 </button>
 
             </div>
-
+                
             <div className="flex items-center gap-1.5">
                 <button className="lg:hidden w-fit h-8 px-3 border border-gray-500 rounded-full text-sm  shrink-0 bg-white dark:bg-black">
                     Popular
@@ -237,7 +240,7 @@ const CategoryPage = () => {
                         {slug.replace("-", " ")}<br />
                     {/* <span className="text-xs font-normal text-gray-400">Sponsered</span> */}
                     </h1>
-                    <div className="w-[430px] h-[430px] flex flex-col">
+                    <div className="w-[430px] h-[430px] flex flex-col lg:hidden">
                     <img className="-mt-2 mx-auto h-64 w-full object-contain"
                     src="https://i.pinimg.com/736x/29/e0/46/29e046b82a2f59dd3ccb2fcc53e682f4.jpg" />
 
@@ -251,25 +254,25 @@ const CategoryPage = () => {
                     <div className="pl-6 px-2 py-1">
                         <h2 className="text-sm line-clamp-3 leading-5">Samsung Galaxy S26 Ultra 5G (Black, 12GB RAM, 256GB Storage) with Built-in Privacy Display, AI Phone, Photo Assist, Creative Studio, 200MP Camera, 5000mAh Battery and Snapdragon 8 Elite Gen 5</h2>
                         
-                        <h2 className="text-sm mt-2 flex items-center ">4.0<FaStar className="text-yellow-600 ml-2 text-xs" />
-                        <FaStar className="text-yellow-600 text-xs" /><FaStar className="text-yellow-600 text-xs" /><FaStar className="text-yellow-600 text-xs" /><FaRegStar className="text-yellow-600 mr-2 text-xs" /><span className="text-gray-500 dark:text-gray-200">1224</span></h2>
+                        <h2 className="text-sm mt-2 flex items-center">4.0<FaStar className="text-yellow-600 ml-2 text-xs" />
+                        <FaStar className="text-yellow-600 text-xs" /><FaStar className="text-yellow-600 text-xs" /><FaStar className="text-yellow-600 text-xs" /><FaRegStar className="text-yellow-600 mr-2 text-xs" /><span className="text-gray-500 dark:text-gray-200">1,224</span></h2>
                         
-                        <h2 className="bg-[#CC0C39] rounded-md text-sm mt-1.5 w-fit text-white font-semibold px-1.25 py-1 leading-tight">Limited time deal</h2>
+                        <h2 className="bg-[#CC0C39] rounded-md text-[13px] mt-1.5 w-fit text-white font-semibold px-1.25 py-1 leading-tight">Limited time deal</h2>
 
                         <h2><span className="text-red-500">-12%</span>{" "}<span className="text-xl font-medium">₹1,29,000</span></h2>
 
-                        <h2 className="line-through text-sm text-gray-600 mt-2">M.R.P:-1,49,000</h2>
+                        <h2 className="line-through text-sm text-gray-600 mt-1.5">M.R.P:-1,49,000</h2>
                     </div>
 
                     </div>
 
                     </div>
-                    <h2 className="text-xs font-medium text-gray-500 text-right mr-1">Sponsored ⓘ</h2>
+                    <h2 className="lg:hidden text-xs font-medium text-gray-500 text-right mr-1">Sponsored ⓘ</h2>
 
-                    <h2 className="ml-2 mt-2 text-base">Showing products near you with fast delivery</h2>
-                    <h2 className="ml-2 mt-1 text-xs underline">See all Products, along price range</h2>
-                    <div className="bg-white p-2 mt-3 dark:bg-black">
-                        <h2 className=" text-gray-600 dark:text-gray-100 text-xs mt-3">Check Each product page for other buying options</h2>
+                    <h2 className="lg:hidden ml-2 mt-4 text-base">Showing products near you, with fast delivery</h2>
+                    <h2 className="lg:hidden ml-2 mt-1 text-xs underline">See all Products, along price range</h2>
+                    <div className="lg:hidden bg-white p-2 mt-3 dark:bg-black">
+                        <h2 className=" text-gray-600 dark:text-gray-100 text-xs mt-3.5 -mb-2">Check Each product page for other buying options</h2>
                     </div>
 
                     <ProductGrid
