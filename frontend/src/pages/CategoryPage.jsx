@@ -105,14 +105,12 @@ const CategoryPage = () => {
 
     <button
         onClick={() => setPrime(!prime)}
-        className={`relative w-9 h-5 rounded-full border border-cyan-700 transition-all duration-300 ${
-            prime ? "bg-white" : "bg-white"
-        }`}
+        className=" bg-white relative w-9 h-5 rounded-full border border-cyan-700 transition-all duration-300"
     >
 
         <span
             className={`absolute top-[1.5px] bottom-[1.5px] w-4 h-4 bg-cyan-700 text-white text-xl rounded-full shadow-md transition-all duration-300 ${
-                prime ? "right-[2px]" : "left-[2px]"
+                prime ? "right-[1px]" : "left-[1px]"
             }`}
         ><span className="absolute -bottom-1 right-1">-</span></span>
 
@@ -259,7 +257,7 @@ const CategoryPage = () => {
                         
                         <h2 className="bg-[#CC0C39] rounded-md text-[13px] mt-1.5 w-fit text-white font-semibold px-1.25 py-1 leading-tight">Limited time deal</h2>
 
-                        <h2><span className="text-red-500">-12%</span>{" "}<span className="text-xl font-medium">₹1,29,000</span></h2>
+                        <h2><span className="text-[#CC0C39]">-12%</span>{" "}<span className="text-xl font-medium">₹1,29,000</span></h2>
 
                         <h2 className="line-through text-sm text-gray-600 mt-1.5">M.R.P:-1,49,000</h2>
                     </div>
