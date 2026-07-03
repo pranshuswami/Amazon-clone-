@@ -92,17 +92,18 @@ navigate("/cart");
             onClick={() =>{ navigate(`/product/${product.product_id}`); 
             window.scrollTo(0,0);}}
             
-            className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg p-3 shadow-lg cursor-pointer hover:scale-101 w-full">
+            className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg p-1.5 cursor-pointer hover:scale-101 w-full md:-ml-10">
 
             <div className="relative ">
                 <img
                 src={product.image_url}
                 className="w-full h-48 sm:h-60 object-contain rounded"/>
-                <FiHeart className=" bg-white text-3xl absolute bottom-3 right-2 rounded-xl px-1  shadow-2xl" />
+                <FiHeart className="md:hidden bg-white text-3xl absolute bottom-3 right-2 rounded-xl px-1  shadow-2xl" />
+                {/* <p className="absolute top-0 left-0 text-sm h-fit w-fit bg-gray-700 text-white rounded-md px-1 py-0.5">Previously Viewed</p> */}
             </div>
 
 
-            <p className="text-xs text-black dark:text-gray-300  mt-1">
+            <p className="text-base text-gray-500 dark:text-gray-300  mt-1">
                 Sponsored ⓘ
             </p>
 
@@ -114,7 +115,7 @@ navigate("/cart");
             </h2>
 
 
-            <p className="text-black text-xs lg:text-sm mt-1 dark:text-gray-300 line-clamp-2">
+            <p className="text-black text-xs lg:text-lg md:font-medium mt-1 dark:text-gray-300 line-clamp-2">
 
                 {product.description}
 
@@ -124,13 +125,18 @@ navigate("/cart");
 
             <div className="mt-2 flex items-center">
 
+                <span className="hidden md:block text-base lg:text-sm mr-1">
+
+                    {product.rating}
+
+                </span>
                 <span className="text-sm lg:text-lg flex items-center"><FaStar className="text-yellow-600 " />
                                         <FaStar className="text-yellow-600" />
                                         <FaStar className="text-yellow-600" />
                                         <FaStar className="text-yellow-600" />
-                                        <FaRegStar className="text-yellow-600 mr-1.5" /></span>
+                                        <FaRegStar className="text-yellow-600 mr-1" /><span className="hidden md:block">⌵</span></span>
 
-                <span className=" text-xs lg:text-sm">
+                <span className="md:hidden text-xs lg:text-sm">
 
                     {product.rating}<span className="hidden lg:inline">/5</span>
 
@@ -148,31 +154,31 @@ navigate("/cart");
 
             <div className="mt-3">
 
-                <span className="text-xl font-medium lg:text-2xl lg:font-bold">
+                <span className="text-xl font-medium md:text-3xl lg:font-bold">
 
                     ₹{product.price}
 
                 </span>
 
 
-                <span className="ml-2 text-black dark:text-gray-300 text-xs lg:text-sm line-through">
-
-                    ₹{product.mrp}
+                <span className="ml-2 text-gray-500 dark:text-gray-300 text-xs lg:text-sm ">
+                    <span className="hidden md:block md:inline">M.R.P:</span>
+                    <span className="line-through">₹{product.mrp}</span>
 
                 </span>
 
 
-                <span className=" text-red-400 dark:text-green-400 font-medium text-sm ml-2">
+                <span className="font-medium text-sm ml-2">
 
-                    {discount}% OFF
+                    ({discount}% OFF)
 
                 </span>
 
             </div>
 
+            <p className=" hidden md:block text-gray-500">Up to 5% back with Amazon Pay ICICI c...</p>
 
-
-            <p className="text-green-500 font-medium mt-2">
+            <p className="text-sm md:text-base font-medium mt-2">
 
                 FREE delivery tomorrow
 
@@ -184,7 +190,7 @@ navigate("/cart");
                 onClick={addToCart}
 
                 className="bg-amber-300 hover:bg-yellow-400 active:scale-95 w-full rounded-full py-2
-                mt-4 lg:font-bold"
+                mt-4"
 
             >
 

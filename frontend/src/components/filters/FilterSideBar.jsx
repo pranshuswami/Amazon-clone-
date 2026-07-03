@@ -1,270 +1,266 @@
+import { useState } from "react";
+
 const FilterSidebar = ({
-filters,
-setFilters,
-brands
+    filters,
+    setFilters,
+    brands
 }) => {
 
+    const [priceRange, setPriceRange] = useState([185, 40900]);
+    const [showAllBrands, setShowAllBrands] = useState(false);
 
-const selectBrand = (brand)=>{
+    const selectBrand = (brand) => {
 
-let updatedBrands;
+        let updatedBrands;
 
+        if (filters.brand.includes(brand)) {
 
-if(filters.brand.includes(brand)){
+            updatedBrands = filters.brand.filter(
+                (item) => item !== brand
+            );
 
-updatedBrands = filters.brand.filter(
-(item)=>item !== brand
-);
+        } else {
 
-}
-else{
+            updatedBrands = [
+                ...filters.brand,
+                brand
+            ];
 
-updatedBrands = [
-...filters.brand,
-brand
-];
-
-}
-
-
-setFilters({
-
-...filters,
-
-brand:updatedBrands
-
-});
-
-};
-
-
-
-const priceFilter = (min,max)=>{
-
-
-setFilters({
-
-...filters,
-
-minPrice:min,
-maxPrice:max
-
-});
-
-
-};
-
-
-
-return (
-
-<div className="bg-gray-200 dark:bg-gray-800 p-5 rounded-lg">
-
-
-<h2 className="font-bold text-xl mb-4">
-Brand
-</h2>
-
-
-{
-brands.map((brand)=>(
-
-<label 
-key={brand}
-className="block mb-3 cursor-pointer"
->
-
-
-<input
-
-type="checkbox"
-
-checked={
-filters.brand.includes(brand)
-}
-
-onChange={()=>selectBrand(brand)}
-
-/>
-
-
-<span className="ml-2">
-{brand}
-</span>
-
-
-</label>
-
-))
-
-}
-
-
-
-<hr className="my-5"/>
-
-
-<h2 className="font-bold text-xl mb-4">
-    Price
-</h2>
-
-
-<label className="block mb-3 cursor-pointer">
-
-    <input
-        type="checkbox"
-        checked={
-            filters.minPrice === 10000 &&
-            filters.maxPrice === 50000
         }
-        onChange={(e)=>{
 
-            if(e.target.checked){
+        setFilters({
 
-                setFilters({
+            ...filters,
 
-                    ...filters,
+            brand: updatedBrands
 
-                    minPrice:10000,
+        });
 
-                    maxPrice:50000
+    };
 
-                });
+    const priceFilter = (min, max) => {
 
-            }
-            else{
+        setFilters({
 
-                setFilters({
+            ...filters,
 
-                    ...filters,
+            minPrice: min,
 
-                    minPrice:"",
+            maxPrice: max
 
-                    maxPrice:""
+        });
 
-                });
+    };
 
-            }
+    const colors = [
+        "#000000",
+        "#5C4033",
+        "#F6C7D7",
+        "#3CB371",
+        "#4169E1",
+        "#D4AF37",
+        "#DCDCDC",
+        "#FF4500",
+        "#7FFF00"
+    ];
 
-        }}
-    />
+    
 
 
-    <span className="ml-2">
-        ₹10000 - ₹50000
-    </span>
+    return (
 
+    <div className="w-full -ml-0.5 leading-5 bg-white dark:bg-black text-sm text-black dark:text-white font-stretch-50%">
 
-</label>
+        <div className="mb-6">
 
+            <h2 className="font-bold text-lg mb-3">
+                Eligible for Free Delivery
+            </h2>
 
+            <label className="flex items-center gap-2 cursor-pointer">
 
+                <input
+                    type="checkbox"
+                    className="w-5 h-5 accent-blue-600"
+                />
 
-<label className="block mb-3 cursor-pointer">
+                <span className="text-lg">Free Shipping</span>
 
-    <input
-        type="checkbox"
-        checked={
-            filters.minPrice === 50000 &&
-            filters.maxPrice === ""
-        }
-        onChange={(e)=>{
+            </label>
 
-            if(e.target.checked){
+            <p className="mt-1 leading-6 text-lg">
+                Get FREE Shipping on eligible orders shipped by Amazon
+            </p>
 
-                setFilters({
+        </div>
 
-                    ...filters,
+        <div className="mb-7">
 
-                    minPrice:50000,
+            <h2 className="font-bold text-lg mb-2">
+                Brands
+            </h2>
 
-                    maxPrice:""
+            <div className="space-y-0.5">
 
-                });
+    {(showAllBrands ? brands : brands.slice(0, 7)).map((brand) => (
 
-            }
-            else{
+        <label
+            key={brand}
+            className="flex items-center gap-2 cursor-pointer hover:text-orange-600 text-lg"
+        >
 
-                setFilters({
+            <input
+                type="checkbox"
+                className="w-5 h-5 accent-blue-600"
+                checked={filters.brand.includes(brand)}
+                onChange={() => selectBrand(brand)}
+            />
 
-                    ...filters,
+            <span>{brand}</span>
 
-                    minPrice:"",
+        </label>
 
-                    maxPrice:""
+    ))}
 
-                });
+    {brands.length > 7 && (
 
-            }
-
-        }}
-    />
-
-
-    <span className="ml-2">
-        Above ₹50000
-    </span>
-
-
-</label>
-
-
-
-
-
-<label className="block mb-3 cursor-pointer">
-
-    <input
-        type="checkbox"
-        checked={
-            filters.minPrice === 0 &&
-            filters.maxPrice === 10000
-        }
-        onChange={(e)=>{
-
-            if(e.target.checked){
-
-                setFilters({
-
-                    ...filters,
-
-                    minPrice:0,
-
-                    maxPrice:10000
-
-                });
-
-            }
-            else{
-
-                setFilters({
-
-                    ...filters,
-
-                    minPrice:"",
-
-                    maxPrice:""
-
-                });
-
-            }
-
-        }}
-    />
-
-
-    <span className="ml-2">
-        Under ₹10000
-    </span>
-
-
-</label>
+        <button
+            onClick={() => setShowAllBrands(!showAllBrands)}
+            className="text-blue-600 hover:text-orange-600 font-medium text-sm mt-2"
+        >
+            {showAllBrands ? "˄ See less " : "⌵ See more "}
+        </button>
+
+    )}
 
 </div>
 
-)
+        </div>
 
+        <div className="mb-7">
+
+            <h2 className="font-bold text-lg mb-3">
+                Price
+            </h2>
+
+            <h3 className="font-semibold text-lg mb-4">
+                ₹185 – ₹40,900+
+            </h3>
+
+            <input
+                type="range"
+                min="185"
+                max="40900"
+                value={priceRange[1]}
+                onChange={(e) =>
+                    setPriceRange([
+                        priceRange[0],
+                        Number(e.target.value)
+                    ])
+                }
+                className="w-full accent-blue-600 cursor-pointer"
+            />
+
+            <div className="mt-5 space-y-2">
+
+                <p
+                    onClick={() => priceFilter(0, 450)}
+                    className="cursor-pointer hover:text-orange-600"
+                >
+                    Up to ₹450
+                </p>
+
+                <p
+                    onClick={() => priceFilter(450, 2500)}
+                    className="cursor-pointer hover:text-orange-600"
+                >
+                    ₹450 - ₹2,500
+                </p>
+
+                <p
+                    onClick={() => priceFilter(2500, 6700)}
+                    className="cursor-pointer hover:text-orange-600"
+                >
+                    ₹2,500 - ₹6,700
+                </p>
+
+                <p
+                    onClick={() => priceFilter(6700, 20000)}
+                    className="cursor-pointer hover:text-orange-600"
+                >
+                    ₹6,700 - ₹20,000
+                </p>
+
+                <p
+                    onClick={() => priceFilter(20000, "")}
+                    className="cursor-pointer hover:text-orange-600"
+                >
+                    Over ₹20,000
+                </p>
+
+            </div>
+
+        </div>
+
+        <div className="mb-7">
+
+            <h2 className="font-bold text-[22px] mb-3">
+                Deals & Discounts
+            </h2>
+
+            <div className="space-y-2">
+
+                <p className="cursor-pointer hover:text-orange-600">
+                    All Discounts
+                </p>
+
+                <p className="cursor-pointer hover:text-orange-600">
+                    Buy More, Save More
+                </p>
+
+                <p className="cursor-pointer hover:text-orange-600">
+                    Coupons
+                </p>
+
+                <p className="cursor-pointer hover:text-orange-600">
+                    Today's Deals
+                </p>
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <h2 className="font-bold text-[22px] mb-3">
+                Band Colour
+            </h2>
+
+            <div className="flex flex-wrap gap-2">
+
+                {
+
+                    colors.map((color, index) => (
+
+                        <button
+                            key={index}
+                            style={{
+                                backgroundColor: color
+                            }}
+                            className="w-6 h-6 border border-gray-400 rounded-sm hover:scale-110 transition"
+                        />
+
+                    ))
+
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+);
 }
-
 
 export default FilterSidebar;
