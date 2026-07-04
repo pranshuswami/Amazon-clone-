@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FiTrash2 } from "react-icons/fi";
 
 const Cart = () => {
 
@@ -185,15 +186,15 @@ const Cart = () => {
 
     return (
 
-        <div className="min-h-screen p-3 md:p-6">
+        <div className="min-h-screen bg-gray-100 p-3 md:p-6 md:py-11">
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
 
-                <div className="lg:col-span-9 bg-gray-200 dark:bg-gray-800 p-4 md:p-6 rounded-lg">
+                <div className="lg:col-span-9 bg-white dark:bg-gray-800 p-4 md:p-6">
 
 
-                    <h1 className="text-2xl md:text-3xl font-bold mb-5">
+                    <h1 className="text-2xl md:text-4xl font-semibold mb-1">
 
                         Shopping Cart
 
@@ -202,12 +203,14 @@ const Cart = () => {
 
                     <p
                         onClick={deleteAll}
-                        className="text-blue-400 cursor-pointer mb-3"
+                        className="text-cyan-700 font-medium cursor-pointer mb-3"
                     >
 
-                        Delete all items
+                        Deselect all items
 
                     </p>
+
+                    <p className="hidden md:block text-end text-gray-500 text-lg">Price</p>
 
 
                     <hr className="border-gray-300 dark:border-gray-700"/>
@@ -221,12 +224,22 @@ const Cart = () => {
 
                                 key={item.cart_id}
 
-                                className="grid grid-cols-1 lg:grid-cols-12 gap-5 py-6"
+                                className="flex flex-col md:flex-row md:py-6 gap-6 ml-4"
 
                             >
+                                <label className="flex items-center pt-14 cursor-pointer">
+
+                                        <input
+                                            type="checkbox"
+                                            className="w-5 h-5 accent-blue-600"
+                                        />
+
+                                            
+
+                                    </label>
 
 
-                                <div className="lg:col-span-3">
+                                <div className=" md:flex-shrink-0 flex justify-center">
 
 
                                     <img
@@ -237,7 +250,7 @@ const Cart = () => {
 
                                         src={item.image_url}
 
-                                        className="w-full h-48 md:h-64 object-contain cursor-pointer"
+                                        className="w-full h-48 md:h-50 mt-6 object-contain cursor-pointer"
 
                                     />
 
@@ -245,23 +258,9 @@ const Cart = () => {
                                 </div>
 
 
-                                <div className="col-span-6">
-
-
-                                    <h2
-
-                                        onClick={() =>
-                                            navigate(`/product/${item.product_id}`)
-                                        }
-
-                                        className="text-lg md:text-xl font-bold cursor-pointer"
-
-                                    >
-
-                                        {item.product_name}
-
-                                    </h2>
-
+                                <div className="col-span-5 mx-9 pr-9">
+                                    
+                                   
 
                                     <p
 
@@ -269,22 +268,7 @@ const Cart = () => {
                                             navigate(`/product/${item.product_id}`)
                                         }
 
-                                        className="text-black dark:text-gray-300 mt-2 cursor-pointer"
-
-                                    >
-
-                                        {item.brand}
-
-                                    </p>
-
-
-                                    <p
-
-                                        onClick={() =>
-                                            navigate(`/product/${item.product_id}`)
-                                        }
-
-                                        className="text-black dark:text-gray-300 mt-2 text-base md:text-xl line-clamp-2 cursor-pointer"
+                                        className="text-black dark:text-gray-300 mt-2 text-base md:text-2xl line-clamp-2 cursor-pointer"
 
                                     >
 
@@ -293,21 +277,32 @@ const Cart = () => {
                                     </p>
 
 
-                                    <p className="text-green-500 font-bold mt-3">
+                                    <p className="text-green-500 font-bold text-sm">
 
                                         In stock
 
                                     </p>
+                                    <label className="flex items-center mt-2 cursor-pointer">
+
+                                        <input
+                                            type="checkbox"
+                                            className="w-5 h-5 accent-blue-600"
+                                        />
+
+                                         <span className="text-sm font px-1 ">This will be a Gift</span><span className="text-sm text-blue-700 ">Learn more</span>
+
+                                    </label>
 
 
                                     <p className="text-black dark:text-gray-300 mt-2">
 
-                                        FREE delivery Wed, 24 Jun
+                                        <span className="font-bold ">Colour: </span><span className="font-normal"> Black</span>
 
                                     </p>
 
 
-                                    <div className="flex flex-wrap gap-3 mt-5">
+                                    <div className="flex items-center flex-row">
+                                        <div className="flex w-fit mt-5 border-4 border-lime-300 rounded-full font-bold">
 
 
                                         <button
@@ -321,16 +316,16 @@ const Cart = () => {
                                                 )
                                             }
 
-                                            className="border px-4 py-1 rounded disabled:opacity-40"
+                                            className="px-4 py-1 rounded disabled:opacity-40"
 
                                         >
 
-                                            -
+                                            <FiTrash2 className="text-black font-bold"/>
 
                                         </button>
 
 
-                                        <span className="border px-4 py-1">
+                                        <span className=" px-4 py-1">
 
                                             {item.quantity}
 
@@ -346,7 +341,7 @@ const Cart = () => {
                                                 )
                                             }
 
-                                            className="border px-4 py-1 rounded"
+                                            className="text-xl px-3 py-0.5 rounded"
 
                                         >
 
@@ -355,13 +350,18 @@ const Cart = () => {
                                         </button>
 
 
+                                        
+
+                                    </div>
+                                <hr className="border border-gray-300 h-5 mt-4.5 ml-3" />
+                                    <div className="flex  mt-4.5 ml-2">
                                         <button
 
                                             onClick={() =>
                                                 deleteItem(item.cart_id)
                                             }
 
-                                            className="text-blue-400 hover:underline"
+                                            className="text-cyan-600 hover:underline"
 
                                         >
 
@@ -369,63 +369,76 @@ const Cart = () => {
 
                                         </button>
 
+                                    <hr className="border border-gray-300 h-5 mt-0.5 ml-3" />
 
-                                        <button className="text-blue-400 ml-5 hover:underline">
+                                        <button className="text-blue-400 ml-2 hover:underline">
 
                                             Save for later
 
                                         </button>
 
+                                    <hr className="border border-gray-300 h-5 mt-0.5 ml-3" />
+
+                                        <button className="text-blue-400 ml-2 hover:underline">
+
+                                            See more like this
+
+                                        </button>
+
+                                    <hr className="border border-gray-300 h-5 mt-0.5 ml-3" />
+
+                                        <button className="text-blue-400 ml-2 hover:underline">
+
+                                            Share
+
+                                        </button>
+                                    </div>
 
                                     </div>
+
 
 
                                 </div>
 
 
-                                <div className="lg:col-span-3">
+                                <div className="lg:col-span-3 -mr-1">
 
 
-                                    <h2 className="text-xl font-bold">
+                                    <h2 className="text-xl mt-3 text-end font-bold">
 
                                         ₹{item.price}
 
                                     </h2>
 
 
-                                    <p className="text-gray-400 line-through mt-2">
+                                    <p className=" hidden md:block text-end -ml-29 mt-2">
 
-                                        M.R.P ₹{item.mrp}
-
+                                       Up to 5% back with<br /> Amazon Pay ICICI card
+                                        
                                     </p>
-
-
-                                    <p className="text-green-400 mt-2">
-
-                                        FREE delivery
-
-                                    </p>
-
+                                    <p className="hidden md:block text-blue-700 text-end hover:text-black cursor-pointer">Terms</p>
 
                                 </div>
 
-
+                            
                             </div>
 
-
+                        
                         ))
 
                     }
 
 
-                    <hr className="border-gray-300 dark:border-gray-700"/>
+                   <hr className="border-gray-300 dark:border-gray-700" /> 
 
 
-                    <h2 className="text-right text-lg md:text-xl font-bold mt-5">
+                    <h2 className="text-right text-lg md:text-2xl mb-5">
 
-                        Subtotal ({cart.length} items): ₹{subtotal}
+                        Subtotal ({cart.length} items): <span className="font-bold"> ₹{subtotal}</span>
 
                     </h2>
+
+                    
 
 
                 </div>
@@ -434,19 +447,38 @@ const Cart = () => {
                 <div className="lg:col-span-3">
 
 
-                    <div className="bg-gray-200 dark:bg-gray-700 p-5 rounded-lg">
+                    <div className="bg-white dark:bg-gray-700 p-5">
 
+                        <div className="flex">
+                            <div className="relative bg-green-700 rounded-full px-1.5 text-white w-fit h-fit">✓</div>
+                        <div className="px-2 text-base">
+                            <h2 className="text-green-700 ">Part of your order qualifies for FREE Delivery.  
+                            <span classname="text-gray-500"> Choose <span className="text-blue-600 underline">Free Delivery </span> option at checkout</span>
+                            </h2>
+                            
+                        </div>
+                        </div>
 
-                        <h2 className="text-xl font-bold">
+                        <h2 className="text-2xl mt-6">
 
-                            Subtotal ({cart.length} items)
+                            Subtotal ({cart.length} items):<span className="font-bold"> ₹{subtotal}</span>
 
                         </h2>
+                        <label className="flex items-center mt-2 cursor-pointer">
+
+                                        <input
+                                            type="checkbox"
+                                            className="w-5 h-5 accent-blue-600"
+                                        />
+
+                                         <span className="text-lg font-medium px-1 ">This will be a Gift</span><span className="text-lg font-medium text-blue-700 ">Learn more</span>
+
+                                    </label>
 
 
                         <h1 className="text-3xl font-bold mt-3">
 
-                            ₹{subtotal}
+                           
 
                         </h1>
 
@@ -455,7 +487,7 @@ const Cart = () => {
 
                             onClick={() => navigate("/checkout")}
 
-                            className="bg-yellow-400 text-black rounded-full w-full py-3 mt-5 font-bold"
+                            className="bg-yellow-400 text-black rounded-full w-full py-2 mt-3 font-medium"
 
                         >
 
@@ -464,12 +496,17 @@ const Cart = () => {
                         </button>
 
 
-                        <p className="mt-2">
+                        <p className="mt-2 text-sm">
 
                             Save <span className="font-bold">₹10</span> extra using 💎
                             <span className="font-bold">100</span> Details
 
                         </p>
+
+                        <div className="flex items-center justify-between px-5 py-4 my-5 border border-gray-300 rounded-b-lg">
+                            <h2 className="text-lg font-medium">EMI Available</h2>
+                            <h2 className="-mt-4 font-bold text-2xl">⌄</h2>
+                        </div>
 
 
                     </div>

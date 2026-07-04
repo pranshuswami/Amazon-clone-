@@ -77,7 +77,7 @@ const getCartItems = async () => {
 
                 <h2>{item.quantity}</h2>
 
-                <button className="font-bold">+</button>
+                <button className="font-bold text-base">+</button>
 
             </div>
 
