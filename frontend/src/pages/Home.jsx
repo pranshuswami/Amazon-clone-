@@ -23,13 +23,14 @@ const Home = () => {
   return (
     <div className=" min-h-screen p-6">
       
-      <div className="hidden "><HomeSlider /></div>
+      <div className="hidden md:block w-375"><HomeSlider /></div>
 
       {/* <h1 className="text-4xl text-white font-bold mb-8">
         Amazon Clone
       </h1> */} 
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+     <div className="relative z-10 md:-mt-45 px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ">
 
         {categories.map((category) => (
           <CategoryCard
@@ -39,6 +40,7 @@ const Home = () => {
         ))}
 
       </div>
+     </div>
 
     </div>
       

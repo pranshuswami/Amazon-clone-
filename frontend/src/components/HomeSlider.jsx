@@ -11,11 +11,11 @@ const HomeSlider = () => {
 
 const images = [
 
-"https://i.pinimg.com/1200x/2d/ca/48/2dca4800ef6f1d68ce7f52114999a03e.jpg",
+"https://i.pinimg.com/736x/a7/7b/34/a77b3492fa562aa9e746c1da6d48c412.jpg",
 
-"https://i.pinimg.com/1200x/3d/44/a4/3d44a4163c09b34ab58586ffd06783dc.jpg",
+"https://i.pinimg.com/1200x/3e/cd/b4/3ecdb44f6fdef1410fa8813f4f7aef67.jpg",
 
-"https://i.pinimg.com/1200x/2f/70/4c/2f704cca1000e8150f637ec7a4d06ad4.jpg"
+"https://i.pinimg.com/1200x/ef/3d/8a/ef3d8a1040594ea8528b4421d1e47f20.jpg"
 
 ];
 

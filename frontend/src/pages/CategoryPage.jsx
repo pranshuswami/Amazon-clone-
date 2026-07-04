@@ -12,9 +12,10 @@ import { PiSlidersHorizontal } from "react-icons/pi";
 
 import API from "../api/axios";
 
-const CategoryPage = () => {
+import React from 'react'
 
-    const { slug } = useParams();
+const CategoryPage = () => {
+  const { slug } = useParams();
 
     const [products, setProducts] = useState([]);
 
@@ -306,4 +307,4 @@ const CategoryPage = () => {
         </div>
     );
 };
-export default CategoryPage;
+export default CategoryPage
