@@ -4,566 +4,305 @@ import { useNavigate } from "react-router-dom";
 import { FiTrash2 } from "react-icons/fi";
 
 const Cart = () => {
-
     const [cart, setCart] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-
         getCart();
-
     }, []);
 
-
     const getCart = async () => {
-
         try {
-
-            const res = await axios.get(
-                "http://localhost:5000/cart",
-                {
-                    headers: {
-                        Authorization:
-                            `Bearer ${localStorage.getItem("token")}`
-                    }
+            const res = await axios.get("http://localhost:5000/cart", {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
-            );
-
-            setCart(res.data.data);
-
-        }
-        catch(error) {
-
+            });
+            setCart(res.data.data || []);
+        } catch (error) {
             console.log(error);
-
         }
-
     };
-
 
     const updateQuantity = async (cart_id, quantity) => {
-
-        if(quantity < 1){
-
-            return;
-
-        }
-
+        if (quantity < 1) return;
 
         try {
-
             await axios.put(
                 "http://localhost:5000/cart/update",
+                { cart_id, quantity },
                 {
-                    cart_id,
-                    quantity
-                },
-                {
-                    headers:{
-                        Authorization:
-                            `Bearer ${localStorage.getItem("token")}`
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
                     }
                 }
             );
 
-
             setCart(
-
-                cart.map((item)=>
-
-                    item.cart_id === cart_id
-
-                    ?
-
-                    {
-                        ...item,
-                        quantity: quantity
-                    }
-
-                    :
-
-                    item
-
+                cart.map((item) =>
+                    item.cart_id === cart_id ? { ...item, quantity } : item
                 )
-
             );
-
-            window.location.reload();
-
-        }
-        catch(error){
-
+        } catch (error) {
             console.log(error);
-
         }
-
     };
-
 
     const deleteItem = async (id) => {
-
         try {
-
-            await axios.delete(
-
-                `http://localhost:5000/cart/remove/${id}`,
-
-                {
-                    headers:{
-                        Authorization:
-                            `Bearer ${localStorage.getItem("token")}`
-                    }
+            await axios.delete(`http://localhost:5000/cart/remove/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
-
-            );
-
-
-            setCart(
-
-                cart.filter(
-
-                    (item)=>item.cart_id !== id
-
-                )
-
-            );
-
-
-            window.location.reload();
-
-        }
-        catch(error){
-
+            });
+            setCart(cart.filter((item) => item.cart_id !== id));
+        } catch (error) {
             console.log(error);
-
         }
-
     };
-
 
     const deleteAll = async () => {
-
         try {
-
-            await axios.delete(
-
-                "http://localhost:5000/cart/clear",
-
-                {
-                    headers:{
-                        Authorization:
-                            `Bearer ${localStorage.getItem("token")}`
-                    }
+            await axios.delete("http://localhost:5000/cart/clear", {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
-
-            );
-
-
+            });
             setCart([]);
-
-            window.location.reload();
-
-        }
-        catch(error){
-
+        } catch (error) {
             console.log(error);
-
         }
-
     };
 
-
     const subtotal = cart.reduce(
-
-        (total,item)=>
-
-        total + (Number(item.price) * item.quantity),
-
+        (total, item) => total + Number(item.price) * item.quantity,
         0
-
     );
-
 
     return (
-
-        <div className="min-h-screen bg-gray-100 p-3 md:p-6 md:py-11">
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-
-
-                <div className="lg:col-span-9 bg-white dark:bg-gray-800 p-4 md:p-6">
-
-
-                    <h1 className="text-2xl md:text-4xl font-semibold mb-1">
-
-                        Shopping Cart
-
-                    </h1>
-
-
-                    <p
-                        onClick={deleteAll}
-                        className="text-cyan-700 font-medium cursor-pointer mb-3"
-                    >
-
-                        Deselect all items
-
-                    </p>
-
-                    <p className="hidden md:block text-end text-gray-500 text-lg">Price</p>
-
-
-                    <hr className="border-gray-300 dark:border-gray-700"/>
-
-
-                    {
-                        cart.map((item)=>(
-
-
-                            <div
-
-                                key={item.cart_id}
-
-                                className="flex flex-col md:flex-row md:py-6 gap-6 ml-4"
-
-                            >
-                                <label className="flex items-center pt-14 cursor-pointer">
-
-                                        <input
-                                            type="checkbox"
-                                            className="w-5 h-5 accent-blue-600"
-                                        />
-
-                                            
-
-                                    </label>
-
-
-                                <div className=" md:flex-shrink-0 flex justify-center">
-
-
-                                    <img
-
-                                        onClick={() =>
-                                            navigate(`/product/${item.product_id}`)
-                                        }
-
-                                        src={item.image_url}
-
-                                        className="w-full h-48 md:h-50 mt-6 object-contain cursor-pointer"
-
-                                    />
-
-
-                                </div>
-
-
-                                <div className="col-span-5 mx-9 pr-9">
-                                    
-                                   
-
-                                    <p
-
-                                        onClick={() =>
-                                            navigate(`/product/${item.product_id}`)
-                                        }
-
-                                        className="text-black dark:text-gray-300 mt-2 text-base md:text-2xl line-clamp-2 cursor-pointer"
-
-                                    >
-
-                                        {item.description}
-
-                                    </p>
-
-
-                                    <p className="text-green-500 font-bold text-sm">
-
-                                        In stock
-
-                                    </p>
-                                    <label className="flex items-center mt-2 cursor-pointer">
-
-                                        <input
-                                            type="checkbox"
-                                            className="w-5 h-5 accent-blue-600"
-                                        />
-
-                                         <span className="text-sm font px-1 ">This will be a Gift</span><span className="text-sm text-blue-700 ">Learn more</span>
-
-                                    </label>
-
-
-                                    <p className="text-black dark:text-gray-300 mt-2">
-
-                                        <span className="font-bold ">Colour: </span><span className="font-normal"> Black</span>
-
-                                    </p>
-
-
-                                    <div className="flex items-center flex-row">
-                                        <div className="flex w-fit mt-5 border-4 border-lime-300 rounded-full font-bold">
-
-
-                                        <button
-
-                                            disabled={item.quantity === 1}
-
-                                            onClick={() =>
-                                                updateQuantity(
-                                                    item.cart_id,
-                                                    item.quantity - 1
-                                                )
-                                            }
-
-                                            className="px-4 py-1 rounded disabled:opacity-40"
-
-                                        >
-
-                                            <FiTrash2 className="text-black font-bold"/>
-
-                                        </button>
-
-
-                                        <span className=" px-4 py-1">
-
-                                            {item.quantity}
-
-                                        </span>
-
-
-                                        <button
-
-                                            onClick={() =>
-                                                updateQuantity(
-                                                    item.cart_id,
-                                                    item.quantity + 1
-                                                )
-                                            }
-
-                                            className="text-xl px-3 py-0.5 rounded"
-
-                                        >
-
-                                            +
-
-                                        </button>
-
-
-                                        
-
-                                    </div>
-                                <hr className="border border-gray-300 h-5 mt-4.5 ml-3" />
-                                    <div className="flex  mt-4.5 ml-2">
-                                        <button
-
-                                            onClick={() =>
-                                                deleteItem(item.cart_id)
-                                            }
-
-                                            className="text-cyan-600 hover:underline"
-
-                                        >
-
-                                            Delete
-
-                                        </button>
-
-                                    <hr className="border border-gray-300 h-5 mt-0.5 ml-3" />
-
-                                        <button className="text-blue-400 ml-2 hover:underline">
-
-                                            Save for later
-
-                                        </button>
-
-                                    <hr className="border border-gray-300 h-5 mt-0.5 ml-3" />
-
-                                        <button className="text-blue-400 ml-2 hover:underline">
-
-                                            See more like this
-
-                                        </button>
-
-                                    <hr className="border border-gray-300 h-5 mt-0.5 ml-3" />
-
-                                        <button className="text-blue-400 ml-2 hover:underline">
-
-                                            Share
-
-                                        </button>
-                                    </div>
-
-                                    </div>
-
-
-
-                                </div>
-
-
-                                <div className="lg:col-span-3 -mr-1">
-
-
-                                    <h2 className="text-xl mt-3 text-end font-bold">
-
-                                        ₹{item.price}
-
-                                    </h2>
-
-
-                                    <p className=" hidden md:block text-end -ml-29 mt-2">
-
-                                       Up to 5% back with<br /> Amazon Pay ICICI card
-                                        
-                                    </p>
-                                    <p className="hidden md:block text-blue-700 text-end hover:text-black cursor-pointer">Terms</p>
-
-                                </div>
-
-                            
-                            </div>
-
-                        
-                        ))
-
-                    }
-
-
-                   <hr className="border-gray-300 dark:border-gray-700" /> 
-
-
-                    <h2 className="text-right text-lg md:text-2xl mb-5">
-
-                        Subtotal ({cart.length} items): <span className="font-bold"> ₹{subtotal}</span>
-
+        <div className="min-h-screen bg-gray-100 p-2 md:p-6 text-[#0F1111]">
+            <div className="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+                
+                {/* --- TOP FIXED SUMMARY FOR MOBILE VIEW ONLY --- */}
+                <div className="block lg:hidden bg-white p-4 border-b border-gray-200">
+                    <h2 className="text-xl">
+                        Subtotal <span className="font-bold">₹{subtotal.toLocaleString('en-IN')}</span>
                     </h2>
-
-                    
-
-
+                    <div className="flex items-center gap-1 text-sm text-emerald-700 my-1">
+                        <span className="bg-emerald-700 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">✓</span>
+                        <span>Your order qualifies for FREE Delivery.</span>
+                    </div>
+                    <button
+                        onClick={() => navigate("/checkout")}
+                        className="w-full bg-[#FFD814] hover:bg-[#F7CA00] active:bg-[#F0B800] border border-[#FCD200] rounded-lg py-2.5 mt-2 font-medium shadow-sm transition-colors text-sm"
+                    >
+                        Proceed to Buy ({cart.length} item{cart.length !== 1 ? 's' : ''})
+                    </button>
+                    <div className="mt-3 bg-amber-50 border border-amber-200 rounded-lg p-2.5 text-xs">
+                        <p>Add 1 item more, <span className="font-bold text-amber-800">save 10%</span></p>
+                        <div className="w-full h-2 bg-gray-200 rounded-full mt-1.5 overflow-hidden">
+                            <div className="w-1/2 h-full bg-emerald-600 rounded-full"></div>
+                        </div>
+                    </div>
                 </div>
 
-
-                <div className="lg:col-span-3">
-
-
-                    <div className="bg-white dark:bg-gray-700 p-5">
-
-                        <div className="flex">
-                            <div className="relative bg-green-700 rounded-full px-1.5 text-white w-fit h-fit">✓</div>
-                        <div className="px-2 text-base">
-                            <h2 className="text-green-700 ">Part of your order qualifies for FREE Delivery.  
-                            <span classname="text-gray-500"> Choose <span className="text-blue-600 underline">Free Delivery </span> option at checkout</span>
-                            </h2>
-                            
+                {/* --- MAIN PRODUCT LIST COMPONENT --- */}
+                <div className="lg:col-span-9 bg-white p-4 md:p-6 shadow-sm rounded-sm">
+                    <div className="hidden lg:flex justify-between items-end border-b border-gray-200 pb-2">
+                        <div>
+                            <h1 className="text-3xl font-normal">Shopping Cart</h1>
+                            <button 
+                                onClick={deleteAll}
+                                className="text-[#007185] hover:text-[#C45500] hover:underline text-sm font-medium mt-1"
+                            >
+                                Deselect all items
+                            </button>
                         </div>
+                        <span className="text-gray-500 text-sm">Price</span>
+                    </div>
+
+                    <div className="flex lg:hidden justify-between items-center py-2">
+                        <h1 className="text-xl font-bold">Items</h1>
+                        <button 
+                            onClick={deleteAll}
+                            className="text-[#007185] text-sm"
+                        >
+                            Deselect all ({cart.length})
+                        </button>
+                    </div>
+
+                    {cart.length === 0 ? (
+                        <div className="text-center py-12">
+                            <h2 className="text-xl font-medium">Your Shopping Cart is empty.</h2>
+                            <button onClick={() => navigate("/")} className="text-[#007185] hover:underline mt-2 inline-block">
+                                Continue shopping
+                            </button>
                         </div>
-
-                        <h2 className="text-2xl mt-6">
-
-                            Subtotal ({cart.length} items):<span className="font-bold"> ₹{subtotal}</span>
-
-                        </h2>
-                        <label className="flex items-center mt-2 cursor-pointer">
-
+                    ) : (
+                        <div className="divide-y divide-gray-200">
+                            {cart.map((item) => (
+                                <div key={item.cart_id} className="py-5 flex flex-col md:flex-row gap-4 items-start">
+                                    
+                                    {/* Checkbox Wrapper */}
+                                    <div className="hidden md:flex items-center pt-8">
                                         <input
                                             type="checkbox"
-                                            className="w-5 h-5 accent-blue-600"
+                                            defaultChecked
+                                            className="w-4 h-4 rounded border-gray-300 accent-[#007185] cursor-pointer"
                                         />
+                                    </div>
 
-                                         <span className="text-lg font-medium px-1 ">This will be a Gift</span><span className="text-lg font-medium text-blue-700 ">Learn more</span>
+                                    {/* Product Image Container */}
+                                    <div className="w-full md:w-44 h-44 flex-shrink-0 bg-gray-50 p-2 rounded flex items-center justify-center relative">
+                                        <input
+                                            type="checkbox"
+                                            defaultChecked
+                                            className="absolute top-2 left-2 block md:hidden w-5 h-5 rounded border-gray-300 accent-[#007185]"
+                                        />
+                                        <img
+                                            onClick={() => navigate(`/product/${item.product_id}`)}
+                                            src={item.image_url}
+                                            className="max-w-full max-h-full object-contain cursor-pointer mix-blend-multiply"
+                                            alt={item.description}
+                                        />
+                                    </div>
 
-                                    </label>
+                                    {/* Product Metadata & Action Hub */}
+                                    <div className="flex-1 min-w-0 w-full">
+                                        <div className="flex justify-between gap-4">
+                                            <h2
+                                                onClick={() => navigate(`/product/${item.product_id}`)}
+                                                className="text-base md:text-lg font-medium line-clamp-2 cursor-pointer hover:text-[#007185] transition-colors leading-snug"
+                                            >
+                                                {item.description}
+                                            </h2>
+                                            <span className="text-lg font-bold whitespace-nowrap hidden md:block">
+                                                ₹{Number(item.price).toLocaleString('en-IN')}
+                                            </span>
+                                        </div>
 
+                                        <p className="text-xs text-emerald-700 font-medium mt-1">In stock</p>
+                                        <p className="text-xs text-gray-500 mt-0.5">Eligible for FREE Shipping</p>
 
-                        <h1 className="text-3xl font-bold mt-3">
+                                        {/* Gift Flag Widget */}
+                                        <label className="inline-flex items-center gap-1.5 mt-2 cursor-pointer text-xs">
+                                            <input type="checkbox" className="w-3.5 h-3.5 rounded border-gray-300 accent-[#007185]" />
+                                            <span>This will be a gift</span>
+                                            <span className="text-[#007185] hover:underline">Learn more</span>
+                                        </label>
 
-                           
+                                        <div className="block md:hidden mt-2">
+                                            <span className="text-xl font-bold">
+                                                ₹{Number(item.price).toLocaleString('en-IN')}
+                                            </span>
+                                        </div>
 
-                        </h1>
+                                        {/* Action Bar controls */}
+                                        <div className="flex flex-wrap items-center gap-3 mt-4 text-xs">
+                                            <div className="flex items-center bg-[#F0F2F2] border border-[#D5D9D9] rounded-lg shadow-sm">
+                                                <button
+                                                    disabled={item.quantity === 1}
+                                                    onClick={() => updateQuantity(item.cart_id, item.quantity - 1)}
+                                                    className="px-2.5 py-1.5 hover:bg-[#E3E6E6] rounded-l-lg disabled:opacity-30 transition-colors"
+                                                >
+                                                    <FiTrash2 className="w-3.5 h-3.5 text-gray-700" />
+                                                </button>
+                                                <span className="px-3 py-1 font-medium bg-white border-x border-[#D5D9D9] min-w-[2.5rem] text-center">
+                                                    {item.quantity}
+                                                </span>
+                                                <button
+                                                    onClick={() => updateQuantity(item.cart_id, item.quantity + 1)}
+                                                    className="px-2.5 py-1.5 hover:bg-[#E3E6E6] rounded-r-lg transition-colors text-sm font-bold"
+                                                >
+                                                    +
+                                                </button>
+                                            </div>
 
+                                            <span className="text-gray-300 hidden sm:block">|</span>
+                                            
+                                            <button onClick={() => deleteItem(item.cart_id)} className="text-[#007185] hover:underline">
+                                                Delete
+                                            </button>
+                                            
+                                            <span className="text-gray-300">|</span>
+                                            
+                                            <button className="text-[#007185] hover:underline">
+                                                Save for later
+                                            </button>
+                                            
+                                            <span className="text-gray-300 hidden sm:block">|</span>
+                                            
+                                            <button className="text-[#007185] hover:underline hidden sm:block">
+                                                Compare with similar items
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {cart.length > 0 && (
+                        <div className="text-right border-t border-gray-200 pt-4 mt-2">
+                            <h3 className="text-lg md:text-xl font-normal">
+                                Subtotal ({cart.length} item{cart.length !== 1 ? 's' : ''}):{' '}
+                                <span className="font-bold">₹{subtotal.toLocaleString('en-IN')}</span>
+                            </h3>
+                        </div>
+                    )}
+                </div>
+
+                {/* --- DESKTOP RIGHT SIDEBAR WIDGET --- */}
+                {cart.length > 0 && (
+                    <div className="hidden lg:block lg:col-span-3 bg-white p-5 shadow-sm rounded-sm sticky top-4">
+                        <div className="flex items-start gap-2 text-sm text-emerald-700 leading-tight">
+                            <span className="bg-emerald-700 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center flex-shrink-0 mt-0.5">✓</span>
+                            <div>
+                                <p>Part of your order qualifies for FREE Delivery.</p>
+                                <p className="text-gray-500 text-xs mt-0.5">
+                                    Select this option at checkout. <span className="text-[#007185] hover:underline cursor-pointer">Details</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <h2 className="text-xl font-normal mt-4">
+                            Subtotal ({cart.length} items): <span className="font-bold">₹{subtotal.toLocaleString('en-IN')}</span>
+                        </h2>
+
+                        <label className="flex items-center gap-2 mt-2 cursor-pointer text-xs">
+                            <input type="checkbox" className="w-4 h-4 rounded border-gray-300 accent-[#007185]" />
+                            <span>This order contains a gift</span>
+                        </label>
 
                         <button
-
                             onClick={() => navigate("/checkout")}
-
-                            className="bg-yellow-400 text-black rounded-full w-full py-2 mt-3 font-medium"
-
+                            className="w-full bg-[#FFD814] hover:bg-[#F7CA00] active:bg-[#F0B800] border border-[#FCD200] rounded-lg py-2 mt-4 font-medium text-sm shadow-sm transition-colors"
                         >
-
                             Proceed to Buy
-
                         </button>
 
-
-                        <p className="mt-2 text-sm">
-
-                            Save <span className="font-bold">₹10</span> extra using 💎
-                            <span className="font-bold">100</span> Details
-
-                        </p>
-
-                        <div className="flex items-center justify-between px-5 py-4 my-5 border border-gray-300 rounded-b-lg">
-                            <h2 className="text-lg font-medium">EMI Available</h2>
-                            <h2 className="-mt-4 font-bold text-2xl">⌄</h2>
+                        <div className="mt-4 border border-gray-200 rounded-lg divide-y divide-gray-200 text-xs">
+                            <div className="p-3 bg-gray-50 flex justify-between items-center cursor-pointer hover:bg-gray-100">
+                                <span className="font-medium text-gray-700">EMI Available</span>
+                                <span className="text-gray-400 text-base">⌄</span>
+                            </div>
                         </div>
 
-
+                        {/* Banner promotion mockup matching amazon ecosystem */}
+                        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4 mt-4">
+                            <span className="bg-red-600 text-white text-[10px] font-bold uppercase px-1.5 py-0.5 rounded-sm tracking-wider">Offer</span>
+                            <p className="text-xs font-bold text-slate-800 mt-2">Get ₹100 flat off on Prime</p>
+                            <p className="text-[11px] text-slate-600 mt-1 leading-normal">Enjoy Unlimited Free express delivery on items daily.</p>
+                            <button className="w-full bg-white hover:bg-gray-50 border border-gray-300 text-xs py-1.5 mt-3 rounded-md font-medium text-slate-700 shadow-sm transition-colors">
+                                Learn More
+                            </button>
+                        </div>
                     </div>
-
-
-                    <div className="bg-blue-500 p-5 mt-3">
-
-
-                        <p className="text-lg md:text-2xl text-white">
-
-                            Hurry!
-
-                            <span className="font-bold">
-
-                                Limited Period Offer - get ₹100 off on Prime Shopping Edition!
-
-                            </span>
-
-
-                            <br />
-
-                            FREE delivery, offers and multiple benefits - all in ONE membership!
-
-                        </p>
-
-
-                        <button className="bg-yellow-300 w-full px-2 py-1 mt-3 rounded-full font-medium text-black">
-
-                            Join Prime Shopping Edition At
-
-                            <br />
-
-                            <span className="line-through">
-
-                                ₹399
-
-                            </span>
-
-                            ₹299/year
-
-                        </button>
-
-
-                    </div>
-
-
-                </div>
-
+                )}
 
             </div>
-
-
         </div>
-
     );
-
 };
-
 
 export default Cart;
