@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate,useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "../assets/Amazon logo.png"
@@ -32,6 +32,12 @@ const Navbar = () => {
 
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const showCartSidebar =
+        location.pathname.startsWith("/products/") ||
+        location.pathname.startsWith("/search/") ||
+        location.pathname.startsWith("/product/");
 
 
     const [theme, setTheme] = useState(
@@ -212,7 +218,12 @@ const Navbar = () => {
                     </div>
                     </div>
                 
-                <div className="relative order-4 md:order-none px-2 md:border-none border-t border-gray-400 h-11  flex w-full md:w-[41%] min-w-0 md:h-12.5 "
+                <div
+                    className={`relative order-4 md:order-none px-2 md:border-none border-t border-gray-400 h-11 flex w-full min-w-0 md:h-12.5 transition-all duration-300 ${
+                        showCartSidebar
+                            ? "md:w-[41%]"
+                            : "md:w-[47%]"
+                    }`}
                 >
                     
                     <button
@@ -223,7 +234,7 @@ const Navbar = () => {
 
                     >
 
-                        <span className="inline text-sm ">All  ⏷   </span>
+                        <span className="inline text-sm ">All  ⏷</span>
 
                     </button>
 
@@ -322,7 +333,7 @@ const Navbar = () => {
                     <h2 className="text-lg font-bold">& Orders</h2>
                 </div>
 
-                <img className="hidden md:block h-12 w-26 object-contain"
+                <img className="hidden md:block h-12 w-26 -mr-50 object-contain"
                 src={mdLogo} />
 
                 <div className="order-3 flex-1 flex justify-end gap-5 items-end overflow-hidden">
@@ -362,33 +373,23 @@ const Navbar = () => {
                             Pranshu<span className="tetx-xs -mr-2">{" >"}</span>
                         </span>
                         <FiUser className="hidden text-3xl -mr-2"/>
-                        <img className="lg:hidden h-8 w-8 ml-0.5 -mr-3"src={user} />
+                        <img className="lg:hidden h-8 w-8 ml-0.5 -mr-3" src={user} />
                     </NavLink>
 
-                    <NavLink
+                    <Link
 
                     to="/cart"
 
-                    className={({isActive})=>
+                    className="dark:text-white font-medium flex items-center gap-2 whitespace-nowrap"
 
-                    isActive
-
-                    ?
-
-                    "text-blue-400 font-semibold flex items-center gap-2 whitespace-nowrap"
-
-                    :
-
-                    "dark:text-white font-medium flex items-center gap-2 whitespace-nowrap"
-
-                    }
+                    
 
                     >
                     <FiShoppingCart className="hidden text-2xl"/>
                     <span className="hidden">Cart ({cartCount})</span>
-                    <img className="lg:hidden h-8 w-12  -mb-1 -mr-1.5"src={cart} />
+                    <img className="lg:hidden h-8 w-12  -mb-1 -mr-1.5 cursor-pointer"src={cart} />
 
-                    </NavLink>
+                    </Link>
 
                     {/* <NavLink
 
@@ -575,9 +576,9 @@ const Navbar = () => {
         </div>
 
         <div className="hidden h-12 bg-gray-800 text-white px-2 py-2 md:flex justify-between">
-            <div className="flex gap-8 ml-2.75 items-center">
+            <div className="flex gap-7 ml-2.75 items-center">
             <h2 className="text-lg font-bold"> <span className="text-2xl font-normal">☰</span> All</h2>
-            <img className="h-8 w-20 object-contain"
+            <img className="h-8 w-23 object-cover"
             src={rufus} />
             <h2 className="text-lg">Fresh</h2>
             <h2 className="text-lg">Keep shopping for</h2>
@@ -585,13 +586,10 @@ const Navbar = () => {
             <h2 className="text-lg">Flight</h2>
             <h2 className="text-lg">Buy Again</h2>
             </div>
-            <img className="h-10 w-128"
+            <img className="h-10 w-120 -mt-1 pb-0.5"
             src ={prime_logo} />
         </div>
-        <div className="hidden md:flex items-center justify-between bg-white px-3 py-2 border-b border-gray-300 ml-2.5 ">
-            <h2 className="text-lg">1-48 of over 30,000 results for<span className="text-orange-600 font-bold"> "mobiles"</span></h2>
-            <button className="px-3 py-1 border border-black rounded-xl text-sm">Sort by: Features ⌵</button>
-        </div>
+        
         </>
     );
 

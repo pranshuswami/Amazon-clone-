@@ -69,11 +69,11 @@ const FilterSidebar = ({
 
     return (
 
-    <div className="w-full -ml-0.5 leading-5 bg-white dark:bg-black text-sm text-black dark:text-white font-stretch-50%">
+    <div className="w-full ml-2 mt-3 leading-5 bg-white dark:bg-black text-sm text-black dark:text-white font-stretch-50%">
 
         <div className="mb-6">
 
-            <h2 className="font-bold text-lg mb-3">
+            <h2 className="font-bold text-lg mb-2">
                 Eligible for Free Delivery
             </h2>
 

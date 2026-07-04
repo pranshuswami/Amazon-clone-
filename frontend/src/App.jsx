@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -17,11 +17,20 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/footer";
 import Profile from "./pages/Profile";
 import Wishlist from "./pages/Wishlist";
+import CartSidebar from "./components/carts/CartSideBar";
+
 
 const App = () => {
 
 
     const token = localStorage.getItem("token");
+
+    const location = useLocation();
+
+const showCartSidebar =
+    location.pathname.startsWith("/products/") ||
+    location.pathname.startsWith("/search/") ||
+    location.pathname.startsWith("/product/")
 
 
     return (
@@ -29,10 +38,13 @@ const App = () => {
         <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-900 dark:text-white">
 
 
-             <Navbar />     
+            <div className="block md:flex">
 
+    <div className="flex-1">
 
-            <Routes>
+        <Navbar />
+
+        <Routes>
 
 
                 <Route
@@ -132,7 +144,22 @@ const App = () => {
 
 
             </Routes>
-            <Footer />
+
+        <Footer />
+
+    </div>
+
+    {
+        showCartSidebar &&
+
+        <div className="hidden md:block w-[160px]">
+
+            <CartSidebar />
+
+        </div>
+    }
+
+</div>
 
         </div>
 

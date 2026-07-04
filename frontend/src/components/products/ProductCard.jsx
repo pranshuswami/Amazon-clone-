@@ -92,12 +92,12 @@ navigate("/cart");
             onClick={() =>{ navigate(`/product/${product.product_id}`); 
             window.scrollTo(0,0);}}
             
-            className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg p-1.5 cursor-pointer hover:scale-101 w-full md:-ml-10">
-
+            className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg p-1.5 cursor-pointer hover:scale-101 w-full">
+            
             <div className="relative ">
                 <img
                 src={product.image_url}
-                className="w-full h-48 sm:h-60 object-contain rounded"/>
+                className="w-full h-48 md:h-90 object-contain rounded"/>
                 <FiHeart className="md:hidden bg-white text-3xl absolute bottom-3 right-2 rounded-xl px-1  shadow-2xl" />
                 {/* <p className="absolute top-0 left-0 text-sm h-fit w-fit bg-gray-700 text-white rounded-md px-1 py-0.5">Previously Viewed</p> */}
             </div>

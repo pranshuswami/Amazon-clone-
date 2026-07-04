@@ -5,7 +5,6 @@ import filter from "../assets/filter.png"
 
 import FilterSidebar from "../components/filters/FilterSideBar";
 import ProductGrid from "../components/products/ProductGrid";
-import CartSidebar from "../components/carts/CartSideBar";
 
 import { FaRegStar, FaStar } from "react-icons/fa"
 import { PiSlidersHorizontal } from "react-icons/pi";
@@ -81,8 +80,14 @@ const CategoryPage = () => {
 
     return (
 
-        <div className="relative bg-white dark:bg-black text-black dark:text-white min-h-screen md:p-5
+        <div className="relative bg-white dark:bg-black text-black dark:text-white min-h-screen md:p-2
         ">
+        
+        <div className="hidden md:flex items-center justify-between bg-white px-3 py-0.5 border-b border-gray-300 -ml-2.5 ">
+            <h2 className="text-lg">1-48 of over 30,000 results for<span className="text-orange-600 font-bold"> "mobiles"</span></h2>
+            <button className="px-5 py-0.75 mb-1.5 border border-black font-medium rounded-xl text-base">Sort by: Features ⌵</button>
+        </div>
+
 
         <div className="bg-white w-full dark:bg-black shadow-sm dark:shadow-white ">
 
@@ -184,7 +189,7 @@ const CategoryPage = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-5">
                  
-
+            
                 <div className="lg:col-span-3 mt-1 lg:mt-2.5">
 
                    
@@ -234,7 +239,7 @@ const CategoryPage = () => {
                 </div>
 
                 <div className="lg:col-span-9">
-
+                    
                     <h1 className="hidden text-lg md:text-2xl font-bold mb-1 mt-0.5 md:ml-0 ml-5 capitalize">
 
                         {slug.replace("-", " ")}<br />
@@ -269,20 +274,21 @@ const CategoryPage = () => {
                     </div>
                     <h2 className="lg:hidden text-xs font-medium text-gray-500 text-right mr-1 ">Sponsored ⓘ</h2>
 
-                    {/* <h2 className="lg:hidden ml-2 mt-4 text-base">Showing products near you, with fast delivery</h2>
-                    <h2 className="lg:hidden ml-2 mt-1 text-xs underline">See all Products, along price range</h2> */}
-                    <div className="lg:hidden bg-white p-2 mt-9 dark:bg-black shadow-xl">
+                    <h2 className="lg:hidden ml-2 mt-4 text-base">Showing products near you, with fast delivery</h2>
+                    <h2 className="lg:hidden ml-2 mt-1 text-xs underline">See all Products, along price range</h2>
+                    <div className="lg:hidden bg-white p-2  dark:bg-black shadow-xl">
                         <h2 className=" text-gray-600 dark:text-gray-100 text-xs mt-3.5 -mb-1">Check Each product page for other buying options</h2>
                     </div>
 
-                    <div className="hidden md:block mt-3 -ml-10">
+                    <div className="hidden md:block mt-3">
                         <h2 className="text-2xl">
                             Showing products near you, with fast delivery
                         </h2>
                         <h2 className="text-lg text-blue-800">See all products, across price ranges.</h2>
                         <h2 className="mt-5 text-2xl font-bold">Results</h2>
-                        <h2 className="text-gray-600 text-xl">Check each product page for other buying options.</h2>
+                        <h2 className="text-gray-700 text-lg">Check each product page for other buying options.</h2>
                     </div>
+                    
 
                     <ProductGrid
                     
