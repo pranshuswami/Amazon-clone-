@@ -275,9 +275,9 @@ const CategoryPage = () => {
                     </div>
                     <h2 className="lg:hidden text-xs font-medium text-gray-500 text-right mr-1 ">Sponsored ⓘ</h2>
 
-                    <h2 className="lg:hidden ml-2 mt-4 text-base">Showing products near you, with fast delivery</h2>
-                    <h2 className="lg:hidden ml-2 mt-1 text-xs underline">See all Products, along price range</h2>
-                    <div className="lg:hidden bg-white p-2  dark:bg-black shadow-xl">
+                    {/* <h2 className="lg:hidden ml-2 mt-4 text-base">Showing products near you, with fast delivery</h2>
+                    <h2 className="lg:hidden ml-2 mt-1 text-xs underline">See all Products, along price range</h2> */}
+                    <div className="lg:hidden bg-white p-2  dark:bg-black shadow-xl mt-4 ">
                         <h2 className=" text-gray-600 dark:text-gray-100 text-xs mt-3.5 -mb-1">Check Each product page for other buying options</h2>
                     </div>
 

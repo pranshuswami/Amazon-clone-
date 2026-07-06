@@ -74,229 +74,218 @@ const Cart = () => {
         }
     };
 
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    
     const subtotal = cart.reduce(
         (total, item) => total + Number(item.price) * item.quantity,
         0
     );
 
     return (
-        <div className="min-h-screen bg-gray-100 p-2 md:p-6 text-[#0F1111]">
-            <div className="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+        <div className="min-h-screen bg-[#EAEDED] py-9 text-[#0F1111] font-sans antialiased text-[16px]">
+            <div className="max-w-[1500px] mx-5 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 
-                {/* --- TOP FIXED SUMMARY FOR MOBILE VIEW ONLY --- */}
-                <div className="block lg:hidden bg-white p-4 border-b border-gray-200">
-                    <h2 className="text-xl">
-                        Subtotal <span className="font-bold">₹{subtotal.toLocaleString('en-IN')}</span>
-                    </h2>
-                    <div className="flex items-center gap-1 text-sm text-emerald-700 my-1">
-                        <span className="bg-emerald-700 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">✓</span>
-                        <span>Your order qualifies for FREE Delivery.</span>
-                    </div>
-                    <button
-                        onClick={() => navigate("/checkout")}
-                        className="w-full bg-[#FFD814] hover:bg-[#F7CA00] active:bg-[#F0B800] border border-[#FCD200] rounded-lg py-2.5 mt-2 font-medium shadow-sm transition-colors text-sm"
-                    >
-                        Proceed to Buy ({cart.length} item{cart.length !== 1 ? 's' : ''})
-                    </button>
-                    <div className="mt-3 bg-amber-50 border border-amber-200 rounded-lg p-2.5 text-xs">
-                        <p>Add 1 item more, <span className="font-bold text-amber-800">save 10%</span></p>
-                        <div className="w-full h-2 bg-gray-200 rounded-full mt-1.5 overflow-hidden">
-                            <div className="w-1/2 h-full bg-emerald-600 rounded-full"></div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* --- MAIN PRODUCT LIST COMPONENT --- */}
-                <div className="lg:col-span-9 bg-white p-4 md:p-6 shadow-sm rounded-sm">
-                    <div className="hidden lg:flex justify-between items-end border-b border-gray-200 pb-2">
+                {/* --- MAIN CART CONTAINER --- */}
+                <div className="lg:col-span-9 bg-white p-6 shadow-sm rounded-none py-7 px-9">
+                    <div className="flex justify-between items-end border-b border-gray-200 pb-2 mb-4">
                         <div>
-                            <h1 className="text-3xl font-normal">Shopping Cart</h1>
-                            <button 
-                                onClick={deleteAll}
-                                className="text-[#007185] hover:text-[#C45500] hover:underline text-sm font-medium mt-1"
-                            >
-                                Deselect all items
-                            </button>
+                            <h1 className="text-3xl relative top-1 font-medium tracking-tight">Shopping Cart</h1>
+                            {cart.length > 0 && (
+                                <button 
+                                    onClick={deleteAll}
+                                    className="text-[#007185] hover:text-[#C45500] hover:underline text-lg font-normal block mt-2"
+                                >
+                                    Deselect all items
+                                </button>
+                            )}
                         </div>
-                        <span className="text-gray-500 text-sm">Price</span>
-                    </div>
-
-                    <div className="flex lg:hidden justify-between items-center py-2">
-                        <h1 className="text-xl font-bold">Items</h1>
-                        <button 
-                            onClick={deleteAll}
-                            className="text-[#007185] text-sm"
-                        >
-                            Deselect all ({cart.length})
-                        </button>
+                        {cart.length > 0 && (
+                            <span className="text-[#565959] text-[16px] font-normal pb-1 hidden md:block">Price</span>
+                        )}
                     </div>
 
                     {cart.length === 0 ? (
-                        <div className="text-center py-12">
-                            <h2 className="text-xl font-medium">Your Shopping Cart is empty.</h2>
-                            <button onClick={() => navigate("/")} className="text-[#007185] hover:underline mt-2 inline-block">
+                        <div className="py-12">
+                            <h2 className="text-[26px] font-medium leading-9">Your Amazon Cart is empty.</h2>
+                            <p className="text-[16px] text-[#565959] mt-3 leading-relaxed">
+                                Your Shopping Cart lives to serve. Give it purpose — fill it with groceries, clothing, household supplies, electronics, and more.
+                            </p>
+                            <button onClick={() => navigate("/")} className="text-[#007185] hover:text-[#C45500] hover:underline text-[16px] mt-4 inline-block font-normal">
                                 Continue shopping
                             </button>
                         </div>
                     ) : (
-                        <div className="divide-y divide-gray-200">
+                        <div className="divide-y divide-[#E7E7E7]">
                             {cart.map((item) => (
-                                <div key={item.cart_id} className="py-5 flex flex-col md:flex-row gap-4 items-start">
+                                <div key={item.cart_id} className="py-6 flex gap-5 items-start">
                                     
-                                    {/* Checkbox Wrapper */}
-                                    <div className="hidden md:flex items-center pt-8">
+                                    {/* Checkbox */}
+                                    <div className="flex items-center pt-12 flex-shrink-0">
                                         <input
                                             type="checkbox"
                                             defaultChecked
-                                            className="w-4 h-4 rounded border-gray-300 accent-[#007185] cursor-pointer"
+                                            className="w-5 h-5 rounded-sm border-gray-300 accent-[#007185] cursor-pointer"
                                         />
                                     </div>
 
-                                    {/* Product Image Container */}
-                                    <div className="w-full md:w-44 h-44 flex-shrink-0 bg-gray-50 p-2 rounded flex items-center justify-center relative">
-                                        <input
-                                            type="checkbox"
-                                            defaultChecked
-                                            className="absolute top-2 left-2 block md:hidden w-5 h-5 rounded border-gray-300 accent-[#007185]"
-                                        />
+                                    {/* Product Image */}
+                                    <div className="w-[250px] h-[230px] flex-shrink-0 p-1 flex items-center justify-center mix-blend-multiply">
                                         <img
                                             onClick={() => navigate(`/product/${item.product_id}`)}
                                             src={item.image_url}
-                                            className="max-w-full max-h-full object-contain cursor-pointer mix-blend-multiply"
+                                            className="max-w-full max-h-full object-contain cursor-pointer"
                                             alt={item.description}
                                         />
                                     </div>
 
-                                    {/* Product Metadata & Action Hub */}
-                                    <div className="flex-1 min-w-0 w-full">
-                                        <div className="flex justify-between gap-4">
-                                            <h2
-                                                onClick={() => navigate(`/product/${item.product_id}`)}
-                                                className="text-base md:text-lg font-medium line-clamp-2 cursor-pointer hover:text-[#007185] transition-colors leading-snug"
-                                            >
-                                                {item.description}
-                                            </h2>
-                                            <span className="text-lg font-bold whitespace-nowrap hidden md:block">
-                                                ₹{Number(item.price).toLocaleString('en-IN')}
-                                            </span>
-                                        </div>
-
-                                        <p className="text-xs text-emerald-700 font-medium mt-1">In stock</p>
-                                        <p className="text-xs text-gray-500 mt-0.5">Eligible for FREE Shipping</p>
-
-                                        {/* Gift Flag Widget */}
-                                        <label className="inline-flex items-center gap-1.5 mt-2 cursor-pointer text-xs">
-                                            <input type="checkbox" className="w-3.5 h-3.5 rounded border-gray-300 accent-[#007185]" />
-                                            <span>This will be a gift</span>
-                                            <span className="text-[#007185] hover:underline">Learn more</span>
-                                        </label>
-
-                                        <div className="block md:hidden mt-2">
-                                            <span className="text-xl font-bold">
-                                                ₹{Number(item.price).toLocaleString('en-IN')}
-                                            </span>
-                                        </div>
-
-                                        {/* Action Bar controls */}
-                                        <div className="flex flex-wrap items-center gap-3 mt-4 text-xs">
-                                            <div className="flex items-center bg-[#F0F2F2] border border-[#D5D9D9] rounded-lg shadow-sm">
-                                                <button
-                                                    disabled={item.quantity === 1}
-                                                    onClick={() => updateQuantity(item.cart_id, item.quantity - 1)}
-                                                    className="px-2.5 py-1.5 hover:bg-[#E3E6E6] rounded-l-lg disabled:opacity-30 transition-colors"
+                                    {/* Product Details */}
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex justify-between gap-6 items-start">
+                                            <div>
+                                                <h2
+                                                    onClick={() => navigate(`/product/${item.product_id}`)}
+                                                    className="text-2xl leading-7 font-medium text-[#0F1111] line-clamp-2 cursor-pointer hover:text-[#007185] transition-colors"
                                                 >
-                                                    <FiTrash2 className="w-3.5 h-3.5 text-gray-700" />
-                                                </button>
-                                                <span className="px-3 py-1 font-medium bg-white border-x border-[#D5D9D9] min-w-[2.5rem] text-center">
-                                                    {item.quantity}
-                                                </span>
-                                                <button
-                                                    onClick={() => updateQuantity(item.cart_id, item.quantity + 1)}
-                                                    className="px-2.5 py-1.5 hover:bg-[#E3E6E6] rounded-r-lg transition-colors text-sm font-bold"
-                                                >
-                                                    +
-                                                </button>
+                                                    {item.description}
+                                                </h2>
+                                                <p className="text-base text-emerald-700 font-medium mt-1.5">In stock</p>
+                                                
+                                                <div className="flex items-center gap-2 mt-2 text-base text-[#565959]">
+                                                    <input type="checkbox" className="w-4 h-4 rounded-sm border-gray-300 accent-[#007185]" id={`gift-${item.cart_id}`} />
+                                                    <label htmlFor={`gift-${item.cart_id}`} className="cursor-pointer">
+                                                        This will be a gift <span className="text-[#007185] hover:text-[#C45500] hover:underline cursor-pointer">Learn more</span>
+                                                    </label>
+                                                </div>
+                                                <p className="mt-3"><span className="font-bold">Color:</span> White</p>
+
+                                                {/* Action Panel */}
+                                                <div className="flex flex-wrap items-center gap-3 mt-4 text-[14px]">
+                                                    {/* Quantity Selector Container */}
+                                                    <div className="flex items-center border-4 rounded-full border-yellow-400 shadow-sm gap-6 transition-colors">
+                                                        <button
+                                                            onClick={() => updateQuantity(item.cart_id, item.quantity - 1)}
+                                                            className="pl-3 pr-2 py-1 text-xl font-normal text-gray-700 disabled:opacity-30"
+                                                        >
+                                                            <FiTrash2 />
+                                                        </button>
+                                                        <p className="text-lg">{item.quantity}</p>
+                                                        <button
+                                                            onClick={() => updateQuantity(item.cart_id, item.quantity + 1)}
+                                                            className="pl-2 pr-3 py-1 text-xl font-bold text-gray-700"
+                                                        >
+                                                            +
+                                                        </button>
+                                                    </div>
+
+                                                    <span className="text-[#DDD] font-light">|</span>
+                                                    
+                                                    <button onClick={() => deleteItem(item.cart_id)} className="text-[#007185] hover:text-[#C45500] hover:underline font-normal text-base">
+                                                        Delete
+                                                    </button>
+                                                    
+                                                    <span className="text-[#DDD] font-light">|</span>
+                                                    
+                                                    <button className="text-[#007185] hover:text-[#C45500] hover:underline font-normal text-base">
+                                                        Save for later
+                                                    </button>
+                                                    
+                                                    <span className="text-[#DDD] font-light hidden sm:block">|</span>
+                                                    
+                                                    <button className="text-[#007185] hover:text-[#C45500] hover:underline font-normal hidden sm:block text-base">
+                                                        See more like this
+                                                    </button>
+                                                </div>
                                             </div>
 
-                                            <span className="text-gray-300 hidden sm:block">|</span>
-                                            
-                                            <button onClick={() => deleteItem(item.cart_id)} className="text-[#007185] hover:underline">
-                                                Delete
-                                            </button>
-                                            
-                                            <span className="text-gray-300">|</span>
-                                            
-                                            <button className="text-[#007185] hover:underline">
-                                                Save for later
-                                            </button>
-                                            
-                                            <span className="text-gray-300 hidden sm:block">|</span>
-                                            
-                                            <button className="text-[#007185] hover:underline hidden sm:block">
-                                                Compare with similar items
-                                            </button>
+                                            {/* Right Align Item Price */}
+                                            <div className="text-right flex-shrink-0">
+                                                <span className="text-[20px] font-bold text-[#0F1111] block">
+                                                    ₹{Number(item.price)}.00
+                                                </span>
+                                                <p className="text-end text-[13px] text-gray-600 mt-1 leading-snug">Up to 5% back with<br /> Amazon Pay ICICI card<br /><span className="text-indigo-600 cursor-pointer hover:underline">Terms</span> </p>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                             ))}
                         </div>
                     )}
 
+                    {/* Left panel bottom subtotal summary bar */}
                     {cart.length > 0 && (
-                        <div className="text-right border-t border-gray-200 pt-4 mt-2">
-                            <h3 className="text-lg md:text-xl font-normal">
-                                Subtotal ({cart.length} item{cart.length !== 1 ? 's' : ''}):{' '}
-                                <span className="font-bold">₹{subtotal.toLocaleString('en-IN')}</span>
+                        <div className="text-right border-t border-[#E7E7E7] pt-4 mt-2">
+                            <h3 className="text-lg font-normal text-[#0F1111]">
+                                Subtotal ({totalItems} item{totalItems !== 1 ? 's' : ''}):{' '}
+                                <span className="font-bold">₹{subtotal.toLocaleString('en-IN')}.00</span>
                             </h3>
                         </div>
                     )}
                 </div>
 
-                {/* --- DESKTOP RIGHT SIDEBAR WIDGET --- */}
+                {/* --- RIGHT SIDEBAR SUMMARY CARD & OFFERS --- */}
                 {cart.length > 0 && (
-                    <div className="hidden lg:block lg:col-span-3 bg-white p-5 shadow-sm rounded-sm sticky top-4">
-                        <div className="flex items-start gap-2 text-sm text-emerald-700 leading-tight">
-                            <span className="bg-emerald-700 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center flex-shrink-0 mt-0.5">✓</span>
+                    <div className="lg:col-span-3 grid grid-cols-1 gap-5 sticky top-4 -mr-8">
+                        
+                        {/* Subtotal Panel */}
+                        <div className="bg-white p-6 shadow-sm rounded-none">
+                            <div className="flex items-start gap-2.5 text-[#067D62] leading-tight">
+                                <span className="bg-[#067D62] text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 font-bold mt-0.5">✓</span>
+                                <div>
+                                   <p className="text-green-700 font-medium">Part of your order qualifies for FREE Delivery. Choose<span className="text-blue-700 underline cursor-pointer"> FREE Delivery</span> option at checkout.</p>
+                                </div>
+                            </div>
+
+                            <h2 className="text-2xl font-normal mt-4 text-[#0F1111] ">
+                                Subtotal ({totalItems} item(s)): <span className="inline font-bold text-[22px] mt-1">₹{subtotal.toLocaleString('en-IN')}.00</span>
+                            </h2>
+
+                            <div className="flex items-center gap-2.5 mt-3 cursor-pointer text-base text-[#0F1111]">
+                                <input type="checkbox" className="w-4 h-4 rounded-sm border-gray-300 accent-[#007185]" id="sidebar-gift" />
+                                <label htmlFor="sidebar-gift" className="cursor-pointer select-none">This order contains a gift</label>
+                            </div>
+                            
+                            <button
+                                onClick={() => navigate("/checkout")}
+                                className="w-full bg-[#FFD814] hover:bg-[#F7CA00] active:bg-[#F0B800] border border-[#FCD200] rounded-full py-2 mt-5 text-[15px] font-normal text-[#0F1111] shadow-sm transition-colors cursor-pointer text-center"
+                            >
+                                Proceed to Buy
+                            </button>
+
+                            <p className="mt-4 text-[15px] text-gray-800">
+                                Save <span className="font-bold text-gray-900">₹9</span> extra using <span className="font-bold text-gray-900">💎 90</span> <span className="text-blue-600 cursor-pointer hover:underline text-[14px]">Details</span>
+                            </p>
+
+                            {/* Accordion Feature block */}
+                            <div className="mt-4 border border-[#D5D9D9] rounded-md divide-y divide-gray-200 text-xl">
+                                <div className="p-3 bg-white flex justify-between items-center cursor-pointer hover:bg-gray-50 rounded-md">
+                                    <span className="text-[#0F1111] text-[15px] font-normal">EMI Available</span>
+                                    <span className="text-black text-2xl leading-none">⌄</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Blue Promotional Membership Box */}
+                        <div className="bg-blue-600 text-white p-6 shadow-sm flex flex-col justify-between min-h-[220px]">
                             <div>
-                                <p>Part of your order qualifies for FREE Delivery.</p>
-                                <p className="text-gray-500 text-xs mt-0.5">
-                                    Select this option at checkout. <span className="text-[#007185] hover:underline cursor-pointer">Details</span>
+                                <h3 className="text-2xl leading-7 tracking-wide">
+                                    Hurry!<span className="font-bold">Limited Period Offer - get ₹100 off on Prime Shopping Edition!</span>
+                                </h3>
+                                <p className="text-2xl font-normal mt-2 leading-relaxed opacity-95">
+                                    FREE delivery, offers and multiple benefits - all in ONE membership!
                                 </p>
                             </div>
-                        </div>
 
-                        <h2 className="text-xl font-normal mt-4">
-                            Subtotal ({cart.length} items): <span className="font-bold">₹{subtotal.toLocaleString('en-IN')}</span>
-                        </h2>
-
-                        <label className="flex items-center gap-2 mt-2 cursor-pointer text-xs">
-                            <input type="checkbox" className="w-4 h-4 rounded border-gray-300 accent-[#007185]" />
-                            <span>This order contains a gift</span>
-                        </label>
-
-                        <button
-                            onClick={() => navigate("/checkout")}
-                            className="w-full bg-[#FFD814] hover:bg-[#F7CA00] active:bg-[#F0B800] border border-[#FCD200] rounded-lg py-2 mt-4 font-medium text-sm shadow-sm transition-colors"
-                        >
-                            Proceed to Buy
-                        </button>
-
-                        <div className="mt-4 border border-gray-200 rounded-lg divide-y divide-gray-200 text-xs">
-                            <div className="p-3 bg-gray-50 flex justify-between items-center cursor-pointer hover:bg-gray-100">
-                                <span className="font-medium text-gray-700">EMI Available</span>
-                                <span className="text-gray-400 text-base">⌄</span>
+                            <div className="mt-5">
+                                <button className="w-full bg-[#FFD814] hover:bg-[#F7CA00] text-[#0F1111] rounded-full py-2 px-4 text-lg font-medium shadow-sm transition-colors flex flex-col items-center justify-center leading-tight">
+                                    <span>Join Prime Shopping Edition at</span>
+                                    <span className="font-bold text-[15px] mt-0.5">
+                                        <span className="line-through  font-normal mr-1.5">₹399</span> ₹299/year
+                                    </span>
+                                </button>
                             </div>
                         </div>
 
-                        {/* Banner promotion mockup matching amazon ecosystem */}
-                        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4 mt-4">
-                            <span className="bg-red-600 text-white text-[10px] font-bold uppercase px-1.5 py-0.5 rounded-sm tracking-wider">Offer</span>
-                            <p className="text-xs font-bold text-slate-800 mt-2">Get ₹100 flat off on Prime</p>
-                            <p className="text-[11px] text-slate-600 mt-1 leading-normal">Enjoy Unlimited Free express delivery on items daily.</p>
-                            <button className="w-full bg-white hover:bg-gray-50 border border-gray-300 text-xs py-1.5 mt-3 rounded-md font-medium text-slate-700 shadow-sm transition-colors">
-                                Learn More
-                            </button>
-                        </div>
                     </div>
                 )}
 
