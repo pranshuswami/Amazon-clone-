@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { IoSearch } from "react-icons/io5";
+import { IoCheckmark, IoSearch } from "react-icons/io5";
 import { FiRotateCcw } from "react-icons/fi";
 import { FaRegStar, FaStar } from "react-icons/fa";
 
@@ -83,7 +83,7 @@ const Orders = () => {
         </div>
 
         {/* --- TIMELINE FILTER BAR --- */}
-        <div className="text-xl mb-4 hidden md:flex items-center gap-1.5">
+        <div className="text-lg mb-4 hidden md:flex items-center gap-1.5">
           <span className="font-semibold">{orders.length} orders</span> placed in
           <select
             value={selectedYear}
@@ -254,9 +254,11 @@ const Orders = () => {
        
       </div>
       <div className="bg-white mt-1.5 p-4">
-       <div className="">
-          {/* tick required */}
-        <p className="text-lg font-bold leading-tight">Delivered 25 june<br />
+       <div className="flex gap-2">
+          <div className="w-6 h-6 bg-[#4DB6AC] flex items-center justify-center mt-1">
+        <IoCheckmark className="text-white text-[23px] font-extrabold" />
+    </div>
+        <p className="text-lg font-bold leading-tight mt-1.25">Delivered 25 june<br />
             <span className="text-gray-500 font-normal text-base">Package handed to resident</span>
         </p>
        </div>
