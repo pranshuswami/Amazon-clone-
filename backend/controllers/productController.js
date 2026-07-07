@@ -32,8 +32,8 @@ values.push(maxPrice)
 }
 
 if(rating){
-    sql+="AND p.rating >=?"
-    values.push(rating)
+sql += " AND p.rating >= ?"
+values.push(rating)
 }
 db.query(sql,values,(err,result)=>{
 
@@ -141,8 +141,7 @@ brand: filters.brand.join(","),
 
 minPrice: filters.minPrice,
 
-maxPrice: filters.maxPrice,
-rating:filters.rating
+maxPrice: filters.maxPrice
 }}
 
 );

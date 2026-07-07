@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaStar } from "react-icons/fa";
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 const FilterSidebar = ({
     filters,
@@ -224,18 +224,25 @@ const FilterSidebar = ({
 
             {[1, 2, 3, 4, 5].map((star) => (
 
-                <FaStar
-                    key={star}
-                    className={
-                        star <= rating
-                            ? "text-orange-400"
-                            : "text-gray-300"
-                    }
-                />
+    star <= rating ? (
 
-            ))}
+        <FaStar
+            key={star}
+            className="text-orange-400 text-[19px]"
+        />
 
-            <span>& Up</span>
+    ) : (
+
+        <FaRegStar
+            key={star}
+            className="text-orange-400 text-[19px]"
+        />
+
+    )
+
+))}
+
+            <span className="text-[17px]">& Up</span>
 
         </div>
 

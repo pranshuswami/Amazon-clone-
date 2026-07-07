@@ -59,7 +59,9 @@ const CategoryPage = () => {
 
                         minPrice: filters.minPrice,
 
-                        maxPrice: filters.maxPrice
+                        maxPrice: filters.maxPrice,
+
+                        rating: filters.rating
 
                     }
 
