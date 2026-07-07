@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaStar } from "react-icons/fa";
 
 const FilterSidebar = ({
     filters,
@@ -165,35 +166,35 @@ const FilterSidebar = ({
 
                 <p
                     onClick={() => priceFilter(0, 450)}
-                    className="cursor-pointer hover:text-orange-600"
+                    className="cursor-pointer text-base hover:text-orange-600"
                 >
                     Up to ₹450
                 </p>
 
                 <p
                     onClick={() => priceFilter(450, 2500)}
-                    className="cursor-pointer hover:text-orange-600"
+                    className="cursor-pointer text-base hover:text-orange-600"
                 >
                     ₹450 - ₹2,500
                 </p>
 
                 <p
                     onClick={() => priceFilter(2500, 6700)}
-                    className="cursor-pointer hover:text-orange-600"
+                    className="cursor-pointer text-base hover:text-orange-600"
                 >
                     ₹2,500 - ₹6,700
                 </p>
 
                 <p
                     onClick={() => priceFilter(6700, 20000)}
-                    className="cursor-pointer hover:text-orange-600"
+                    className="cursor-pointer text-base hover:text-orange-600"
                 >
                     ₹6,700 - ₹20,000
                 </p>
 
                 <p
                     onClick={() => priceFilter(20000, "")}
-                    className="cursor-pointer hover:text-orange-600"
+                    className="cursor-pointer text-base hover:text-orange-600"
                 >
                     Over ₹20,000
                 </p>
@@ -201,6 +202,46 @@ const FilterSidebar = ({
             </div>
 
         </div>
+
+        <div className="mb-7">
+
+    <h2 className="font-bold text-lg mb-3">
+        Customer Reviews
+    </h2>
+
+    {[4, 3, 2, 1].map((rating) => (
+
+        <div
+            key={rating}
+            onClick={() =>
+                setFilters({
+                    ...filters,
+                    rating
+                })
+            }
+            className="flex items-center text-base gap-1 cursor-pointer hover:text-orange-600 mb-2"
+        >
+
+            {[1, 2, 3, 4, 5].map((star) => (
+
+                <FaStar
+                    key={star}
+                    className={
+                        star <= rating
+                            ? "text-orange-400"
+                            : "text-gray-300"
+                    }
+                />
+
+            ))}
+
+            <span>& Up</span>
+
+        </div>
+
+    ))}
+
+</div>
 
         <div className="mb-7">
 

@@ -3,7 +3,7 @@ const db = require("../config/db");
 const getProductsByCategory = (req,res)=>{
 const {slug}=req.params
 
-const {brand,minPrice,maxPrice}=req.query
+const {brand,minPrice,maxPrice,rating}=req.query
 
 let sql ="SELECT p.*,c.category_name FROM products p JOIN categories c ON p.category_id = c.category_id WHERE c.slug = ?"
 
@@ -29,6 +29,11 @@ values.push(minPrice);
 if(maxPrice){
 sql += " AND p.price <= ?"
 values.push(maxPrice)
+}
+
+if(rating){
+    sql+="AND p.rating >=?"
+    values.push(rating)
 }
 db.query(sql,values,(err,result)=>{
 
@@ -136,7 +141,8 @@ brand: filters.brand.join(","),
 
 minPrice: filters.minPrice,
 
-maxPrice: filters.maxPrice
+maxPrice: filters.maxPrice,
+rating:filters.rating
 }}
 
 );

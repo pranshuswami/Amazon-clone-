@@ -31,7 +31,9 @@ const CategoryPage = () => {
 
         minPrice: "",
 
-        maxPrice: ""
+        maxPrice: "",
+
+        rating:0
 
     });
 
