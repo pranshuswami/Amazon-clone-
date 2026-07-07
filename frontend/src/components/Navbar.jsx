@@ -41,8 +41,10 @@ const Navbar = () => {
         location.pathname.startsWith("/products/") ||
         location.pathname.startsWith("/search/") ||
         location.pathname.startsWith("/product/") ||
-        location.pathname.startsWith("/write-review/")
+        location.pathname.startsWith("/write-review/") ||
+        location.pathname.startsWith("/order/")
 
+    
 
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") || "light"
@@ -214,7 +216,8 @@ const Navbar = () => {
                     
                 </Link>
 
-                <div className="hidden md:flex items-center mb-2 pl-0.5">
+                <div onClick={()=>navigate(`/profile`)}
+                className="hidden md:flex items-center mb-2 pl-0.5 cursor-pointer">
                     <FiMapPin className="mt-4.5 text-xl" />
                     <div className=" flex flex-col gap-0 pt-2">
                         <h2 className=" pl-1 text-base text-gray-200 -mb-2">Deliver to Pranshu</h2>
@@ -339,7 +342,8 @@ const Navbar = () => {
                     <h2 className="text-lg font-bold">& Orders</h2>
                 </div>
 
-                <img className="hidden md:block h-12 w-26 -mr-50 object-contain"
+                <img onClick={()=>navigate(`/cart`)}
+                className="hidden md:block h-12 w-26 -mr-50 object-contain cursor-pointer"
                 src={mdLogo} />
 
                 <div className="order-3 flex-1 flex justify-end gap-5 items-end overflow-hidden">

@@ -124,40 +124,6 @@ data:result
 });
 };
 
-const getProducts = async()=>{
-
-
-try{
-
-
-const res = await API.get(
-
-`/products/category/${slug}`,
-
-{
-params:{
-
-brand: filters.brand.join(","),
-
-minPrice: filters.minPrice,
-
-maxPrice: filters.maxPrice
-}}
-
-);
-console.log("API DATA",res.data);
-
-
-
-setProducts(res.data.data);
-
-setBrands(res.data.brands);
-}
-catch(error){
-
-console.log(error);
-}
-};
 
 const getProductImages = (req, res) => {
 
@@ -193,6 +159,5 @@ module.exports = {
     getProductsByCategory,
     searchProducts,
     getSingleProduct,
-    getProducts,
     getProductImages
 };

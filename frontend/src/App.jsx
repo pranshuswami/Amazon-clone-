@@ -28,7 +28,8 @@ const App = () => {
     location.pathname.startsWith("/products/") ||
     location.pathname.startsWith("/search/") ||
     location.pathname.startsWith("/product/") ||
-    location.pathname.startsWith("/write-review/")
+    location.pathname.startsWith("/write-review/") ||
+    location.pathname.startsWith("/order/")
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-900 dark:text-white">
