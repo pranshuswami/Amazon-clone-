@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 import { FiRotateCcw } from "react-icons/fi";
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -40,16 +41,18 @@ const Orders = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#0f1111] antialiased px-4 py-2 md:px-16 ">
-      <div className="max-w-[1150px] mx-auto">
+    <>
+    <div className="hidden md:block min-h-screen bg-white text-[#0f1111] antialiased px-4 py-2 md:px-16 ">
+      
+      <div className="hidden md:block max-w-[1150px] mx-auto">
         
-        <nav className="text-gray-600 mb-4 flex items-center gap-1.5">
+        <nav className="hidden text-gray-600 mb-4 md:flex items-center gap-1.5">
           <span className="hover:text-gray-700 hover:underline cursor-pointer text-lg ">Your Account</span>
           <span className="text-gray-400 text-xl">&gt;</span>
           <span className="text-[#c45500] text-lg">Your Orders</span>
         </nav>
 
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-3">
+        <div className="hidden md:flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-3">
           <h1 className="text-4xl font-medium text-black">Your Orders</h1>
           
           <div className="flex items-center gap-2 md:w-140 w-full sm:w-auto">
@@ -67,7 +70,7 @@ const Orders = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-12 leading-loose border-b border-gray-300 text-lg pl-8 mt-7 mb-4">
+        <div className="hidden md:flex items-center gap-12 leading-loose border-b border-gray-300 text-lg pl-8 mt-7 mb-4">
           <div className="border-b-[2px] border-[#e47911] pb-1 font-medium cursor-pointer text-[#0f1111]">
             Orders
           </div>
@@ -80,7 +83,7 @@ const Orders = () => {
         </div>
 
         {/* --- TIMELINE FILTER BAR --- */}
-        <div className="text-xl mb-4 flex items-center gap-1.5">
+        <div className="text-xl mb-4 hidden md:flex items-center gap-1.5">
           <span className="font-semibold">{orders.length} orders</span> placed in
           <select
             value={selectedYear}
@@ -108,7 +111,7 @@ const Orders = () => {
                 className="border border-[#d5d9d9] rounded-lg overflow-hidden bg-white shadow-sm"
               >
                 {/* --- CARD HEADER --- */}
-                <div className="bg-[#f0f2f2] border-b border-[#d5d9d9] px-[18px] py-3 flex flex-wrap justify-between items-center text-base gap-y-2">
+                <div className="bg-[#f0f2f2] hidden border-b border-[#d5d9d9] px-[18px] py-3 md:flex flex-wrap justify-between items-center text-base gap-y-2">
                   <div className="flex gap-15">
                     <div className="leading-tight">
                       <p className="text-[#565959] uppercase tracking-wide ">Order Placed</p>
@@ -162,7 +165,7 @@ const Orders = () => {
                     </div>
                   ) : (
                     /* --- ACTIVE / PENDING VIEW --- */
-                    <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+                    <div className="hidden md:flex flex-col md:flex-row justify-between items-start gap-4">
                       <div className="flex-1">
                         <h2 className="text-2xl font-bold capitalize">
                           Delivered 25 June
@@ -230,6 +233,80 @@ const Orders = () => {
 
       </div>
     </div>
+
+    <div className="md:hidden min-h-screen bg-gray-300 text-[#0f1111] antialiased  md:px-16 ">
+        {orders.map((order) => (
+    <div key={order.order_id}>
+       <div className="md:hidden px-2 py-4.5 bg-white ">
+        <div className="p-3 flex items-center gap-2">
+            <img className="h-35 w-35 object-contain"
+            src="https://i.pinimg.com/736x/cc/2d/92/cc2d92241e3acc4d4a570e4b52746fb8.jpg" />
+            <p className="text-cyan-700 line-clamp-2">Samsung Galaxy S26 5G features a compact...</p>
+        </div>
+        <div className="border-t border-b mt-2 border-gray-300 flex justify-between items-center
+        ">
+            <button className=" w-full text-start ">Buy it again</button>
+        <p className="text-4xl font-medium pb-2">›</p>
+        </div>
+       
+      </div>
+      <div className="bg-white mt-1.5 p-4">
+       <div className="">
+          {/* tick required */}
+        <p className="text-lg font-bold leading-tight">Delivered 25 june<br />
+            <span className="text-gray-500 font-normal text-base">Package handed to resident</span>
+        </p>
+       </div>
+       <div className="border border-gray-300 rounded-lg px-3 py-2 flex flex-col gap-1.5 mt-2">
+        <p className="text-base">Your delivery Feedback</p>
+        <div className=" flex ">
+            <FaStar className="text-orange-500 text-lg" /><FaRegStar className="text-orange-500 text-lg" /><FaRegStar className="text-orange-500 text-lg" /><FaRegStar className="text-orange-500 text-lg" /><FaRegStar className="text-orange-500 text-lg" />
+        </div>
+       
+       </div>
+       <div className="mt-2 border-b border-gray-200 px-3 flex items-center justify-between">
+            <p className="text-base">Track Package</p>
+            <p className="text-4xl font-medium pb-2">›</p>
+        </div>
+        
+      </div>
+      <div className="bg-white px-3 py-2 mt-2">
+            <h2 className="text-lg font-bold">Need help with your item?</h2>
+            <div className="flex items-center justify-between px-3 py-1 my-3 border-t border-b border-gray-300">
+                <p className="text-base">Get Product Support</p>
+                <p className="text-4xl font-medium pb-2">›</p>
+            </div>
+        </div>
+
+        <div className="bg-white px-3 py-2 mt-2">
+            <h2 className="text-lg font-bold">How's your item?</h2>
+            <div className="flex items-center justify-between px-3 py-1 mt-3 border-t border-b border-gray-300">
+                <p onClick={() => navigate(`/write-review/${order.product_id}`)} className="text-base">Write a Review</p>
+                <p className="text-4xl font-medium pb-2">›</p>
+            </div>
+            <div className="flex items-center justify-between px-3 py-1 border-t border-b border-gray-300">
+                <p className="text-base">Leave seller feedback</p>
+                <p className="text-4xl font-medium pb-2">›</p>
+            </div>
+        </div>
+
+        <div className="bg-white px-3 py-2 mt-2">
+            <h2 className="text-lg font-bold">Order Info</h2>
+            <div className="flex items-center justify-between px-3 py-1 mt-3 border-t border-b border-gray-300">
+                <p onClick={() => navigate(`/order/${order.order_id}`)} className="text-base">View order details</p>
+                <p className="text-4xl font-medium pb-2">›</p>
+            </div>
+            <div className="flex items-center justify-between px-3 py-1 border-t border-b border-gray-300">
+                <p className="text-base">Download invoice</p>
+                <p className="text-4xl font-medium pb-2">›</p>
+            </div>
+            <p className="text-gray-600 mt-3 text-base">Return window closed on 5 July 2026</p>
+            <p className="text-gray-600 mt-1.5 text-base">Ordered on 23 June 2026</p>
+        </div>
+    </div>
+))}
+    </div>
+    </>
   );
 };
 

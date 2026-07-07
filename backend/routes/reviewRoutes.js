@@ -8,18 +8,24 @@ getReviews,
 getReviewProduct
 
 }=require("../controllers/reviewController");
+const auth = require("../middleware/auth");
 
 router.post(
 "/add",
+auth,
 addReview
 );
 
 router.get(
 "/:id",
+auth,
 getReviews
 );
 
-router.get("/product/:id", getReviewProduct);
+router.get(
+    "/product/:id",
+    auth,
+     getReviewProduct);
 
 
 module.exports=router;

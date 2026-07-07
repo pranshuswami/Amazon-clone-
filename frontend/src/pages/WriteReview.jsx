@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState,useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { TbCameraPlus } from "react-icons/tb";
@@ -14,49 +14,84 @@ const WriteReview = () => {
   const [reviewText, setReviewText] = useState("Nice");
   const [mediaFile, setMediaFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [product, setProduct] = useState(null)
 
   const getProduct = async () => {
 
-    const res = await axios.get(
-        `http://localhost:5000/reviews/product/${productId}`
-    );
+    try {
 
-    setProduct(res.data.data);
+        const res = await axios.get(
+
+            `http://localhost:5000/reviews/product/${productId}`,
+
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            }
+
+        );
+
+        setProduct(res.data.data);
+
+    }
+    catch (error) {
+
+        console.log(error);
+
+    }
 
 };
 
-  // Handle Form Submission
+useEffect(() => {
+
+    getProduct();
+
+}, []);
+
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+
     setIsSubmitting(true);
 
     try {
-      // Setup Form Data if sending files, otherwise regular JSON
-      await axios.post(
-    "http://localhost:5000/reviews/add",
-    {
-        product_id: productId,
-        rating,
-        comment: reviewText
-    },
-    {
-        headers:{
-            Authorization:`Bearer ${localStorage.getItem("token")}`
-        }
-    }
-);
 
-alert("Review submitted!");
+        await axios.post(
 
-navigate("/orders");
+            "http://localhost:5000/reviews/add",
+
+            {
+                product_id: productId,
+                rating: rating,
+                comment: reviewText
+            },
+
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            }
+
+        );
+
+        alert("Review submitted successfully!");
+
+        navigate("/orders");
+
     } catch (error) {
-      console.error("Error submitting review:", error);
-      alert("Failed to submit review.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
+        console.log(error.response?.data);
+
+        alert("Failed to submit review.");
+
+    } finally {
+
+        setIsSubmitting(false);
+
+    }
+
+};
   return (
     <div className="min-h-screen bg-white text-[#111111] font-sans antialiased">
       
@@ -83,7 +118,7 @@ navigate("/orders");
           {/* PRODUCT BLOCK */}
           <div className="flex items-center gap-4">
             <img
-              src="https://i.pinimg.com/736x/cc/2d/92/cc2d92241e3acc4d4a570e4b52746fb8.jpg" 
+              src= "https://i.pinimg.com/736x/cc/2d/92/cc2d92241e3acc4d4a570e4b52746fb8.jpg"
               alt="Product"
               className="md:w-20 md:h-20 w-10 h-10 object-cover rounded border border-gray-200 "
             />
