@@ -5,11 +5,12 @@ import logo from "../assets/Amazon logo.png"
 import logo1 from "../assets/md amazon.png"
 import mdLogo from "../assets/md cart.png"
 import { FiLogOut,FiLogIn,FiUser, FiMoon,FiShoppingCart,FiPackage,FiHome,FiHeart,FiMapPin,FiSearch } from "react-icons/fi";
-import { IoSearch } from "react-icons/io5";
+import { IoMenu, IoSearch } from "react-icons/io5";
 import cart from "../assets/cart.png"
 import user from "../assets/user.png"
 import prime_logo from "../assets/primeday logo.png"
 import rufus from "../assets/rufus.png"
+import { FaStripe, FaStripeS } from "react-icons/fa";
 
 
 const Navbar = () => {
@@ -24,6 +25,8 @@ const Navbar = () => {
     const [categories, setCategories] = useState([]);
 
     const [showMenu, setShowMenu] = useState(false);
+
+    const [showSideMenu, setShowSideMenu] = useState(false);
 
 
     const [token, setToken] = useState(
@@ -324,12 +327,14 @@ const Navbar = () => {
                     <h2 className="text-lg items-center ml-1 font-bold">EN<span className="text-sm text-gray-400">⏷</span></h2>
                 </div>
 
-                <div className="hidden md:flex flex-col my-1 ml-1">
+                <div onClick={()=>navigate(`/profile`)}
+                className="hidden md:flex flex-col my-1 ml-1 cursor-pointer">
                     <h2 className="text-base -mb-2">Hello, Pranshu</h2>
                     <h2 className="text-lg font-bold">Account & Lists <span className="text-sm text-gray-400"> ⏷</span></h2>
                 </div>
 
-                <div className="hidden md:flex flex-col my-1 ml-1">
+                <div onClick={()=>navigate(`/orders`)}
+                className="hidden md:flex flex-col my-1 ml-1 cursor-pointer">
                     <h2 className="text-base -mb-2">Returns</h2>
                     <h2 className="text-lg font-bold">& Orders</h2>
                 </div>
@@ -365,8 +370,9 @@ const Navbar = () => {
 
                     </NavLink> */}
 
-                    <NavLink className=                   
-
+                    <NavLink  onClick={() => setShowSideMenu(true)}
+                    className=                   
+                      
                     "dark:text-white font-medium flex items-center gap-2 whitespace-nowrap"
                     
                     >
@@ -590,8 +596,163 @@ const Navbar = () => {
             <img className="h-10 w-120 -mt-1 pb-0.5"
             src ={prime_logo} />
         </div>
+        {/* Background */}
+
+{showSideMenu && (
+
+<div
+    onClick={() => setShowSideMenu(false)}
+    className="fixed inset-0 bg-black/60 z-[100]"
+>
+
+    {/* Sidebar */}
+
+    <div
+        onClick={(e) => e.stopPropagation()}
+        className={`fixed top-0 right-0 h-full w-[85%] max-w-[340px]
+        bg-white transition-transform duration-300
+        ${showSideMenu ? "translate-x-0" : "-translate-x-full"}
+        overflow-y-auto`}
+    >
         
+
+
+        {/* Header */}
+
+             <p className="bg-gray-800 -mb-2 pt-3 pr-4 text-end text-white text-base">Browser <IoMenu size={25} className="inline" /></p>
+        <div className="bg-gray-800 text-white p-5 h-15 flex  items-center justify-between">
+               
+            <div className="flex  items-end-safe gap-3 ">
+
+                <h2 className="font-bold text-xl">
+                    Hello, Pranshu
+                </h2>
+
+            </div>
+
+            <button
+                onClick={() => setShowSideMenu(false)}
+                className="text-3xl"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        {/* Profile */}
+
+        <div className="p-5 border-b-5 border-gray-300">
+
+            <div className="flex justify-between">
+
+                <h2 className="font-bold text-xl">
+                    Profile
+                </h2>
+
+                <button className="text-cyan-600 border border-cyan-600 px-1 py-0.5 rounded-md">
+                    See All
+                </button>
+
+            </div>
+
+            <p onClick={()=>{ setShowSideMenu(false);    navigate(`/profile`); }}
+            className="mt-3 text-[17px] leading-tight cursor-pointer">
+               Pranshu Swami<br />
+               <span className="text-gray-500 text-sm ">Account Holder</span>
+            </p>
+            <hr className="border border-gray-300 mt-8" />
+
+            <div className="mt-3 space-y-5">
+
+                <p onClick={()=>{setShowSideMenu(false);  navigate(`/login`)}}
+                className="cursor-pointer">Switch Accounts</p>
+
+                <p onClick={()=>{setShowSideMenu(false);  navigate(`/login`)}}
+                className="cursor-pointer">Sign Out</p>
+
+            </div>
+
+        </div>
+
+        {/* Orders */}
+
+        <div className="p-5 border-b-5 border-gray-300">
+
+            <div className="flex justify-between">
+
+                <h2 
+                className="font-bold text-xl ">
+                    Your Orders
+                </h2>
+
+                <button className="text-cyan-600 border border-cyan-600  px-1 py-0.5 rounded-md">
+                    See All
+                </button>
+
+            </div>
+
+            <div className="space-y-8 mt-5">
+
+                <p onClick={()=>{setShowSideMenu(false); navigate(`/orders`)}}
+                className="cursor-pointer">Track and Manage Your Orders</p>
+
+                <p>Buy Again</p>
+
+                <p>Your Returns</p>
+
+                <p>Delivery Speeds & Charges</p>
+
+                <p>Customer Service</p>
+
+            </div>
+
+        </div>
+
+        {/* Account */}
+
+        <div className="p-5">
+
+            <div className="flex justify-between">
+
+                <h2 className="font-bold text-xl">
+                    Your Account
+                </h2>
+
+                <button className="text-cyan-600 border border-cyan-600  px-1 py-0.5 rounded-md">
+                    See All
+                </button>
+
+            </div>
+
+            <div className="space-y-8 mt-5">
+
+                <p>Lists</p>
+
+                <p>Recommendations</p>
+
+                <p>Browsing History</p>
+
+                <p>Subscribe & Save</p>
+
+                <p>Your Prime Membership</p>
+
+                <p>Your Payments</p>
+
+                <p>Your Addresses</p>
+
+                <p>Settings</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+)}
         </>
+        
     );
 
 };
