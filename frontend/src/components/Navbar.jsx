@@ -37,7 +37,8 @@ const Navbar = () => {
     const showCartSidebar =
         location.pathname.startsWith("/products/") ||
         location.pathname.startsWith("/search/") ||
-        location.pathname.startsWith("/product/");
+        location.pathname.startsWith("/product/") ||
+        location.pathname.startsWith("/write-review/")
 
 
     const [theme, setTheme] = useState(

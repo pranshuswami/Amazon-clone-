@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AmazonGridCard from "../components/AmazonCardGrid";
 import HomeSlider from "../components/HomeSlider";
-import MobileSwiper from "../components/MobileSwiper";
 
 const Home = () => {
   const [categories, setCategories] = useState([]);

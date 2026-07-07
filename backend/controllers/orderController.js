@@ -141,28 +141,35 @@ const getOrders = (req,res)=>{
 
     const sql = 
     `
-    SELECT
+   SELECT
+orders.*,
 
-    orders.*,
+addresses.house,
+addresses.street,
+addresses.landmark,
+addresses.area,
+addresses.district,
+addresses.state,
+addresses.country,
 
-    addresses.house,
-    addresses.street,
-    addresses.landmark,
-    addresses.area,
-    addresses.district,
-    addresses.state,
-    addresses.country
+products.product_id,
+products.product_name,
+products.image_url,
+products.description
 
+FROM orders
 
-    FROM orders
+LEFT JOIN addresses
+ON orders.address_id = addresses.address_id
 
+JOIN order_items
+ON orders.order_id = order_items.order_id
 
-    LEFT JOIN addresses
+JOIN products
+ON order_items.product_id = products.product_id
 
-    ON orders.address_id = addresses.address_id
-
-
-    WHERE orders.user_id = ?
+WHERE orders.user_id = ?
+ORDER BY orders.created_at DESC
 
     `;
 

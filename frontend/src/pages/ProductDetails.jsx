@@ -13,9 +13,6 @@ const ProductDetails = () => {
 
     const [product, setProduct] = useState(null);
     const [reviews, setReviews] = useState([]);
-    const [rating, setRating] = useState(0);
-    const [comment, setComment] = useState("");
-    const [showReviewBox, setShowReviewBox] = useState(false);
     const [showWishlistBox, setShowWishlistBox] = useState(false);
     const navigate=useNavigate()
 
@@ -594,7 +591,7 @@ console.log("Token =", token);
                     <h2 className=" text-center text-2xl font-semibold">Write a review</h2>
                  <button
 
-                    onClick={()=>setShowReviewBox(true)}
+                    onClick={() => navigate(`/write-review/${product.product_id}`)}
 
                     className="bg-yellow-400 mt-3 active:scale-95 text-black font-bold px-8 py-3 rounded-full"
 
@@ -640,79 +637,6 @@ console.log("Token =", token);
 
 
             </div>
-
-            {
-                showReviewBox && (
-
-                <div className="fixed inset-0 bg-white dark:bg-black bg-opacity-70 flex items-center justify-center z-50">
-
-
-                    <div className="bg-white dark:bg-gray-800 mt-5 p-6 rounded-lg w-180 h-120">
-
-
-                        <h2 className="text-2xl text-center font-bold mb-5">
-
-                            Write your review
-
-                        </h2>
-
-
-
-                        <textarea
-
-                            value={comment}
-
-                            onChange={(e)=>setComment(e.target.value)}
-
-                            placeholder="Write your review..."
-
-                            className="w-full   bg-white dark:bg-gray-700 p-3 rounded h-76"
-
-                        />
-
-
-
-                    <div className="  flex items-center justify-center gap-5 mt-5">
-
-
-                        <button
-
-                            onClick={addReview}
-
-                            className="bg-yellow-400 text-black font-bold px-6 py-2 rounded-full"
-
-                        >
-
-                            Submit
-
-                        </button>
-
-
-
-                        <button
-
-                            onClick={()=>setShowReviewBox(false)}
-
-                            className="bg-red-500 px-6 py-2 rounded-full font-bold"
-
-                        >
-
-                                Cancel
-
-                        </button>
-
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
-
-        )
-    }
-        
             
 
         </div>

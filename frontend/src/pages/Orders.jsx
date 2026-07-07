@@ -1,6 +1,8 @@
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { IoSearch } from "react-icons/io5";
+import { FiRotateCcw } from "react-icons/fi";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -50,45 +52,40 @@ const Orders = () => {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-3">
           <h1 className="text-4xl font-medium text-black">Your Orders</h1>
           
-          <div className="flex items-center gap-2 max-w-md w-full sm:w-auto">
+          <div className="flex items-center gap-2 md:w-140 w-full sm:w-auto">
             <div className="relative flex-1 sm:w-64">
-              <span className="absolute inset-y-0 left-3 flex items-center text-gray-400">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </span>
+              <IoSearch className="absolute inset-y-0 top-2 text-xl font-bold left-3 flex items-center text-black" />
               <input
                 type="text"
                 placeholder="Search all orders"
-                className="w-full pl-9 pr-3 py-1.5 text-sm border border-gray-400 rounded-md focus:outline-none focus:border-[#e77600] focus:shadow-[0_0_3px_2px_rgba(228,121,17,0.5)]"
+                className="w-full pl-9 pr-3 py-1 text-lg border border-gray-400 rounded-lg focus:outline-none focus:border-[#e77600] focus:shadow-[0_0_3px_2px_rgba(228,121,17,0.5)]"
               />
             </div>
-            <button className="bg-[#111] hover:bg-[#222] text-white text-xs font-semibold px-4 py-2 rounded-full whitespace-nowrap shadow-sm">
+            <button className="bg-gray-950 text-white text-base font-bold px-5 py-2 rounded-full whitespace-nowrap shadow-sm">
               Search Orders
             </button>
           </div>
         </div>
 
-        {/* --- SUB-NAVIGATION TABS --- */}
-        <div className="flex items-center gap-6 border-b border-gray-300 text-sm mb-4">
-          <div className="border-b-[2px] border-[#e47911] pb-2 font-medium cursor-pointer text-[#0f1111]">
+        <div className="flex items-center gap-12 leading-loose border-b border-gray-300 text-lg pl-8 mt-7 mb-4">
+          <div className="border-b-[2px] border-[#e47911] pb-1 font-medium cursor-pointer text-[#0f1111]">
             Orders
           </div>
-          <div className="pb-2 text-[#007185] hover:text-[#c45500] hover:underline cursor-pointer">
+          <div className="pb-1 text-[#007185] hover:text-black hover:underline cursor-pointer">
             Buy Again
           </div>
-          <div className="pb-2 text-[#007185] hover:text-[#c45500] hover:underline cursor-pointer">
+          <div className="pb-1 text-[#007185] hover:text-black hover:underline cursor-pointer">
             Not Yet Shipped
           </div>
         </div>
 
         {/* --- TIMELINE FILTER BAR --- */}
-        <div className="text-sm mb-4 flex items-center gap-1.5">
-          <span className="font-bold">{orders.length} orders</span> placed in
+        <div className="text-xl mb-4 flex items-center gap-1.5">
+          <span className="font-semibold">{orders.length} orders</span> placed in
           <select
             value={selectedYear}
             onChange={(e) => setSelectedYear(e.target.value)}
-            className="bg-[#f0f2f2] border border-gray-300 rounded-md px-3 py-1 text-xs font-medium shadow-sm cursor-pointer hover:bg-[#e3e6e6] focus:outline-none"
+            className=" border border-gray-300 rounded-md px-2 py-1.5 text-lg font-medium cursor-pointer hover:bg-[#e3e6e6] focus:outline-none"
           >
             <option value="2026">2026</option>
             <option value="2025">2025</option>
@@ -98,7 +95,7 @@ const Orders = () => {
 
         {/* --- ORDERS LIST CONTAINER --- */}
         {loading ? (
-          <div className="text-center py-12 text-sm text-gray-500">Loading your order details...</div>
+          <div className="text-center py-12 text-lg text-gray-500">Loading your order details...</div>
         ) : orders.length === 0 ? (
           <div className="border border-[#d5d9d9] rounded-lg p-6 text-center text-sm text-gray-600">
             No orders found matching this period.
@@ -111,23 +108,30 @@ const Orders = () => {
                 className="border border-[#d5d9d9] rounded-lg overflow-hidden bg-white shadow-sm"
               >
                 {/* --- CARD HEADER --- */}
-                <div className="bg-[#f0f2f2] border-b border-[#d5d9d9] px-[18px] py-3 flex flex-wrap justify-between items-center text-xs gap-y-2">
-                  <div className="flex gap-8">
-                    <div>
-                      <p className="text-[#565959] uppercase tracking-wide text-[11px]">Order Placed</p>
-                      <p className="text-[#565959] font-medium mt-0.5">
+                <div className="bg-[#f0f2f2] border-b border-[#d5d9d9] px-[18px] py-3 flex flex-wrap justify-between items-center text-base gap-y-2">
+                  <div className="flex gap-15">
+                    <div className="leading-tight">
+                      <p className="text-[#565959] uppercase tracking-wide ">Order Placed</p>
+                      <p className="text-[#565959]  mt-0.5 text-lg">
                         {formatAmazonDate(order.created_at)}
                       </p>
                     </div>
-                    <div>
-                      <p className="text-[#565959] uppercase tracking-wide text-[11px]">Total</p>
-                      <p className="text-[#565959] font-medium mt-0.5">₹{order.total_amount}</p>
+                    <div className="leading-tight">
+                      <p className="text-[#565959] uppercase tracking-wide ">Total</p>
+                      <p className="text-[#565959]  mt-0.5 text-lg">₹{order.total_amount}</p>
+                    </div>
+                    <div className="leading-tight">
+                      <p className="text-[#565959] uppercase tracking-wide ">Ship to:</p>
+                      <span className="text-cyan-700 mt-0.5 text-lg">Pranshu Swami <span classname="text-xl text-black font-bold">⌵</span></span>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-[#565959] uppercase tracking-wide text-[11px]">
-                      Order # {order.order_id || "403-9461362-7919519"}
-                    </p>
+                    <div className="flex items-center justify-end">
+                      <p className="text-[#565959] uppercase tracking-wide text-base">
+                        Order # {order.order_id}
+                      </p>
+                    </div>
+                    <p className="text-cyan-700">View Order Details<span className="text-gray-300"> | </span>  Invoice <span className="text-black font-bold text-lg">⌵</span></p>
                   </div>
                 </div>
 
@@ -160,26 +164,60 @@ const Orders = () => {
                     /* --- ACTIVE / PENDING VIEW --- */
                     <div className="flex flex-col md:flex-row justify-between items-start gap-4">
                       <div className="flex-1">
-                        <h2 className="text-base font-bold text-green-700 capitalize">
-                          {order.order_status}
+                        <h2 className="text-2xl font-bold capitalize">
+                          Delivered 25 June
                         </h2>
-                        <p className="text-sm text-gray-600 mt-1">Arriving Thursday</p>
+                        <p className="text-lg font-medium text-gray-00 mt-1">Package was handed to resident</p>
                         
-                        <div className="mt-4 text-xs text-gray-500 border-t border-gray-100 pt-3">
-                          <p className="font-semibold text-gray-700">Ship to:</p>
-                          <p className="mt-0.5">
-                            {order.house}, {order.street}, {order.area}, {order.state}
-                          </p>
+                        <div className="flex mt-4 text-xs text-gray-500 pt-3">
+                          <img className="h-24 w-34 object-contain"
+                          src={order.image_url}/>
+                          <div className="flex flex-col">
+                            <p className="text-lg line-clamp-3 text-cyan-800">{order.description}</p>
+                          <p className="text-base text-black mt-2">Return window closed on 5 July 2026</p>
+                          <div className="flex mt-1 gap-2">
+                            <button onClick={() => navigate(`/product/${order.product_id}`)}
+                            className="w-35 bg-yellow-400 text-black px-2 py-1 rounded-full text-base"><FiRotateCcw className="inline"/> Buy it Again</button>
+                            <button onClick={() => navigate(`/product/${order.product_id}`)}
+                            className=" w-35 text-base text-black border border-black px-2 py-1 rounded-full">View your item</button>
+                          </div>
+                          </div>
                         </div>
                       </div>
 
-                      <div className="w-full md:w-auto flex flex-col gap-2 min-w-[160px]">
+                      <div className="w-full md:w-75 flex flex-col gap-2">
                         <button
                           onClick={() => navigate(`/order/${order.order_id}`)}
-                          className="w-full text-center text-xs bg-[#ffd814] hover:bg-[#f7ca00] text-black py-1.5 px-3 rounded-md border border-[#fcd200] shadow-sm font-normal"
+                          className="w-full text-center text-base bg-[#ffd814] hover:bg-[#f7ca00] text-black py-1.5 px-2 rounded-full border border-[#fcd200] shadow-sm font-medium"
                         >
                           View order details
                         </button>
+                        <button
+                         className="w-full text-center text-base text-black py-1.5 px-2 rounded-full border border-gray-500 font-medium"
+                        >
+                          Track Package
+                        </button>
+                        <button
+                         className="w-full text-center text-base text-black py-1.5 px-2 rounded-full border border-gray-500 font-medium"
+                        >
+                          Ask Product Questions
+                        </button>
+                        <button
+                         className="w-full text-center text-base text-black py-1.5 px-2 rounded-full border border-gray-500 font-medium"
+                        >
+                          Leave Seller Feedback
+                        </button>
+                        <button
+                         className="w-full text-center text-base text-black py-1.5 px-2 rounded-full border border-gray-500 font-medium"
+                        >
+                          Leave Delivery Feedback
+                        </button>
+                        <button onClick={() => navigate(`/write-review/${order.product_id}`)}
+                         className="w-full text-center text-base text-black py-1.5 px-2 rounded-full border border-gray-500 font-medium"
+                        >
+                          Write a review
+                        </button>
+                        
                       </div>
                     </div>
                   )}

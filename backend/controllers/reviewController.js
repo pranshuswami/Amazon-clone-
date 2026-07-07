@@ -2,7 +2,7 @@ const db = require("../config/db");
 
 const addReview = (req,res)=>{
 
-const user_id = 1;
+const user_id = req.user.user_id;
 
 const {product_id,rating,comment}=req.body;
 
@@ -89,10 +89,55 @@ data:result
 
 };
 
+const getReviewProduct = (req, res) => {
 
+    const { id } = req.params;
 
+    const sql = `
+        SELECT
+            product_id,
+            product_name,
+            description,
+            image_url,
+            price,
+            brand
+        FROM products
+        WHERE product_id=?
+    `;
 
-module.exports={
-addReview,
-getReviews
+    db.query(sql, [id], (err, result) => {
+
+        if (err) {
+
+            return res.status(500).json({
+                success: false,
+                message: err.message
+            });
+
+        }
+
+        if (result.length === 0) {
+
+            return res.status(404).json({
+                success: false,
+                message: "Product not found"
+            });
+
+        }
+
+        res.json({
+            success: true,
+            data: result[0]
+        });
+
+    });
+
+};
+
+module.exports = {
+
+    addReview,
+    getReviews,
+    getReviewProduct
+
 };
