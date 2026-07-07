@@ -205,51 +205,50 @@ const FilterSidebar = ({
 
         <div className="mb-7">
 
-    <h2 className="font-bold text-lg mb-3">
-        Customer Reviews
-    </h2>
+    
 
-    {[4, 3, 2, 1].map((rating) => (
+        <h2 className="font-bold text-lg">
+            Customer Reviews
+        </h2>
 
-        <div
-            key={rating}
-            onClick={() =>
-                setFilters({
-                    ...filters,
-                    rating
-                })
-            }
-            className="flex items-center text-base gap-1 cursor-pointer hover:text-orange-600 mb-2"
-        >
+        {filters.rating > 0 && (
 
-            {[1, 2, 3, 4, 5].map((star) => (
+            <button
+                onClick={() =>
+                    setFilters({
+                        ...filters,
+                        rating: 0
+                    })
+                }
+                className=" text-base hover:text-orange-600"
+            >
+               {"<"} Clear
+            </button>
 
-    star <= rating ? (
+        )}
 
-        <FaStar
-            key={star}
-            className="text-orange-400 text-[19px]"
-        />
+   
+    <div
+        onClick={() =>
+            setFilters({
+                ...filters,
+                rating: filters.rating === 4 ? 0 : 4
+            })
+        }
+        className="flex items-center gap-1 cursor-pointer mt-1 hover:text-orange-600"
+    >
 
-    ) : (
+        <FaStar className="text-orange-400 text-[19px]" />
+        <FaStar className="text-orange-400 text-[19px]" />
+        <FaStar className="text-orange-400 text-[19px]" />
+        <FaStar className="text-orange-400 text-[19px]" />
+        <FaRegStar className="text-orange-400 text-[19px]" />
 
-        <FaRegStar
-            key={star}
-            className="text-orange-400 text-[19px]"
-        />
+        <span className="ml-1 text-[17px]">& Up</span>
 
-    )
-
-))}
-
-            <span className="text-[17px]">& Up</span>
-
-        </div>
-
-    ))}
+    </div>
 
 </div>
-
         <div className="mb-7">
 
             <h2 className="font-bold text-[22px] mb-3">
