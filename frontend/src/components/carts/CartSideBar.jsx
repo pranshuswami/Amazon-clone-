@@ -48,7 +48,7 @@ const getCartItems = async () => {
 
                 <div className="px-2">
                     <h2 className="text-green-700 leading-tight text-center">Part of your order qualifies for FREE Delivery. 
-                        <span classname="text-gray-500">Select this option at checkout.</span>
+                        <span className="text-gray-500">Select this option at checkout.</span>
                     </h2>
                     <h2 className="text-cyan-700 text-center underline cursor-pointer">Details</h2>
                 </div>
@@ -69,7 +69,7 @@ const getCartItems = async () => {
                 ₹{item.price.toLocaleString()}
             </h2>
 
-            <div className="flex justify-between rounded-full mx-4 px-2 py-1 items-center border-4 border-lime-400 mb-6">
+            <div className="flex justify-between rounded-full mx-4 px-2 py-1 items-center border-4 border-yellow-300 mb-6">
 
                 <button>
                     <FiTrash2 className="text-xl" />

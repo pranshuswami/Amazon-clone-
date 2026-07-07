@@ -134,7 +134,7 @@ const Orders = () => {
                         Order # {order.order_id}
                       </p>
                     </div>
-                    <p className="text-cyan-700">View Order Details<span className="text-gray-300"> | </span>  Invoice <span className="text-black font-bold text-lg">⌵</span></p>
+                    <p onClick={() => navigate(`/order/${order.order_id}`)} className="text-cyan-700 cursor-pointer">View Order Details<span className="text-gray-300"> | </span>  Invoice <span className="text-black font-bold text-lg">⌵</span></p>
                   </div>
                 </div>
 
@@ -173,7 +173,7 @@ const Orders = () => {
                         <p className="text-lg font-medium text-gray-00 mt-1">Package was handed to resident</p>
                         
                         <div className="flex mt-4 text-xs text-gray-500 pt-3">
-                          <img className="h-24 w-34 object-contain"
+                          <img className="h-34 w-34 object-contain"
                           src={order.image_url}/>
                           <div className="flex flex-col">
                             <p className="text-lg line-clamp-3 text-cyan-800">{order.description}</p>
@@ -190,10 +190,10 @@ const Orders = () => {
 
                       <div className="w-full md:w-75 flex flex-col gap-2">
                         <button
-                          onClick={() => navigate(`/order/${order.order_id}`)}
+                          
                           className="w-full text-center text-base bg-[#ffd814] hover:bg-[#f7ca00] text-black py-1.5 px-2 rounded-full border border-[#fcd200] shadow-sm font-medium"
                         >
-                          View order details
+                          Get Product Support
                         </button>
                         <button
                          className="w-full text-center text-base text-black py-1.5 px-2 rounded-full border border-gray-500 font-medium"
@@ -233,6 +233,9 @@ const Orders = () => {
 
       </div>
     </div>
+
+
+
 
     <div className="md:hidden min-h-screen bg-gray-300 text-[#0f1111] antialiased  md:px-16 ">
         {orders.map((order) => (
