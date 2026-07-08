@@ -330,13 +330,13 @@ const Navbar = () => {
                 </div>
 
                 <div onClick={()=>navigate(`/profile`)}
-                className="hidden h-[50px] shrink-0 cursor-pointer flex-col justify-center rounded-sm border border-transparent px-0.5 leading-tight hover:border-white xl:flex 2xl:px-1.5">
+                className="hidden h-[50px] shrink-0 cursor-pointer flex-col justify-center rounded-sm border border-transparent px-0.5 leading-tight hover:border-white lg:flex 2xl:px-1.5">
                     <h2 className="text-xs">Hello, Pranshu</h2>
                     <h2 className="whitespace-nowrap text-sm font-bold">Account & Lists <span className="text-xs text-gray-400"> ⏷</span></h2>
                 </div>
 
                 <div onClick={()=>navigate(`/orders`)}
-                className="hidden h-[50px] shrink-0 cursor-pointer flex-col justify-center rounded-sm border border-transparent px-0.5 leading-tight hover:border-white xl:flex 2xl:px-1.5">
+                className="hidden h-[50px] shrink-0 cursor-pointer flex-col justify-center rounded-sm border border-transparent px-0.5 leading-tight hover:border-white lg:flex 2xl:px-1.5">
                     <h2 className="text-xs">Returns</h2>
                     <h2 className="text-sm font-bold">& Orders</h2>
                 </div>
