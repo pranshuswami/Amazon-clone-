@@ -12,7 +12,7 @@ const HomeSlider = () => {
   ];
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full max-w-[100vw] overflow-hidden">
       <Swiper
         modules={[Autoplay, Navigation]}
         spaceBetween={0}
@@ -23,13 +23,13 @@ const HomeSlider = () => {
           disableOnInteraction: false
         }}
         loop={true}
-        className="w-full h-[520px]  md:h-[450px] lg:h-[600px]"
+        className="w-full min-h-[220px] max-h-[430px] aspect-[5/2]"
       >
         {images.map((img, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className="h-full overflow-hidden">
             <img
               src={img}
-              className="w-full h-full object-cover object-top"
+              className="block w-full h-full object-cover object-top"
               alt={`Banner ${index + 1}`}
             />
           </SwiperSlide>
@@ -37,7 +37,7 @@ const HomeSlider = () => {
       </Swiper>
       
       {/* Amazon's iconic bottom gradient fade mask */}
-      <div className="hidden md:block absolute bottom-0 left-0 right-0 h-[80px] md:h-[150px] lg:h-[300px] bg-gradient-to-t from-[#E3E6E6] to-transparent z-[5] pointer-events-none" />
+      <div className="hidden md:block absolute bottom-0 left-0 right-0 h-[clamp(80px,14vw,210px)] bg-gradient-to-t from-[#E3E6E6] to-transparent z-[5] pointer-events-none" />
     </div>
   );
 };

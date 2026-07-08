@@ -184,7 +184,7 @@ const Navbar = () => {
         <nav className="bg-gray-800 md:bg-gray-900 min-h-[60px] lg:min-h-[55px] text-white md:py-2 py-1 sticky top-0 z-50 shadow-lg shrink-0">
 
 
-            <div className="flex flex-wrap md:flex-nowrap items-center gap-2 md:gap-3 lg:gap-2 max-w-full px-1 md:px-2">
+            <div className="flex flex-wrap md:flex-nowrap items-center gap-2 md:gap-3 xl:gap-2 max-w-full min-w-0 px-1 md:px-2">
 
 
                 <Link to="/" className="order-2 md:order-none -ml-2 md:ml-0 md:mb-0 mt-1 md:-mt-1 -mb-1.75">
@@ -217,7 +217,7 @@ const Navbar = () => {
                     </div>
                 
                 <div
-                    className="relative order-4 md:order-none px-2 md:px-0 md:border-none border-t border-gray-400 h-11 flex w-full min-w-0 md:h-12.5 lg:h-10 transition-all duration-300 shrink md:flex-1 md:basis-0 md:min-w-[16rem] lg:min-w-[20rem]"
+                    className="relative order-4 md:order-none px-2 md:px-0 md:border-none border-t border-gray-400 h-11 flex w-full min-w-0 md:h-12.5 lg:h-10 transition-all duration-300 shrink md:flex-1 md:basis-0 md:min-w-[10rem] lg:min-w-[13rem] xl:min-w-[16rem]"
                 >
                     
                     <button
@@ -311,7 +311,7 @@ const Navbar = () => {
 
                 </div>
 
-                <div className="shrink-0 hidden 2xl:flex items-center md:pt-5 lg:pt-4 pb-2 ml-1">
+                <div className="shrink-0 hidden lg:flex items-center md:pt-5 lg:pt-4 pb-2 ml-1">
                     <img className="h-7 w-8 lg:h-6 lg:w-7 xl:h-5 xl:w-6 object-contain"
                     src="https://img.icons8.com/?size=96&id=32584&format=png" />
                     <h2 className="text-lg lg:text-base xl:text-sm items-center ml-1 font-bold">EN<span className="text-sm lg:text-xs text-gray-400">⏷</span></h2>
@@ -330,7 +330,7 @@ const Navbar = () => {
                 </div>
 
                 <img onClick={()=>navigate(`/cart`)}
-                className="shrink-0 hidden md:block h-12 w-26 lg:h-10 lg:w-24  object-contain cursor-pointer"
+                className="shrink-0 hidden md:block h-12 w-24 lg:h-10 lg:w-[5.5rem] xl:w-24 object-contain cursor-pointer"
                 src={mdLogo} />
 
                 <div className="order-3 flex-1 flex md:hidden justify-end gap-5 items-end overflow-hidden">

@@ -42,7 +42,7 @@ const Home = () => {
 
   return (
     <div className="  min-h-screen bg-white pb-12 overflow-x-hidden w-full">
-      <div className="hidden md:block w-full md:w-400 lg:w-425">
+      <div className="hidden md:block w-full max-w-full overflow-hidden">
         <HomeSlider />
       </div>
       <div className=" flex overflow-auto md:hidden w-full md:w-400 px-4 gap-2 py-2">
@@ -81,7 +81,7 @@ const Home = () => {
       <img 
       className="md:hidden"src="https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/3d901200-6af2-473e-b873-fa1dc09daf59._ZPPHNwYW4gZm9yZWdyb3VuZD0iV2hpdGUiPjxzcGFuIGZvbnQ9IkVtYmVyIE1vZGVybiBEaXNwbGF5IFN0YW5kYXJkIFJlZ3VsYXIgIDI2LjkyIj48cz48c3Bhbj7igrk8L3NwYW4+MTgsOTkwPC9zPiAgPC9zcGFuPjxzcGFuIGZvbnQ9IkVtYmVyIE1vZGVybiBEaXNwbGF5IFN0YW5kYXJkIEJvbGQgMjYuOTIiPjxzcGFuPuKCuTwvc3Bhbj4xNywyNDA8L3NwYW4+PC9zcGFuPg==,21,387,600,60,0_ZPPHNwYW4gZm9udD0iRW1iZXIgTW9kZXJuIERpc3BsYXkgU3RhbmRhcmQgUmVndWxhciAxNyIgZm9yZWdyb3VuZD0iV2hpdGUiPiBXaXRoIGNvdXBvbiBhbmQgU0JJIGNyZWRpdCBjYXJkICA8L3NwYW4+,21,443,600,40,0_SY0_SX0__.jpg" />
 
-      <div className="max-w-[1500px] mx-auto  px-4 mt-3 md:px-1 relative z-10 md:-mt-[40px] lg:-mt-[280px]">
+      <div className="max-w-[1500px] mx-auto px-4 mt-3 md:px-1 relative z-10 md:mt-[clamp(-140px,-8vw,-40px)] lg:mt-[clamp(-180px,-9vw,-90px)]">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {allCards.map((category) => (
             <AmazonGridCard
