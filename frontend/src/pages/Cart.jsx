@@ -82,11 +82,11 @@ const Cart = () => {
     );
 
     return (
-        <div className="min-h-screen bg-[#EAEDED] py-9 text-[#0F1111] font-sans antialiased text-[16px]">
-            <div className="max-w-[1500px] mx-5 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <div className="min-h-screen bg-[#EAEDED] py-[clamp(18px,2vw,36px)] text-[#0F1111] font-sans antialiased text-[clamp(14px,0.85vw,16px)]">
+            <div className="mx-auto grid w-full max-w-[1500px] grid-cols-1 items-start gap-[clamp(12px,1.4vw,24px)] px-[clamp(10px,1.6vw,20px)] lg:grid-cols-[minmax(0,1fr)_clamp(260px,20vw,340px)]">
                 
                 {/* --- MAIN CART CONTAINER --- */}
-                <div className="lg:col-span-9 bg-white p-6 shadow-sm rounded-none py-7 px-9">
+                <div className="bg-white p-[clamp(16px,1.8vw,28px)] shadow-sm rounded-none">
                     <div className="flex justify-between items-end border-b border-gray-200 pb-2 mb-4">
                         <div>
                             <h1 className="text-3xl relative top-1 font-medium tracking-tight">Shopping Cart</h1>
@@ -117,7 +117,7 @@ const Cart = () => {
                     ) : (
                         <div className="divide-y divide-[#E7E7E7]">
                             {cart.map((item) => (
-                                <div key={item.cart_id} className="py-6 flex gap-5 items-start">
+                                <div key={item.cart_id} className="flex items-start gap-[clamp(12px,1.4vw,20px)] py-[clamp(16px,1.8vw,24px)]">
                                     
                                     {/* Checkbox */}
                                     <div className="flex items-center pt-12 flex-shrink-0">
@@ -129,7 +129,7 @@ const Cart = () => {
                                     </div>
 
                                     {/* Product Image */}
-                                    <div className="w-[250px] h-[230px] flex-shrink-0 p-1 flex items-center justify-center mix-blend-multiply">
+                                    <div className="flex h-[clamp(150px,14vw,230px)] w-[clamp(150px,16vw,250px)] flex-shrink-0 items-center justify-center p-1 mix-blend-multiply">
                                         <img
                                             onClick={() => navigate(`/product/${item.product_id}`)}
                                             src={item.image_url}
@@ -144,7 +144,7 @@ const Cart = () => {
                                             <div>
                                                 <h2
                                                     onClick={() => navigate(`/product/${item.product_id}`)}
-                                                    className="text-2xl leading-7 font-medium text-[#0F1111] line-clamp-2 cursor-pointer hover:text-[#007185] transition-colors"
+                                                    className="line-clamp-2 cursor-pointer text-[clamp(18px,1.25vw,24px)] font-medium leading-tight text-[#0F1111] transition-colors hover:text-[#007185]"
                                                 >
                                                     {item.description}
                                                 </h2>
@@ -225,10 +225,10 @@ const Cart = () => {
 
                 {/* --- RIGHT SIDEBAR SUMMARY CARD & OFFERS --- */}
                 {cart.length > 0 && (
-                    <div className="lg:col-span-3 grid grid-cols-1 gap-5 sticky top-4 -mr-8">
+                    <div className="sticky top-4 grid grid-cols-1 gap-[clamp(12px,1.4vw,20px)]">
                         
                         {/* Subtotal Panel */}
-                        <div className="bg-white p-6 shadow-sm rounded-none">
+                        <div className="bg-white p-[clamp(16px,1.5vw,24px)] shadow-sm rounded-none">
                             <div className="flex items-start gap-2.5 text-[#067D62] leading-tight">
                                 <span className="bg-[#067D62] text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 font-bold mt-0.5">✓</span>
                                 <div>
@@ -266,7 +266,7 @@ const Cart = () => {
                         </div>
 
                         {/* Blue Promotional Membership Box */}
-                        <div className="bg-blue-600 text-white p-6 shadow-sm flex flex-col justify-between min-h-[220px]">
+                        <div className="flex min-h-[clamp(170px,14vw,220px)] flex-col justify-between bg-blue-600 p-[clamp(16px,1.5vw,24px)] text-white shadow-sm">
                             <div>
                                 <h3 className="text-2xl leading-7 tracking-wide">
                                     Hurry!<span className="font-bold">Limited Period Offer - get ₹100 off on Prime Shopping Edition!</span>

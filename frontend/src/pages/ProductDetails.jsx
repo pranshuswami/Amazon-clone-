@@ -313,7 +313,7 @@ console.log("Token =", token);
             src="https://m.media-amazon.com/images/I/51-O1L1MHWL.jpg" />
 
             <h2 className="hidden md:block text-gray-500 text-base mt-3 mx-auto ml-6 mb-8">Electronics › Mobiles & Accessories › Smartphones & Basic Mobiles › Smartphones</h2>
-            <div className="flex flex-col md:flex-row ">
+            <div className="grid grid-cols-1 md:grid-cols-[minmax(280px,42vw)_minmax(300px,1fr)] lg:grid-cols-[minmax(320px,38vw)_minmax(320px,1fr)_clamp(260px,21vw,340px)]">
                 <div className="bg-white md:hidden rounded-lg flex items-center m-1">
 
                     <img className="p-2 w-16 h-16 object-contain"
@@ -340,7 +340,7 @@ console.log("Token =", token);
                     </div>
                 </div>
                 
-                <div className="bg-white  dark:bg-gray-800 w-full md:w-1/2 p-1 lg:p-2">
+                <div className="min-w-0 bg-white p-1 dark:bg-gray-800 lg:p-2">
                 <h2 className="md:hidden -mt-1 text-[14px] ml-2 text-cyan-600 flex items-center justify-between">Brand: {product.brand}
                 <span className="flex items-center">  
                         <FaStar className="text-yellow-600 ml-2 text-sm" />
@@ -354,9 +354,9 @@ console.log("Token =", token);
 
                 <h2 className=" md:hidden text-[14px] font-bold ml-2 mt-2 mb-1"> 400+ bought<span className=" text-sm font-normal"> in past month</span></h2>
                 
-    <div className="relative w-full md:w-auto flex flex-row items-start gap-4 -mr-10">
+    <div className="relative flex w-full flex-row items-start gap-[clamp(8px,1vw,16px)]">
     
-    <div className="hidden md:flex flex-col gap-3 items-center sticky top-20">
+    <div className="sticky top-20 hidden flex-col items-center gap-3 md:flex">
         <button className="w-14 h-14 p-1 border-2 border-blue-600 rounded-xl bg-white overflow-hidden active:scale-95 transition-transform">
             <img src={product.image_url} className="w-full h-full object-contain" alt="thumb" />
         </button>
@@ -375,10 +375,10 @@ console.log("Token =", token);
         </button>
     </div>
 
-    <div className="relative flex-1 md:sticky md:top-20 self-start">
+    <div className="relative min-w-0 flex-1 self-start md:sticky md:top-20">
         <img 
             src={product.image_url}
-            className="w-full h-[515px] md:h-170  object-cover md:w-300 rounded-lg"
+            className="h-[clamp(360px,45vw,680px)] w-full rounded-lg object-contain"
             alt={product.product_name}
         />
         
@@ -401,7 +401,7 @@ console.log("Token =", token);
                 </div>
                 
             </div>
-            <div className="bg-white dark:bg-gray-800 w-full md:w-1/2 p-2 md:p-6 mt-1">
+            <div className="min-w-0 bg-white p-2 dark:bg-gray-800 md:p-[clamp(16px,1.6vw,24px)]">
             <h2 className="md:hidden text-base mb-2">Colour:<span className="font-bold"> White</span></h2>
 
             <div className=" md:hidden flex gap-2 border-b border-gray-300 pb-7">
@@ -444,8 +444,8 @@ console.log("Token =", token);
                 <p className="hidden text-blue-00 mt-1.5 font-medium">Brand: {product.brand}</p>
 
                 
-                <div className=" hidden md:block ml-16">
-                <p className="line-clamp-6 text-3xl -mt-6 ">{product.description}</p>
+                <div className=" hidden md:block md:ml-[clamp(16px,3vw,64px)]">
+                <p className="line-clamp-6 text-[clamp(20px,1.5vw,30px)] -mt-6 ">{product.description}</p>
                 <p className="text-lg text-cyan-600">Visit the Samsung Store</p>
                 <div className="flex items-center ">
                     <p>{product.rating}</p>
@@ -466,19 +466,19 @@ console.log("Token =", token);
                 <hr className="border border-gray-200 " />
                 </div>
 
-                <h2 className="md:ml-16 text-3xl font-medium mt-3">
+                <h2 className="md:ml-[clamp(16px,3vw,64px)] text-3xl font-medium mt-3">
                     <span className="text-red-600 font-normal text-2xl">-11%</span> ₹{product.price}
                 </h2>
-                <p className=" mt-2 md:ml-16 text-gray-500">M.R.P: 
+                <p className=" mt-2 md:ml-[clamp(16px,3vw,64px)] text-gray-500">M.R.P: 
                     <span className="line-through"> ₹{product.mrp}</span></p>
 
-                <p className="md:ml-16 mt-2 text-lg ">Inclusive of all taxes</p>
-                <p className=" md:ml-16 hidden md:block text-lg">
+                <p className="md:ml-[clamp(16px,3vw,64px)] mt-2 text-lg ">Inclusive of all taxes</p>
+                <p className=" md:ml-[clamp(16px,3vw,64px)] hidden md:block text-lg">
                     <span className="font-bold">EMI</span> starts at ₹2,988. No Cost EMI available<br /> 
                     <span className="ml-1 text-indigo-600">EMI options <span className="text-black"> ⌵</span></span><br />
                     <span className="text-indigo-600 hover:text-blue-900 hover:underline cursor-pointer">Join Prime to buy this item at ₹74,999.00</span>
                 </p>
-                <div className="border border-gray-300 rounded-md hidden md:flex flex-col md:ml-16  mb-3">
+                <div className="border border-gray-300 rounded-md hidden md:flex flex-col md:ml-[clamp(16px,3vw,64px)]  mb-3">
                    <div className="flex gap-2 p-2">
                      <img className="h-8 w-8"
                     src="https://img.icons8.com/?size=100&id=12089&format=png" />
@@ -498,7 +498,7 @@ console.log("Token =", token);
                    <p className="text-indigo-600 p-2">⌵ See 2 More</p>
                 </div>
 
-                <div className="md:ml-16 px-2 flex items-center justify-between border border-gray-400 rounded-lg">
+                <div className="md:ml-[clamp(16px,3vw,64px)] px-2 flex items-center justify-between border border-gray-400 rounded-lg">
                     <div className="">
                         <p className=" mt-2 text-xl mb-2">Earn <span className="font-bold">💎1000 </span> worth<span className="font-bold"> ₹100 </span> <span className="">on this item</span></p>
                         <p className="text-gray-600 text-lg mb-1">On all Payment methods</p>
@@ -509,7 +509,7 @@ console.log("Token =", token);
                 {/* <p className="md:ml-16 text-indigo-600 hover:underline cursor-pointer">Save up to 18% with business pricing and GST input tax credit. Sign up for a free Amazon Business account</p> */}
                 
 
-                <div className=" md:ml-11 flex flex-col md:flex-row items-center justify-center w-full mt-3 gap-2">
+                <div className=" md:ml-[clamp(12px,2.5vw,44px)] flex flex-col md:flex-row items-center justify-center w-full mt-3 gap-2">
 
                 <div className="border border-gray-400 dark:border-gray-100 rounded-lg px-3 py-2 w-full md:w-1/2 "><span className="font-bold">Cashback</span>
                     <br />
@@ -530,9 +530,9 @@ console.log("Token =", token);
             </div>
             <hr className="md:ml-16 mt-5 border-gray-300 dark:border-gray-600"></hr>
 
-            <h2 className="md:ml-16 font-bold text-2xl mt-3">About this item</h2>
+            <h2 className="md:ml-[clamp(16px,3vw,64px)] font-bold text-2xl mt-3">About this item</h2>
 
-            <p className="md:ml-16 mt-3 text-lg text-black dark:text-gray-300">
+            <p className="md:ml-[clamp(16px,3vw,64px)] mt-3 text-lg font-medium text-black dark:text-gray-300">
                     {product.description}
                 </p>
 
@@ -540,7 +540,7 @@ console.log("Token =", token);
             </div>
 
             
-            <div className=" bg-white dark:bg-gray-800 w-full lg:w-111 px-6 py-7 md:-mt-10 ">
+            <div className="w-full bg-white px-[clamp(16px,1.6vw,24px)] py-[clamp(18px,1.8vw,28px)] dark:bg-gray-800 md:-mt-10">
             
                 <div className=" border mt-1 border-gray-300 dark:border-gray-100 p-6 md:py-2 mb-5 flex-row items-center justify-center
                 rounded-lg">
