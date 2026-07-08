@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "../assets/Amazon logo.png"
@@ -35,6 +35,15 @@ const Navbar = () => {
 
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const showCartSidebar =
+        location.pathname.startsWith("/products/") ||
+        location.pathname.startsWith("/search/") ||
+        location.pathname.startsWith("/product/") ||
+        location.pathname.startsWith("/write-review/") ||
+        location.pathname.startsWith("/order/");
+
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") || "light"
     );
@@ -184,7 +193,7 @@ const Navbar = () => {
         <nav className="sticky top-0 z-50 shrink-0 bg-gray-800 py-1 text-white shadow-md md:bg-[#131921] md:py-0">
 
 
-            <div className="flex min-h-[60px] max-w-full min-w-0 flex-wrap items-center gap-2 px-1 md:flex-nowrap md:gap-1 md:px-2 xl:gap-2 xl:px-3">
+            <div className="flex min-h-[60px] max-w-full min-w-0 flex-wrap items-center gap-2 px-1 md:flex-nowrap md:gap-0 md:px-2 xl:gap-1 xl:px-3">
 
 
                 <Link to="/" onClick={() => window.scrollTo(0,0)} className="order-2 -ml-2 -mb-1.75 mt-1 flex shrink-0 items-center md:order-none md:ml-0 md:mb-0 md:mt-0 md:h-[50px] md:w-[126px] md:rounded-sm md:border md:border-transparent md:px-1 md:hover:border-white">
@@ -206,7 +215,7 @@ const Navbar = () => {
                 </Link>
 
                 <div onClick={()=>navigate(`/profile`)}
-                className="hidden h-[50px] shrink-0 cursor-pointer items-center rounded-sm border border-transparent px-1 hover:border-white lg:flex xl:px-2">
+                className="hidden h-[50px] shrink-0 cursor-pointer items-center rounded-sm border border-transparent px-0.5 hover:border-white lg:flex xl:px-1 xl:mr-3">
                     <FiMapPin className="mt-3 text-lg" />
                     <div className="flex shrink-0 flex-col leading-tight">
                         <h2 className="text-xs text-gray-300">Deliver to Pranshu</h2>
@@ -215,14 +224,14 @@ const Navbar = () => {
                     </div>
                 
                 <div
-                    className="relative order-4 flex h-11 w-full min-w-0 border-t border-gray-400 px-2 md:order-none md:h-10 md:flex-1 md:basis-0 md:border-none md:px-0"
+                    className="relative order-4 flex h-11 w-full min-w-0 border-t border-gray-400 px-2 md:order-none md:h-10 md:flex-1 md:basis-0 md:border-none md:px-0 "
                 >
                     
                     <button
 
                     onClick={()=>setShowCategory(!showCategory)}
 
-                    className="hidden h-full shrink-0 items-center rounded-l-md border-r border-gray-300 bg-[#e6e6e6] px-2 text-sm text-[#111] hover:bg-[#d5d5d5] md:flex xl:px-3"
+                    className="hidden h-full shrink-0 items-center rounded-l-md border-r border-gray-300 bg-[#e6e6e6] px-1.5 text-sm text-[#111] hover:bg-[#d5d5d5] md:flex xl:px-2"
 
                     >
 
@@ -314,26 +323,26 @@ const Navbar = () => {
 
                 </div>
 
-                <div className="hidden h-[50px] shrink-0 items-end gap-1 rounded-sm border border-transparent px-1 pb-2 hover:border-white lg:flex xl:px-2">
-                    <img className="h-4 w-5 object-cover"
+                <div className="hidden h-[50px] shrink-0 items-end gap-1.5 ml-2 rounded-sm border border-transparent px-0.5 pb-2 hover:border-white lg:flex">
+                    <img className="h-5 w-6 object-cover"
                     src="https://img.icons8.com/?size=96&id=32584&format=png" />
-                    <h2 className="text-lg lg:text-base xl:text-sm items-center ml-1 font-bold">EN<span className="text-sm lg:text-xs text-gray-400">⏷</span></h2>
+                    <h2 className="items-center text-sm font-bold">EN<span className="text-xs text-gray-400">⏷</span></h2>
                 </div>
 
                 <div onClick={()=>navigate(`/profile`)}
-                className="hidden h-[50px] shrink-0 cursor-pointer flex-col justify-center rounded-sm border border-transparent px-1 leading-tight hover:border-white xl:flex 2xl:px-2">
+                className="hidden h-[50px] shrink-0 cursor-pointer flex-col justify-center rounded-sm border border-transparent px-0.5 leading-tight hover:border-white xl:flex 2xl:px-1.5">
                     <h2 className="text-xs">Hello, Pranshu</h2>
-                    <h2 className="lg:text-base text-lg font-bold">Account & Lists <span className="text-sm text-gray-400"> ⏷</span></h2>
+                    <h2 className="whitespace-nowrap text-sm font-bold">Account & Lists <span className="text-xs text-gray-400"> ⏷</span></h2>
                 </div>
 
                 <div onClick={()=>navigate(`/orders`)}
-                className="hidden h-[50px] shrink-0 cursor-pointer flex-col justify-center rounded-sm border border-transparent px-1 leading-tight hover:border-white xl:flex 2xl:px-2">
+                className="hidden h-[50px] shrink-0 cursor-pointer flex-col justify-center rounded-sm border border-transparent px-0.5 leading-tight hover:border-white xl:flex 2xl:px-1.5">
                     <h2 className="text-xs">Returns</h2>
                     <h2 className="text-sm font-bold">& Orders</h2>
                 </div>
 
                 <img onClick={()=>navigate(`/cart`)}
-                className="shrink-0 hidden md:block h-12 w-24 lg:h-10 lg:w-20 xl:w-24 object-contain cursor-pointer"
+                className="shrink-0 hidden md:block h-12 w-24 lg:h-10 lg:w-[4.5rem] xl:w-20 2xl:w-24 object-contain cursor-pointer"
                 src={mdLogo} />
 
                 <div className="order-3 flex-1 flex md:hidden justify-end gap-5 items-end overflow-hidden">
