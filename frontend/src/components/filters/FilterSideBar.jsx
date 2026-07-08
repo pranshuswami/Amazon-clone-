@@ -70,11 +70,11 @@ const FilterSidebar = ({
 
     return (
 
-    <div className="w-full ml-2 mt-3 leading-5 bg-white dark:bg-black text-sm text-black dark:text-white font-stretch-50%">
+    <div className="w-full mt-3 bg-white px-2 text-[clamp(13px,0.8vw,16px)] leading-snug text-black dark:bg-black dark:text-white">
 
-        <div className="mb-6">
+        <div className="mb-[clamp(14px,1.6vw,24px)]">
 
-            <h2 className="font-bold text-lg mb-2">
+            <h2 className="mb-2 text-[clamp(15px,0.95vw,18px)] font-bold">
                 Eligible for Free Delivery
             </h2>
 
@@ -85,19 +85,19 @@ const FilterSidebar = ({
                     className="w-5 h-5 accent-blue-600"
                 />
 
-                <span className="text-lg">Free Shipping</span>
+                <span>Free Shipping</span>
 
             </label>
 
-            <p className="mt-1 leading-6 text-lg">
+            <p className="mt-1 leading-snug">
                 Get FREE Shipping on eligible orders shipped by Amazon
             </p>
 
         </div>
 
-        <div className="mb-7">
+        <div className="mb-[clamp(14px,1.6vw,24px)]">
 
-            <h2 className="font-bold text-lg mb-2">
+            <h2 className="mb-2 text-[clamp(15px,0.95vw,18px)] font-bold">
                 Brands
             </h2>
 
@@ -107,7 +107,7 @@ const FilterSidebar = ({
 
         <label
             key={brand}
-            className="flex items-center gap-2 cursor-pointer hover:text-orange-600 text-lg"
+            className="flex cursor-pointer items-center gap-2 hover:text-orange-600"
         >
 
             <input
@@ -138,13 +138,13 @@ const FilterSidebar = ({
 
         </div>
 
-        <div className="mb-7">
+        <div className="mb-[clamp(14px,1.6vw,24px)]">
 
-            <h2 className="font-bold text-lg mb-3">
+            <h2 className="mb-3 text-[clamp(15px,0.95vw,18px)] font-bold">
                 Price
             </h2>
 
-            <h3 className="font-semibold text-lg mb-4">
+            <h3 className="mb-4 font-semibold">
                 ₹185 – ₹40,900+
             </h3>
 
@@ -203,11 +203,11 @@ const FilterSidebar = ({
 
         </div>
 
-        <div className="mb-7">
+        <div className="mb-[clamp(14px,1.6vw,24px)]">
 
     
 
-        <h2 className="font-bold text-lg">
+        <h2 className="text-[clamp(15px,0.95vw,18px)] font-bold">
             Customer Reviews
         </h2>
 
@@ -244,14 +244,14 @@ const FilterSidebar = ({
         <FaStar className="text-orange-400 text-[19px]" />
         <FaRegStar className="text-orange-400 text-[19px]" />
 
-        <span className="ml-1 text-[17px]">& Up</span>
+        <span className="ml-1">& Up</span>
 
     </div>
 
 </div>
-        <div className="mb-7">
+        <div className="mb-[clamp(14px,1.6vw,24px)]">
 
-            <h2 className="font-bold text-[22px] mb-3">
+            <h2 className="mb-3 text-[clamp(15px,0.95vw,18px)] font-bold">
                 Deals & Discounts
             </h2>
 
@@ -279,7 +279,7 @@ const FilterSidebar = ({
 
         <div>
 
-            <h2 className="font-bold text-[22px] mb-3">
+            <h2 className="mb-3 text-[clamp(15px,0.95vw,18px)] font-bold">
                 Band Colour
             </h2>
 

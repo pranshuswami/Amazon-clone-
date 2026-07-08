@@ -192,14 +192,14 @@ const CategoryPage = () => {
 
 </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-5">
+            <div className="grid grid-cols-1 gap-2 lg:grid-cols-[clamp(220px,14vw,280px)_minmax(0,1fr)] lg:gap-4">
                  
             
-                <div className="lg:col-span-3 mt-1 lg:mt-2.5">
+                <div className="mt-1 lg:mt-2.5">
 
                    
 
-                    <div className="hidden lg:block w-74">
+                    <div className="hidden lg:block w-full">
 
                         <FilterSidebar
 
@@ -243,7 +243,7 @@ const CategoryPage = () => {
 
                 </div>
 
-                <div className="lg:col-span-9">
+                <div className="min-w-0">
                     
                     <h1 className="hidden text-lg md:text-2xl font-bold mb-1 mt-0.5 md:ml-0 ml-5 capitalize">
 
