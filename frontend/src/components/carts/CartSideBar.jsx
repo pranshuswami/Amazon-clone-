@@ -54,7 +54,7 @@ const getCartItems = async () => {
                 </div>
 
                 <button onClick={()=>navigate("/cart")}
-                className="border border-gray-500 rounded-full lg:mx-3.5 mx-2 lg:px-6 px-8 py-0.5 mt-2 cursor-pointer lg:text-xs">Go to Cart</button>
+                className="border border-gray-500 rounded-full lg:mx-4 mx-2 lg:px-5 px-8 py-0.5 mt-2 cursor-pointer lg:text-xs">Go to Cart</button>
             <hr className="border border-gray-200 mt-3" />
                 {
     cartItems.map((item) => (

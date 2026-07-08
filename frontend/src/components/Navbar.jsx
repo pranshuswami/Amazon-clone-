@@ -181,25 +181,23 @@ const Navbar = () => {
     return (
 
         <>
-        <nav className="bg-gray-800 md:bg-gray-900 min-h-[60px] lg:min-h-[55px] text-white md:py-2 py-1 sticky top-0 z-50 shadow-lg shrink-0">
+        <nav className="sticky top-0 z-50 shrink-0 bg-[#131921] text-white shadow-md">
 
 
-            <div className="flex flex-wrap md:flex-nowrap items-center gap-2 md:gap-3 xl:gap-2 max-w-full min-w-0 px-1 md:px-2">
+            <div className="flex min-h-[60px] max-w-full min-w-0 flex-wrap items-center gap-1 px-2 md:flex-nowrap md:gap-2 lg:px-3">
 
 
-                <Link to="/" className="order-2 md:order-none -ml-2 md:ml-0 md:mb-0 mt-1 md:-mt-1 -mb-1.75">
+                <Link to="/" onClick={() => window.scrollTo(0,0)} className="order-2 flex h-[50px] shrink-0 items-center rounded-sm border border-transparent px-1 hover:border-white md:order-none md:w-[126px]">
                    
 
                     <div className="shrink-0">
                         <img 
-                    onClick={window.scrollTo(0,0)}
-                    className="md:hidden h-8 md:h-14 w-27  md:ml-3 md:w-40 object-contain" 
+                    className="h-9 w-[108px] object-contain md:hidden" 
                     
                     src={logo} />
 
                     <img 
-                    onClick={window.scrollTo(0,0)}
-                    className="hidden md:block h-8 md:h-16 lg:h-12  w-27 lg:ml-0.5 md:ml-2 md:w-42 lg:w-41  object-contain" 
+                    className="hidden h-12 w-[118px] object-contain md:block" 
                     
                     src={logo1} />
                     </div>
@@ -208,23 +206,23 @@ const Navbar = () => {
                 </Link>
 
                 <div onClick={()=>navigate(`/profile`)}
-                className="hidden xl:flex shrink-0 items-center mb-2 pl-0.5 lg:pl-0 lg:-ml-3.5  cursor-pointer">
-                    <FiMapPin className="mt-4.5 text-xl xl:text-lg" />
-                    <div className="shrink-0 lg:flex flex-col gap-0 pt-2">
-                        <h2 className="pl-1 xl:text-sm lg:text-base text-gray-200 -mb-2">Deliver to Pranshu</h2>
-                        <h2 className="pl-1 lg:text-base md:text-lg font-bold">Bikaner 334001</h2>
+                className="hidden h-[50px] shrink-0 cursor-pointer items-center rounded-sm border border-transparent px-2 hover:border-white lg:flex">
+                    <FiMapPin className="mt-3 text-lg" />
+                    <div className="flex shrink-0 flex-col leading-tight">
+                        <h2 className="text-xs text-gray-300">Deliver to Pranshu</h2>
+                        <h2 className="text-sm font-bold">Bikaner 334001</h2>
                     </div>
                     </div>
                 
                 <div
-                    className="relative order-4 md:order-none px-2 md:px-0 md:border-none border-t border-gray-400 h-11 flex w-full min-w-0 md:h-12.5 lg:h-10 transition-all duration-300 shrink md:flex-1 md:basis-0 md:min-w-[10rem] lg:min-w-[13rem] xl:min-w-[16rem]"
+                    className="relative order-4 flex h-10 w-full min-w-0 px-1 md:order-none md:flex-1 md:basis-0 md:px-0"
                 >
                     
                     <button
 
                     onClick={()=>setShowCategory(!showCategory)}
 
-                    className="bg-mauve-200 hidden text-gray-600 px-3 rounded-l-md font-medium md:flex items-center md:w-1/8 lg:w-1/12  border-r border-gray-300"
+                    className="hidden h-full shrink-0 items-center rounded-l-md border-r border-gray-300 bg-[#e6e6e6] px-3 text-sm text-[#111] hover:bg-[#d5d5d5] md:flex"
 
                     >
 
@@ -236,13 +234,18 @@ const Navbar = () => {
 
                     type="text"
 
-                    placeholder="Search Product..."
+                    placeholder="Search Amazon.in"
 
                     value={keyword}
 
                     onChange={(e)=>setKeyword(e.target.value)}
+                    onKeyDown={(e)=>{
+                        if(e.key === "Enter"){
+                            handleSearch();
+                        }
+                    }}
 
-                    className="w-full px-3 py-2 md:py-3 rounded-r-lg rounded-l-lg md:rounded-l-none bg-white text-black "
+                    className="h-full min-w-0 flex-1 bg-white px-3 text-[15px] text-black outline-none md:rounded-l-none"
 
                     />
 
@@ -250,11 +253,11 @@ const Navbar = () => {
 
                     onClick={handleSearch}
 
-                    className="absolute bottom-0 right-0 top-0  bg-orange-300 pl-2 px-2.6 w-12 md:px-3 lg:px-2 rounded-l-lg md:rounded-l-none rounded-r-lg text-black hover:bg-amber-500 cursor-pointer md:w-14 lg:w-12"
+                    className="flex h-full w-12 shrink-0 cursor-pointer items-center justify-center rounded-r-md bg-[#febd69] text-black hover:bg-[#f3a847] md:w-[52px]"
 
                     >
 
-                        <IoSearch className="text-3xl font-extrabold" />
+                        <IoSearch className="text-2xl" />
 
 
                     </button>
@@ -265,7 +268,7 @@ const Navbar = () => {
 
                     <div
 
-                    className="absolute top-30 lg:top-14 left-0 bg-white dark:bg-gray-800 text-black dark:text-white w-60 shadow-xl rounded-lg p-3 z-50"
+                    className="absolute left-1 top-11 z-50 w-60 rounded-sm bg-white p-3 text-black shadow-xl dark:bg-gray-800 dark:text-white md:left-0"
 
                     >
 
@@ -311,22 +314,22 @@ const Navbar = () => {
 
                 </div>
 
-                <div className="shrink-0 hidden lg:flex items-center md:pt-5 lg:pt-4 pb-2 ml-1">
-                    <img className="h-7 w-8 lg:h-6 lg:w-7 xl:h-5 xl:w-6 object-contain"
+                <div className="hidden h-[50px] shrink-0 items-end gap-1 rounded-sm border border-transparent px-2 pb-2 hover:border-white lg:flex">
+                    <img className="h-4 w-5 object-cover"
                     src="https://img.icons8.com/?size=96&id=32584&format=png" />
                     <h2 className="text-lg lg:text-base xl:text-sm items-center ml-1 font-bold">EN<span className="text-sm lg:text-xs text-gray-400">⏷</span></h2>
                 </div>
 
                 <div onClick={()=>navigate(`/profile`)}
-                className="hidden xl:flex flex-col my-1 shrink-0 px-2 cursor-pointer">
-                    <h2 className="lg:text-sm text-base -mb-2">Hello, Pranshu</h2>
+                className="hidden h-[50px] shrink-0 cursor-pointer flex-col justify-center rounded-sm border border-transparent px-2 leading-tight hover:border-white xl:flex">
+                    <h2 className="text-xs">Hello, Pranshu</h2>
                     <h2 className="lg:text-base text-lg font-bold">Account & Lists <span className="text-sm text-gray-400"> ⏷</span></h2>
                 </div>
 
                 <div onClick={()=>navigate(`/orders`)}
-                className="hidden xl:flex flex-col my-1 shrink-0 px-2 cursor-pointer">
-                    <h2 className="lg:text-sm text-base -mb-2">Returns</h2>
-                    <h2 className="lg:text-base text-lg font-bold">& Orders</h2>
+                className="hidden h-[50px] shrink-0 cursor-pointer flex-col justify-center rounded-sm border border-transparent px-2 leading-tight hover:border-white xl:flex">
+                    <h2 className="text-xs">Returns</h2>
+                    <h2 className="text-sm font-bold">& Orders</h2>
                 </div>
 
                 <img onClick={()=>navigate(`/cart`)}
@@ -576,7 +579,7 @@ const Navbar = () => {
         <div className="hidden h-12 lg:h-10  bg-gray-800 text-white px-2 py-2 md:flex justify-between">
             <div className="flex gap-7 lg:gap-5 ml-2.75 items-center">
             <h2 className="text-lg lg:text-sm font-bold"> <span className="text-2xl lg:text-lg font-normal">☰</span> All</h2>
-            <img className="h-8 w-23 lg:h-7 lg:w-21 object-cover"
+            <img className="h-8 w-23 lg:h-6 lg:w-20 object-cover"
             src={rufus} />
             <h2 className="text-lg lg:text-sm">Fresh</h2>
             <h2 className="text-lg lg:text-sm">Keep shopping for</h2>
