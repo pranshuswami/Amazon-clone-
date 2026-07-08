@@ -47,7 +47,8 @@ const Orders = () => {
       <div className="hidden md:block max-w-[1150px] mx-auto">
         
         <nav className="hidden text-gray-600 mb-4 md:flex items-center gap-1.5">
-          <span className="hover:text-gray-700 hover:underline cursor-pointer text-lg ">Your Account</span>
+          <span onClick={()=>navigate(`/profile`)}
+          className="hover:text-gray-700 hover:underline cursor-pointer text-lg ">Your Account</span>
           <span className="text-gray-400 text-xl">&gt;</span>
           <span className="text-[#c45500] text-lg">Your Orders</span>
         </nav>
@@ -173,10 +174,12 @@ const Orders = () => {
                         <p className="text-lg font-medium text-gray-00 mt-1">Package was handed to resident</p>
                         
                         <div className="flex mt-4 text-xs text-gray-500 pt-3">
-                          <img className="h-34 w-34 object-contain"
+                          <img onClick={()=>navigate(`/product/${order.product_id}`)}
+                          className="h-34 w-34 object-contain cursor-pointer"
                           src={order.image_url}/>
                           <div className="flex flex-col">
-                            <p className="text-lg line-clamp-3 text-cyan-800">{order.description}</p>
+                            <p onClick={()=>navigate(`/product/${order.product_id}`)}
+                            className="text-lg line-clamp-3 text-cyan-800 cursor-pointer hover:underline">{order.description}</p>
                           <p className="text-base text-black mt-2">Return window closed on 5 July 2026</p>
                           <div className="flex mt-1 gap-2">
                             <button onClick={() => navigate(`/product/${order.product_id}`)}

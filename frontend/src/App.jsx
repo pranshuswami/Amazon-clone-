@@ -81,7 +81,7 @@ const App = () => {
         </div>
 
         {showCartSidebar && (
-          <div className="hidden md:block w-[160px]">
+          <div className="hidden md:block w-[160px] md:w-[135px]">
             <CartSidebar />
           </div>
         )}

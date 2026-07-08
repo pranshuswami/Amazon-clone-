@@ -18,11 +18,11 @@ const ProductDetails = () => {
 
 
     useEffect(() => {
-
+    if (id) {
         getProduct();
         getReviews();
-
-    }, []);
+    }
+}, [id]);
 
 const token = localStorage.getItem("token");
 
@@ -608,35 +608,26 @@ console.log("Token =", token);
 
 
             <div className="mt-8 w-full">
+    <h2 className="text-2xl font-bold mb-5">Customer Reviews</h2>
 
-                <h2 className="text-2xl font-bold mb-5">
-                    Customer Reviews
-                </h2>
-
-
-                {
-                    reviews.map((review,index)=>(
-
-                        <div
-                            key={review.review_id}
-                            className="bg-white dark:bg-gray-800 p-5 rounded mb-4"
-                        >
-                             <p className="mt-3">
-                                {index + 1}
-                            </p>
-
-                        
-                            <p className="mt-3">
-                                {review.comment}
-                            </p>
-
-                        </div>
-
-                    ))
-                }
-
-
+    {reviews && reviews.length > 0 ? (
+        reviews.map((review, index) => (
+            // Fallback to index if review_id doesn't match your SQL column name
+            <div
+                key={review.review_id || review.id || index} 
+                className="bg-white dark:bg-gray-800 p-5 rounded mb-4 shadow-sm border border-gray-100"
+            >
+                 <p className="font-semibold text-gray-500 text-sm">Review #{index + 1}</p>
+                 <p className="mt-1 text-gray-800 dark:text-gray-200">
+                    {review.comment || "No text comment provided."}
+                 </p>
+                 <p className="text-sm text-yellow-600 mt-1">Rating: {review.rating} ★</p>
             </div>
+        ))
+    ) : (
+        <p className="text-gray-500 italic">No reviews yet for this product.</p>
+    )}
+</div>
             
 
         </div>

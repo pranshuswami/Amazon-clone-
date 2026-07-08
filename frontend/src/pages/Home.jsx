@@ -42,7 +42,7 @@ const Home = () => {
 
   return (
     <div className="  min-h-screen bg-white pb-12 overflow-x-hidden w-full">
-      <div className="hidden md:block w-full md:w-400">
+      <div className="hidden md:block w-full md:w-400 lg:w-425">
         <HomeSlider />
       </div>
       <div className=" flex overflow-auto md:hidden w-full md:w-400 px-4 gap-2 py-2">
