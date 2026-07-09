@@ -6,8 +6,8 @@ import "swiper/css/navigation";
 
 const HomeSlider = () => {
   const images = [
-    "https://images-eu.ssl-images-amazon.com/images/G/31/img26/Prime/Acq/LU/PD26_PC_Static_Live-Now_2x_2._CB758813606_.jpg",
-    "https://images-eu.ssl-images-amazon.com/images/G/31/img24/Wireless/Mounika/PD/GW/jULY4/PC_Hero_Live-phase_ASINs_3000x1200._CB758500475_.jpg",
+    "https://images-eu.ssl-images-amazon.com/images/G/31/IMG2026/SMB/Mocks/June/Desktop_Hero_V1_2x._CB760487247_.jpg",
+    "https://images-eu.ssl-images-amazon.com/images/G/31/img21/APAY/MAYART26/travel/2_Hotels_PC_Hero_3000x1200._CB762668405_.jpg",
     "https://images-eu.ssl-images-amazon.com/images/G/31/INSLGW/PD26/AFP_Men._CB758485816_.jpg"
   ];
 

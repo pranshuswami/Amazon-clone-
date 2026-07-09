@@ -19,6 +19,7 @@ import Footer from "./components/footer";
 import Profile from "./pages/Profile";
 import Wishlist from "./pages/Wishlist";
 import CartSidebar from "./components/carts/CartSideBar";
+import CompareProducts from "./pages/CompareProducts";
 
 const App = () => {
   const token = localStorage.getItem("token");
@@ -71,6 +72,11 @@ const App = () => {
             <Route
               path="/write-review/:orderId"
               element={token ? <WriteReview /> : <Navigate to="/login" />}
+            />
+
+            <Route
+              path="/compare"
+              element={<CompareProducts />}
             />
 
             <Route path="/profile" element={<Profile />} />

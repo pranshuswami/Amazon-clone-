@@ -287,6 +287,38 @@ console.log("Token =", token);
         }
 
     };
+
+
+    const addToCompare = () => {
+
+    let compareProducts =
+        JSON.parse(localStorage.getItem("compareProducts")) || [];
+
+    // Already exists
+    if (
+        compareProducts.find(
+            item => item.product_id === product.product_id
+        )
+    ) {
+        alert("Already added");
+        return;
+    }
+
+    // Maximum 4 products
+    if (compareProducts.length >= 4) {
+        alert("Maximum 4 products");
+        return;
+    }
+
+    compareProducts.push(product);
+
+    localStorage.setItem(
+        "compareProducts",
+        JSON.stringify(compareProducts)
+    );
+
+    navigate("/compare");
+};
     
 
     if(!product) {
@@ -569,6 +601,13 @@ console.log("Token =", token);
 
                 <button onClick={buyNow}
                 className="bg-orange-400 mt-3 h-9 text-black font-bold active:scale-95 hover:bg-yellow-600 px-2 py-1 rounded-full w-full">Buy Now</button>
+
+                <button
+                    onClick={addToCompare}
+                    className="mt-3 border border-gray-400 w-full py-2 rounded-full hover:bg-gray-100"
+                >
+                    Compare Product
+                </button>
 
                 {/* <button onClick={addWishlist}
                 className="border border-gray-400 mt-3 h-9 font-bold px-2 py-1 rounded-full w-full hover:bg-gray-300 dark:hover:bg-gray-700">❤️ Add to Wishlist</button> */}
