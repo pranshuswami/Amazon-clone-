@@ -75,32 +75,7 @@ const getSingleProduct = (req, res) => {
 
     const { id } = req.params;
 
-    const sql = `
-SELECT
-    p.*,
-
-    s.ram,
-    s.storage,
-    s.display,
-    s.processor,
-    s.battery,
-    s.rear_camera,
-    s.front_camera,
-    s.refresh_rate,
-    s.operating_system,
-    s.chipset,
-    s.charging,
-    s.network,
-    s.weight,
-    s.color
-
-FROM products p
-
-LEFT JOIN product_specifications s
-ON p.product_id = s.product_id
-
-WHERE p.product_id = ?;
-`;
+    const sql ="SELECT p.*,s.ram,s.storage,s.display,s.processor,s.battery,s.rear_camera,s.front_camera, s.refresh_rate,s.operating_system,s.chipset,s.charging,s.network,s.weight,s.color FROM products p LEFT JOIN product_specifications s ON p.product_id = s.product_id WHERE p.product_id = ?"
 
     db.query(sql, [id], (err, result) => {
 

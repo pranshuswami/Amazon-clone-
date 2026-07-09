@@ -128,17 +128,18 @@ const CompareProducts = () => {
 
                                         <div className="flex flex-col items-center">
 
-                                            <img
+                                            <img onClick={()=>navigate(`/product/${product.product_id}`)}
 
                                                 src={product.image_url}
 
-                                                className="h-40 object-contain"
+                                                className="h-40 object-contain cursor-pointer"
 
                                                 alt=""
 
                                             />
 
-                                            <h2 className="mt-3 font-bold">
+                                            <h2 onClick={()=>navigate(`/product/${product.product_id}`)}
+                                            className="mt-3 font-bold cursor-pointer">
 
                                                 {product.product_name}
 
@@ -216,7 +217,7 @@ const CompareProducts = () => {
                         <Row
                             title="Display"
                             products={products}
-                            field="display_size"
+                            field="display"
                         />
 
                         <Row
