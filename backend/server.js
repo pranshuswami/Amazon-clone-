@@ -23,8 +23,9 @@ app.use("/order",orderRoutes);
 app.use("/reviews",reviewRoutes);
 app.use("/address",addressRoutes);
 app.use("/auth",authRoutes);
-app.use("/profile",profileRoutes)
-app.use("/wishlist",wishlistRoutes)
+app.use("/profile",profileRoutes);
+app.use("/wishlist",wishlistRoutes);
+
 
 const PORT = 5000;
 

@@ -15,6 +15,7 @@ const ProductDetails = () => {
     const [reviews, setReviews] = useState([]);
     const [showWishlistBox, setShowWishlistBox] = useState(false);
     const [selectedVariation, setSelectedVariation] = useState(null);
+    const [relatedProducts, setRelatedProducts] = useState([]);
     const navigate=useNavigate()
 
 const token = localStorage.getItem("token");
@@ -48,6 +49,25 @@ console.log("Token =", token);
 
     }, [id]);
 
+    const getRelatedProducts = useCallback(async () => {
+
+    try {
+
+        const res = await axios.get(
+            `http://localhost:5000/products/related/${id}`
+        );
+
+        setRelatedProducts(res.data.data || []);
+
+    } catch (error) {
+
+        console.log(error);
+        setRelatedProducts([]);
+
+    }
+
+}, [id]);
+
 
 
     const getReviews = useCallback(async () => {
@@ -74,8 +94,9 @@ console.log("Token =", token);
         // eslint-disable-next-line react-hooks/set-state-in-effect
         getProduct();
         getReviews();
+        getRelatedProducts();
     }
-}, [id, getProduct, getReviews]);
+}, [id, getProduct, getReviews, getRelatedProducts]);
 
     const handleLoginRedirect = (action)=>{
 
@@ -254,6 +275,59 @@ console.log("Token =", token);
 
     };
 
+    const addFrequentlyBought = async () => {
+
+        const token = localStorage.getItem("token");
+        const frequentlyBoughtProduct = relatedProducts[0];
+
+        if (!token) {
+            handleLoginRedirect("cart");
+            return;
+        }
+
+        if (!frequentlyBoughtProduct) {
+            return;
+        }
+
+        try {
+
+            await axios.post(
+                "http://localhost:5000/cart/add",
+                {
+                    product_id: product.product_id,
+                    variation_id: selectedVariation?.variation_id,
+                    quantity: 1
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            await axios.post(
+                "http://localhost:5000/cart/add",
+                {
+                    product_id: frequentlyBoughtProduct.product_id,
+                    quantity: 1
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            navigate("/cart");
+
+        } catch (error) {
+
+            console.log(error);
+
+        }
+
+    };
+
 
     const addToCompare = () => {
 
@@ -297,6 +371,10 @@ console.log("Token =", token);
     const selectedPrice = selectedVariation?.price || product.price;
     const selectedColor = selectedVariation?.color || "White";
     const variations = product.variations || [];
+    const frequentlyBoughtProduct = relatedProducts[1];
+    const relevantProducts = relatedProducts.slice(1);
+    const frequentlyBoughtTotal =
+        Number(selectedPrice || 0) + Number(frequentlyBoughtProduct?.price || 0);
 
     return (
 
@@ -445,6 +523,8 @@ console.log("Token =", token);
                 <p className="mt-1 md:ml-[clamp(6px,1.2vw,22px)] text-sm text-gray-500">M.R.P: 
                     <span className="line-through"> ₹{product.mrp}</span></p>
 
+                <p className=" mt-2 font-semibold md:ml-[clamp(6px,1.2vw,22px)] ">Varient: {product.storage}</p>
+
                 <p className="md:ml-[clamp(6px,1.2vw,22px)] mt-1 text-base">Inclusive of all taxes</p>
                 <p className="md:ml-[clamp(6px,1.2vw,22px)] hidden md:block text-base leading-snug">
                     <span className="font-bold">EMI</span> starts at ₹2,988. No Cost EMI available<br /> 
@@ -519,6 +599,7 @@ console.log("Token =", token);
                                 <p>
                                     ₹{item.price}
                                 </p>
+                                <p>{item.storage}</p>
                             </div>
                         </div>
                     ))}
@@ -598,6 +679,121 @@ console.log("Token =", token);
 
 
             </div>
+
+            {frequentlyBoughtProduct && (
+            <div className="mt-10 border-t border-b border-gray-300 bg-white px-4 py-4 md:px-10">
+
+                <h2 className="mb-4 text-2xl font-bold">
+                    Frequently bought together
+                </h2>
+
+                <div className="flex flex-col gap-5 lg:flex-row lg:items-center">
+                    <div className="flex flex-wrap items-start gap-4">
+                        <div className="w-[clamp(150px,18vw,230px)]">
+                            <div className="relative flex h-44 items-center justify-center rounded-lg bg-gray-50 p-3">
+                                <img onClick={()=>scrollTo(0,0)}
+                                    src={selectedImage}
+                                    alt={product.product_name}
+                                    className="max-h-full max-w-full object-contain cursor-pointer"
+                                />
+                                <input
+                                    type="checkbox"
+                                    checked
+                                    readOnly
+                                    className="absolute right-2 top-2 h-4 w-4 accent-[#2162A1]"
+                                />
+                            </div>
+                            <p className="mt-3 line-clamp-3 text-base">
+                                <span className="font-bold">This item: </span>
+                                {product.product_name || product.description}
+                            </p>
+                            <p className="mt-2 text-xl">
+                                ₹{Number(selectedPrice).toLocaleString("en-IN")}
+                                <sup className="text-xs">00</sup>
+                            </p>
+                        </div>
+
+                        <div className="pt-16 text-3xl font-bold text-gray-600">
+                            +
+                        </div>
+
+                        <div className="w-[clamp(150px,18vw,230px)]">
+                            <div className="relative flex h-44 items-center justify-center rounded-lg bg-gray-50 p-3">
+                                <img onClick={()=>navigate(`/product/${frequentlyBoughtProduct.product_id}`)}
+                                    src={frequentlyBoughtProduct.image_url}
+                                    alt={frequentlyBoughtProduct.product_name}
+                                    className="max-h-full max-w-full object-contain cursor-pointer"
+                                />
+                                <input
+                                    type="checkbox"
+                                    checked
+                                    readOnly
+                                    className="absolute right-2 top-2 h-4 w-4 accent-[#2162A1]"
+                                />
+                            </div>
+                            <p
+                                onClick={() => navigate(`/product/${frequentlyBoughtProduct.product_id}`)}
+                                className="mt-3 line-clamp-3 cursor-pointer text-base text-[#0066C0] hover:text-[#C45500] hover:underline"
+                            >
+                                {frequentlyBoughtProduct.product_name || frequentlyBoughtProduct.description}
+                            </p>
+                            <p className="mt-2 text-xl">
+                                ₹{Number(frequentlyBoughtProduct.price)}
+                                <sup className="text-xs">00</sup>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="min-w-[260px] lg:ml-4">
+                        <p className="mb-2 text-lg font-medium">
+                            Total price:{" "}
+                            <span>
+                                ₹{frequentlyBoughtTotal}
+                                
+                            </span>
+                        </p>
+                        <button
+                            onClick={addFrequentlyBought}
+                            className="w-full rounded-full bg-[#FFD814] px-8 py-2 text-base text-[#0F1111] hover:bg-[#F7CA00] lg:w-80"
+                        >
+                            Add both to Cart
+                        </button>
+                    </div>
+                </div>
+
+                {relevantProducts.length > 0 && (
+                    <div className="mt-8 border-t border-gray-300 pt-3">
+                        <h2 className="mb-4 w-fit  px-1 text-xl font-bold ">
+                            Relevant items customers are likely to buy
+                        </h2>
+
+                        <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-6">
+                            {relevantProducts.map((item) => (
+                                <div
+                                    key={item.product_id}
+                                    onClick={() => navigate(`/product/${item.product_id}`)}
+                                    className="cursor-pointer bg-white p-3 transition hover:shadow-lg"
+                                >
+                                    <img
+                                        src={item.image_url}
+                                        alt={item.product_name}
+                                        className="h-36 w-full object-contain"
+                                    />
+
+                                    <h3 className="mt-3 line-clamp-2 text-sm text-[#0066C0] hover:text-[#C45500] hover:underline">
+                                        {item.product_name}
+                                    </h3>
+
+                                    <p className="mt-2 text-lg font-bold">
+                                        ₹{Number(item.price).toLocaleString("en-IN")}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+            )}
             
                 <div className="mt-8 mx-4 lg:mx-20 flex flex-col items-center justify-center h-35 bg-white dark:bg-gray-800 p-6 rounded-lg">
                     <h2 className=" text-center text-2xl font-semibold">Write a review</h2>

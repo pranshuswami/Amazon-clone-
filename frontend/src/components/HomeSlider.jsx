@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 
 const HomeSlider = () => {
   const images = [
-    "https://images-eu.ssl-images-amazon.com/images/G/31/IMG2026/SMB/Mocks/June/Desktop_Hero_V1_2x._CB760487247_.jpg",
+    "https://images-eu.ssl-images-amazon.com/images/G/31/Himani26/NSSBAU/Hero_Desktop_2x_10th_July._CB758923913_.jpg",
     "https://images-eu.ssl-images-amazon.com/images/G/31/img21/APAY/MAYART26/travel/2_Hotels_PC_Hero_3000x1200._CB762668405_.jpg",
     "https://images-eu.ssl-images-amazon.com/images/G/31/ALP/ALWDHero_March26/22nd_March_PC_2x._CB785055841_.jpg"
   ];

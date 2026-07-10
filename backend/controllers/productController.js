@@ -179,9 +179,93 @@ const getProductImages = (req, res) => {
 
 };
 
+const getRelatedProducts = (req, res) => {
+
+    const { id } = req.params;
+
+    const relatedSql = `
+        SELECT
+            p.product_id,
+            p.product_name,
+            p.description,
+            p.brand,
+            p.price,
+            p.mrp,
+            p.stock,
+            p.image_url,
+            p.rating,
+            p.reviews
+        FROM related_products rp
+        JOIN products p
+        ON rp.related_product_id = p.product_id
+        JOIN products current_product
+        ON current_product.product_id = rp.product_id
+        WHERE rp.product_id = ?
+        AND p.category_id = current_product.category_id
+    `;
+
+    const fallbackSql = `
+        SELECT
+            p.product_id,
+            p.product_name,
+            p.description,
+            p.brand,
+            p.price,
+            p.mrp,
+            p.stock,
+            p.image_url,
+            p.rating,
+            p.reviews
+        FROM products p
+        WHERE p.category_id = (
+            SELECT category_id
+            FROM products
+            WHERE product_id = ?
+        )
+        AND p.product_id != ?
+        LIMIT 6
+    `;
+
+    db.query(relatedSql, [id], (err, result) => {
+
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: err.message
+            });
+        }
+
+        if (result.length > 0) {
+            return res.json({
+                success: true,
+                data: result
+            });
+        }
+
+        db.query(fallbackSql, [id, id], (err, fallbackResult) => {
+
+            if (err) {
+                return res.status(500).json({
+                    success: false,
+                    message: err.message
+                });
+            }
+
+            res.json({
+                success: true,
+                data: fallbackResult
+            });
+
+        });
+
+    });
+
+};
+
 module.exports = {
     getProductsByCategory,
     searchProducts,
     getSingleProduct,
-    getProductImages
+    getProductImages,
+    getRelatedProducts
 };
