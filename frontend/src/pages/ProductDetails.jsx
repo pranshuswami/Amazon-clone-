@@ -341,6 +341,7 @@ console.log("Token =", token);
         )
     ) {
         alert("Already added");
+        navigate(`/compare`)
         return;
     }
 
@@ -607,9 +608,9 @@ console.log("Token =", token);
             </div>
             <hr className="md:ml-[clamp(6px,1.2vw,22px)] mt-4 border-gray-300 dark:border-gray-600"></hr>
 
-            <h2 className="md:ml-[clamp(6px,1.2vw,22px)] font-bold text-xl mt-3">About this item</h2>
+            <h2 className="md:ml-[clamp(6px,1.2vw,22px)] font-bold text-2xl mt-3">About this item</h2>
 
-            <p className="md:ml-[clamp(6px,1.2vw,22px)] mt-2 text-xl font-normal text-black dark:text-gray-300">
+            <p className="md:ml-[clamp(6px,1.2vw,22px)] mt-2 text-lg font-medium text-black dark:text-gray-300">
                     {product.description}
                 </p>
 
@@ -671,7 +672,7 @@ console.log("Token =", token);
                 rounded-lg">
                     <img className="rounded-lg object-cover" src="https://i.pinimg.com/736x/ed/1e/3e/ed1e3e53ec7837cb55d7167bec051f0b.jpg"/>
                     <p className="mt-2 font-medium">Save up to 18% on this product with business pricing and GST input tax credit</p>
-                    <button className="border dark:border-gray-100 hover:border-blue-500  rounded-lg px-2 py-1  mt-2 mx-15">
+                    <button className="border dark:border-gray-100 hover:border-blue-500  rounded-lg px-2 py-1  mt-2 mx-9">
                         Create a free account
                     </button>
                 </div>
@@ -726,8 +727,8 @@ console.log("Token =", token);
                                 />
                                 <input
                                     type="checkbox"
-                                    checked
-                                    readOnly
+                                    defaultChecked
+                                    writeOnly
                                     className="absolute right-2 top-2 h-4 w-4 accent-[#2162A1]"
                                 />
                             </div>

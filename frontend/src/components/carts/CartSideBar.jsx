@@ -58,7 +58,7 @@ const getCartItems = async () => {
             <hr className="border border-gray-200 mt-3" />
                 {
     cartItems.map((item) => (
-        <div key={item.cart_id}>
+        <div className="overflow-y-auto mt-2" key={item.cart_id}>
 
             <img
                 src={item.image_url}
