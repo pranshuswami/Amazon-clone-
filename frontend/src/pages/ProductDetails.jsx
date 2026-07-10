@@ -83,63 +83,63 @@ console.log("Token =", token);
     navigate("/login");
 
 };
-//     const addWishlist = async()=>{
+    const addWishlist = async()=>{
 
 
-//     const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
 
-//     if(!token){
+    if(!token){
 
-//         navigate("/login");
+        navigate("/login");
 
-//         return;
+        return;
 
-//     }
-
-
-//     try{
+    }
 
 
-//         await axios.post(
-
-//             "http://localhost:5000/wishlist/add",
-
-//             {
-
-//                 product_id:product.product_id
-
-//             },
-
-//             {
-
-//                 headers:{
-
-//                     Authorization:
-
-//                     `Bearer ${token}`
-
-//                 }
-
-//             }
-
-//         );
+    try{
 
 
-//         setShowWishlistBox(true);
+        await axios.post(
+
+            "http://localhost:5000/wishlist/add",
+
+            {
+
+                product_id:product.product_id
+
+            },
+
+            {
+
+                headers:{
+
+                    Authorization:
+
+                    `Bearer ${token}`
+
+                }
+
+            }
+
+        );
 
 
-//     }
+        setShowWishlistBox(true);
 
 
-//     catch(error){
-
-//         console.log(error);
-
-//     }
+    }
 
 
-// };
+    catch(error){
+
+        console.log(error);
+
+    }
+
+
+};
     const addToCart = async () => {
 
     const token = localStorage.getItem("token");
@@ -609,8 +609,8 @@ console.log("Token =", token);
                     Compare Product
                 </button>
 
-                {/* <button onClick={addWishlist}
-                className="border border-gray-400 mt-3 h-9 font-bold px-2 py-1 rounded-full w-full hover:bg-gray-300 dark:hover:bg-gray-700">❤️ Add to Wishlist</button> */}
+                <button onClick={addWishlist}
+                className="border border-gray-400 mt-3 h-9 font-bold px-2 py-1 rounded-full w-full hover:bg-gray-300 dark:hover:bg-gray-700">❤️ Add to Wishlist</button>
 
                 </div>
                 <div className="border border-gray-300 dark:border-gray-100 p-2  flex-row items-center justify-center

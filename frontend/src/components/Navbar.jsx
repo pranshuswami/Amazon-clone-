@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "../assets/Amazon logo.png"
@@ -35,15 +35,6 @@ const Navbar = () => {
 
 
     const navigate = useNavigate();
-    const location = useLocation();
-
-    const showCartSidebar =
-        location.pathname.startsWith("/products/") ||
-        location.pathname.startsWith("/search/") ||
-        location.pathname.startsWith("/product/") ||
-        location.pathname.startsWith("/write-review/") ||
-        location.pathname.startsWith("/order/");
-
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") || "light"
     );
