@@ -496,7 +496,7 @@ console.log("Token =", token);
 
                 
                 <div className="hidden md:block md:ml-[clamp(6px,1.2vw,22px)]">
-                <p className="line-clamp-3 text-[clamp(21px,1.55vw,29px)] leading-tight">{product.description}</p>
+                <p className="line-clamp-5 text-[clamp(21px,1.55vw,29px)] leading-tight">{product.description}</p>
                 <p className="mt-1 text-base text-cyan-600">Visit the Samsung Store</p>
                 <div className="flex items-center text-sm">
                     <p>{product.rating}</p>
@@ -609,7 +609,7 @@ console.log("Token =", token);
 
             <h2 className="md:ml-[clamp(6px,1.2vw,22px)] font-bold text-xl mt-3">About this item</h2>
 
-            <p className="md:ml-[clamp(6px,1.2vw,22px)] mt-2 text-base font-medium text-black dark:text-gray-300">
+            <p className="md:ml-[clamp(6px,1.2vw,22px)] mt-2 text-xl font-normal text-black dark:text-gray-300">
                     {product.description}
                 </p>
 
