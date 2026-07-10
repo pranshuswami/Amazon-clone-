@@ -1,93 +1,74 @@
 const db = require("../config/db");
 
-const addToCart = (req,res)=>{
+const addToCart = (req, res) => {
 
-const {product_id,quantity}=req.body;
+    const { product_id, variation_id, quantity } = req.body;
+    const selectedVariationId = variation_id || null;
 
-const user_id=req.user.user_id;
+    const user_id = req.user.user_id;
 
-const checkSql ="SELECT * FROM cart WHERE user_id=? AND product_id=?";
+    const checkSql ="SELECT * FROM cart WHERE user_id = ? AND product_id = ? AND variation_id <=> ?"
 
+    db.query(checkSql, [user_id, product_id, selectedVariationId], (err, result) => {
 
-db.query(checkSql,[user_id,product_id],(err,result)=>{
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: err.message
+            });
+        }
 
+        if (result.length > 0) {
 
-if(err){
+            const updateSql ="UPDATE cart SET quantity = quantity + 1 WHERE user_id = ? AND product_id = ? AND variation_id <=> ?"
 
-return res.status(500).json({
-success:false,
-message:err.message
-});
+            db.query(updateSql,
+                [user_id, product_id, selectedVariationId],
+                (err) => {
 
-}
+                    if (err) {
+                        return res.status(500).json({
+                            success: false,
+                            message: err.message
+                        });
+                    }
 
-if(result.length > 0){
+                    res.json({
+                        success: true,
+                        message: "Quantity increased"
+                    });
 
+                });
 
-const updateSql ="UPDATE cart SET quantity = quantity + 1 WHERE user_id=? AND product_id=?";
+        } else {
 
+            const insertSql ="INSERT INTO cart (user_id, product_id, variation_id, quantity) VALUES (?, ?, ?, ?)"
 
-db.query(updateSql,[user_id,product_id],(err)=>{
+            db.query(
+                insertSql,
+                [user_id, product_id, selectedVariationId, quantity],
+                (err) => {
 
+                    if (err) {
+                        return res.status(500).json({
+                            success: false,
+                            message: err.message
+                        });
+                    }
 
-if(err){
+                    res.json({
+                        success: true,
+                        message: "Product added"
+                    });
 
-return res.status(500).json({
-success:false,
-message:err.message
-});
+                }
+            );
 
-}
+        }
 
+    });
 
-res.json({
-
-success:true,
-message:"Quantity increased"
-
-});
-
-
-}
-
-)}
-
-else{
-
-
-const insertSql ="INSERT INTO cart(user_id,product_id,quantity) VALUES(?,?,?)";
-
-
-db.query(insertSql,[user_id,product_id,quantity],(err)=>{
-
-
-if(err){
-
-return res.status(500).json({
-success:false,
-message:err.message
-})
-
-}
-
-
-res.json({
-
-success:true,
-message:"Product added"
-
-})
-
-
-}
-
-)}
-
-
-}
-
-)}
-
+};
 
 const getCart = (req,res)=>{
 
@@ -95,7 +76,7 @@ const getCart = (req,res)=>{
 const user_id = req.user.user_id;
 
 
-const sql ="SELECT cart.cart_id,cart.quantity,products.* FROM cart JOIN products ON cart.product_id = products.product_id WHERE cart.user_id=? "
+const sql ="SELECT cart.cart_id,cart.quantity,products.product_id,products.product_name,products.description,products.brand,products.rating,products.reviews,product_variations.color,product_variations.storage,COALESCE(product_variations.price, products.price) AS price,product_variations.stock,COALESCE(product_variations.image_url, products.image_url) AS image_url FROM cart JOIN products ON cart.product_id = products.product_id LEFT JOIN product_variations ON cart.variation_id = product_variations.variation_id WHERE cart.user_id = ?"
 
 
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaRegStar, FaStar } from "react-icons/fa";
@@ -14,21 +14,14 @@ const ProductDetails = () => {
     const [product, setProduct] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [showWishlistBox, setShowWishlistBox] = useState(false);
+    const [selectedVariation, setSelectedVariation] = useState(null);
     const navigate=useNavigate()
-
-
-    useEffect(() => {
-    if (id) {
-        getProduct();
-        getReviews();
-    }
-}, [id]);
 
 const token = localStorage.getItem("token");
 
 console.log("Token =", token);
 
-    const getProduct = async () => {
+    const getProduct = useCallback(async () => {
 
         try {
 
@@ -36,7 +29,15 @@ console.log("Token =", token);
                 `http://localhost:5000/products/${id}`
             );
 
-            setProduct(res.data.data);
+            const data = res.data.data;
+            const productImage = (data.image_url || "").trim();
+            const matchingVariation = data.variations?.find(
+                (variation) => (variation.image_url || "").trim() === productImage
+            );
+
+                setProduct(data);
+
+                setSelectedVariation(matchingVariation || null);
 
         }
         catch(error) {
@@ -45,11 +46,11 @@ console.log("Token =", token);
 
         }
 
-    };
+    }, [id]);
 
 
 
-    const getReviews = async () => {
+    const getReviews = useCallback(async () => {
             
         try {
 
@@ -66,7 +67,15 @@ console.log("Token =", token);
 
         }
 
-    };
+    }, [id]);
+
+    useEffect(() => {
+    if (id) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        getProduct();
+        getReviews();
+    }
+}, [id, getProduct, getReviews]);
 
     const handleLoginRedirect = (action)=>{
 
@@ -162,6 +171,7 @@ console.log("Token =", token);
 
         {
             product_id:product.product_id,
+            variation_id: selectedVariation?.variation_id,
             quantity:1
         },
         {
@@ -211,6 +221,7 @@ console.log("Token =", token);
 
                 {
                 product_id:product.product_id,
+                variation_id: selectedVariation?.variation_id,
                 quantity:1
                 },
 
@@ -240,51 +251,6 @@ console.log("Token =", token);
 
         }
 
-
-    };
-    
-    const addReview = async () => {
-        const token = localStorage.getItem("token");
-          if(!token){
-
-    navigate("/login");
-
-    return;
-
-}
-
-        if( comment === "") {
-
-            alert("Please give review");
-            return;
-
-        }
-
-
-        try {
-
-            await axios.post(
-                "http://localhost:5000/reviews/add",
-                {
-                    product_id:id,
-                    rating,
-                    comment
-                }
-            );
-
-
-            setRating(0);
-            setComment("");
-
-            getReviews();
-            setShowReviewBox(false);
-
-        }
-        catch(error) {
-
-            console.log(error);
-
-        }
 
     };
 
@@ -327,25 +293,30 @@ console.log("Token =", token);
 
     }
 
+    const selectedImage = selectedVariation?.image_url || product.image_url;
+    const selectedPrice = selectedVariation?.price || product.price;
+    const selectedColor = selectedVariation?.color || "White";
+    const variations = product.variations || [];
+
     return (
 
         <div className=" bg-white min-h-screen p-0.5 ">
-            <div className="hidden md:flex  items-center justify-between px-5 border-b border-gray-300 s py-4">
-                <h2 className="text-xl font-bold ml-7 text-gray-700">Electronics</h2>
-                <div className="flex items-center justify-between gap-15">
+            <div className="hidden md:flex items-center justify-between px-5 border-b border-gray-300 py-3">
+                <h2 className="text-2xl font-bold ml-7 text-gray-700">Electronics</h2>
+                <div className="flex items-center justify-between gap-[clamp(28px,4vw,76px)] text-base">
                     <h2 className="text-gray-700">Laptops and accessories</h2>
                     <h2 className="text-gray-700">TV and Home Entertainment</h2>
                     <h2 className="text-gray-700">Audio</h2>
                     <h2 className="text-gray-700">Cameras</h2>
-                    <h2 className="text-gray-700">Smart Teachnology</h2>
+                    <h2 className="text-gray-700">Smart Technology</h2>
                     <h2 className="text-gray-700">Sales and Deals</h2>
                 </div>
             </div>
-            <img className=" hidden md:block mx-auto w-200 h-15"
+            <img className="hidden md:block mx-auto w-[clamp(640px,49vw,900px)] h-13 object-cover"
             src="https://m.media-amazon.com/images/I/51-O1L1MHWL.jpg" />
 
-            <h2 className="hidden md:block text-gray-500 text-base mt-3 mx-auto ml-6 mb-8">Electronics › Mobiles & Accessories › Smartphones & Basic Mobiles › Smartphones</h2>
-            <div className="grid grid-cols-1 md:grid-cols-[minmax(280px,42vw)_minmax(300px,1fr)] lg:grid-cols-[minmax(320px,38vw)_minmax(320px,1fr)_clamp(260px,21vw,340px)]">
+            <h2 className="hidden md:block text-gray-500 text-sm mt-4 ml-7 mb-3">Electronics › Mobiles & Accessories › Smartphones & Basic Mobiles › Smartphones</h2>
+            <div className="grid grid-cols-1 gap-x-[clamp(12px,1.5vw,28px)] md:grid-cols-[minmax(280px,40vw)_minmax(300px,1fr)] lg:grid-cols-[minmax(400px,36vw)_minmax(420px,1fr)_clamp(250px,17vw,295px)]">
                 <div className="bg-white md:hidden rounded-lg flex items-center m-1">
 
                     <img className="p-2 w-16 h-16 object-contain"
@@ -390,7 +361,7 @@ console.log("Token =", token);
     
     <div className="sticky top-20 hidden flex-col items-center gap-3 md:flex">
         <button className="w-14 h-14 p-1 border-2 border-blue-600 rounded-xl bg-white overflow-hidden active:scale-95 transition-transform">
-            <img src={product.image_url} className="w-full h-full object-contain" alt="thumb" />
+            <img src={selectedImage} className="w-full h-full object-contain" alt="thumb" />
         </button>
 
         <button className="w-14 h-14 bg-gray-800 text-white rounded-xl flex flex-col items-center justify-center text-[10px] font-bold shadow-sm active:scale-95 transition-transform">
@@ -398,19 +369,25 @@ console.log("Token =", token);
            
         </button>
 
-        <button className="w-14 h-14 p-1 border border-gray-300 rounded-xl bg-white overflow-hidden active:scale-95 transition-transform">
-            <img src="https://i.pinimg.com/736x/cb/44/0b/cb440bf81ad4dbb9a3b2ddaf04751f39.jpg" className="w-full h-full object-contain" alt="thumb" />
-        </button>
-
-        <button className="w-14 h-14 p-1 border border-gray-300 rounded-xl bg-white overflow-hidden active:scale-95 transition-transform">
-            <img src="https://i.pinimg.com/736x/2b/4e/2d/2b4e2d1821f4b3f50dcf94430bbc3c0d.jpg" className="w-full h-full object-contain" alt="thumb" />
-        </button>
+        {variations.slice(0, 3).map((variation) => (
+            <button
+                key={variation.variation_id}
+                onClick={() => setSelectedVariation(variation)}
+                className={`w-14 h-14 p-1 rounded-xl bg-white overflow-hidden active:scale-95 transition-transform ${
+                    selectedVariation?.variation_id === variation.variation_id
+                        ? "border-2 border-blue-600"
+                        : "border border-gray-300"
+                }`}
+            >
+                <img src={variation.image_url} className="w-full h-full object-contain" alt={variation.color} />
+            </button>
+        ))}
     </div>
 
     <div className="relative min-w-0 flex-1 self-start md:sticky md:top-20">
         <img 
-            src={product.image_url}
-            className="h-[clamp(360px,45vw,680px)] w-full rounded-lg object-contain"
+            src={selectedImage}
+            className="h-[clamp(320px,38vw,560px)] w-full rounded-lg object-contain"
             alt={product.product_name}
         />
         
@@ -433,53 +410,17 @@ console.log("Token =", token);
                 </div>
                 
             </div>
-            <div className="min-w-0 bg-white p-2 dark:bg-gray-800 md:p-[clamp(16px,1.6vw,24px)]">
-            <h2 className="md:hidden text-base mb-2">Colour:<span className="font-bold"> White</span></h2>
-
-            <div className=" md:hidden flex gap-2 border-b border-gray-300 pb-7">
-                <div className="border-3 border-blue-900 rounded-2xl w-[90.83px] h-[180px]">
-                    <img className="rounded-t-2xl object-cover border-b border-gray-300"
-                    src="https://i.pinimg.com/1200x/2c/72/b1/2c72b1c676062281b5b013da3f6f58f0.jpg" />
-                    <h2 className="font-bold text-base pl-2">White</h2>
-                    <h2 className="text-sm pl-2">₹{product.price}</h2>
-                    <h2 className="text-gray-500 text-sm pl-2 line-through">₹89,000</h2>
-                </div>
-
-                <div className="border border-gray-300 rounded-2xl w-[90.83px] h-[183px]">
-                    <img className="rounded-t-2xl object-cover border-b border-gray-300 pb-1.5"
-                    src="https://i.pinimg.com/736x/2b/4e/2d/2b4e2d1821f4b3f50dcf94430bbc3c0d.jpg" />
-                    <h2 className="font-bold text-base pl-2 ">Black</h2>
-                    <h2 className="text-sm pl-2">₹{product.price}</h2>
-                    <h2 className="text-gray-500 text-sm pl-2 line-through">₹89,000</h2>
-                </div>
-
-                <div className="border border-gray-300 rounded-2xl w-[90.83px] h-[183px]">
-                    <img className="rounded-t-2xl object-cover border-b border-gray-300"
-                    src="https://i.pinimg.com/736x/7e/f6/02/7ef602c6b66304adc65fdfc3afa8cb15.jpg" />
-                    <h2 className="font-bold text-base pl-2">Pink</h2>
-                    <h2 className="text-sm pl-2">₹{product.price}</h2>
-                    <h2 className="text-gray-500 text-sm pl-2 line-through">₹89,000</h2>
-                </div>
-
-                <div className="border border-gray-300 rounded-2xl w-[90.83px] h-[183px]">
-                    <img className="rounded-t-2xl object-cover border-b border-gray-300"
-                    src="https://i.pinimg.com/1200x/9b/b2/ec/9bb2ec7b0ba9bdffb8a94326146ca43d.jpg" />
-                    <h2 className="font-bold text-base pl-2">Yellow</h2>
-                    <h2 className="text-sm pl-2">₹{product.price}</h2>
-                    <h2 className="text-gray-500 text-sm pl-2 line-through">₹89,000</h2>
-                </div>
-            </div>
-            
+            <div className="min-w-0 bg-white p-2 dark:bg-gray-800 md:p-[clamp(10px,1vw,16px)]">
                 <h1 className="hidden text-3xl font-bold mt-2">
                     {product.product_name}
                 </h1>
                 <p className="hidden text-blue-00 mt-1.5 font-medium">Brand: {product.brand}</p>
 
                 
-                <div className=" hidden md:block md:ml-[clamp(16px,3vw,64px)]">
-                <p className="line-clamp-6 text-[clamp(20px,1.5vw,30px)] -mt-6 ">{product.description}</p>
-                <p className="text-lg text-cyan-600">Visit the Samsung Store</p>
-                <div className="flex items-center ">
+                <div className="hidden md:block md:ml-[clamp(6px,1.2vw,22px)]">
+                <p className="line-clamp-3 text-[clamp(21px,1.55vw,29px)] leading-tight">{product.description}</p>
+                <p className="mt-1 text-base text-cyan-600">Visit the Samsung Store</p>
+                <div className="flex items-center text-sm">
                     <p>{product.rating}</p>
                     <div className="flex items-center gap-0.5">
                         <FaStar className="text-yellow-600 ml-2 text-sm" />
@@ -493,78 +434,101 @@ console.log("Token =", token);
 
                         <p className="text-cyan-500">Search this page</p>
                 </div>
-                <p className="bg-black text-white rounded-md w-fit px-1 my-2 py-0.5">Amazon's Choice</p>
-                <p className="font-bold mb-1">100+ bought <span className="font-normal">in past month</span></p>
+                <p className="bg-black text-white rounded-md w-fit px-1 my-2 py-0.5 text-sm">Amazon's Choice</p>
+                <p className="font-bold mb-1 text-sm">100+ bought <span className="font-normal">in past month</span></p>
                 <hr className="border border-gray-200 " />
                 </div>
 
-                <h2 className="md:ml-[clamp(16px,3vw,64px)] text-3xl font-medium mt-3">
-                    <span className="text-red-600 font-normal text-2xl">-11%</span> ₹{product.price}
+                <h2 className="md:ml-[clamp(6px,1.2vw,22px)] text-[clamp(26px,1.8vw,34px)] font-medium mt-4">
+                    <span className="text-red-600 font-normal text-[clamp(22px,1.4vw,28px)]">-11%</span> ₹{selectedPrice}
                 </h2>
-                <p className=" mt-2 md:ml-[clamp(16px,3vw,64px)] text-gray-500">M.R.P: 
+                <p className="mt-1 md:ml-[clamp(6px,1.2vw,22px)] text-sm text-gray-500">M.R.P: 
                     <span className="line-through"> ₹{product.mrp}</span></p>
 
-                <p className="md:ml-[clamp(16px,3vw,64px)] mt-2 text-lg ">Inclusive of all taxes</p>
-                <p className=" md:ml-[clamp(16px,3vw,64px)] hidden md:block text-lg">
+                <p className="md:ml-[clamp(6px,1.2vw,22px)] mt-1 text-base">Inclusive of all taxes</p>
+                <p className="md:ml-[clamp(6px,1.2vw,22px)] hidden md:block text-base leading-snug">
                     <span className="font-bold">EMI</span> starts at ₹2,988. No Cost EMI available<br /> 
                     <span className="ml-1 text-indigo-600">EMI options <span className="text-black"> ⌵</span></span><br />
                     <span className="text-indigo-600 hover:text-blue-900 hover:underline cursor-pointer">Join Prime to buy this item at ₹74,999.00</span>
                 </p>
-                <div className="border border-gray-300 rounded-md hidden md:flex flex-col md:ml-[clamp(16px,3vw,64px)]  mb-3">
-                   <div className="flex gap-2 p-2">
-                     <img className="h-8 w-8"
-                    src="https://img.icons8.com/?size=100&id=12089&format=png" />
-                    <p className="font-medium text-lg"><span className="font-bold text-orange-600">Save Extra</span> with 4 offers</p>
-                    
-                   </div>
-                   <hr className="border border-gray-200 -mx-2" />
-
-                   <p className="font-medium text-lg p-2"><span className="font-bold text-orange-600">No Cost EMI:</span> Avail No Cost EMI on select cards for orders above ₹3000 | <span className="text-indigo-600 hover:underline font-normal">Details</span></p>
-
-                   <hr className="border border-gray-200 -mx-2" />
-
-                   <p className="font-medium text-lg p-2"><span className="font-bold text-orange-600">Exchange Offer:</span> Up to ₹39,050.00 off on Exchange</p>
-
-                   <hr className="border border-gray-200 -mx-2" />
-
-                   <p className="text-indigo-600 p-2">⌵ See 2 More</p>
-                </div>
-
-                <div className="md:ml-[clamp(16px,3vw,64px)] px-2 flex items-center justify-between border border-gray-400 rounded-lg">
-                    <div className="">
-                        <p className=" mt-2 text-xl mb-2">Earn <span className="font-bold">💎1000 </span> worth<span className="font-bold"> ₹100 </span> <span className="">on this item</span></p>
-                        <p className="text-gray-600 text-lg mb-1">On all Payment methods</p>
+                <div className="md:ml-[clamp(6px,1.2vw,22px)] mt-3">
+                    <div className="mb-2 flex items-center gap-2 text-base font-bold">
+                        <img className="h-6 w-6" src="https://img.icons8.com/?size=100&id=12089&format=png" />
+                        <span>Offers</span>
                     </div>
-                    <p className="">❯</p>
                 </div>
                 
                 {/* <p className="md:ml-16 text-indigo-600 hover:underline cursor-pointer">Save up to 18% with business pricing and GST input tax credit. Sign up for a free Amazon Business account</p> */}
                 
 
-                <div className=" md:ml-[clamp(12px,2.5vw,44px)] flex flex-col md:flex-row items-center justify-center w-full mt-3 gap-2">
+                <div className="md:ml-[clamp(6px,1.2vw,22px)] grid grid-cols-1 md:grid-cols-3 gap-2 mt-2">
 
-                <div className="border border-gray-400 dark:border-gray-100 rounded-lg px-3 py-2 w-full md:w-1/2 "><span className="font-bold">Cashback</span>
+                <div className="border border-gray-300 shadow-sm dark:border-gray-100 rounded-md px-3 py-2 text-sm"><span className="font-bold">Cashback</span>
                     <br />
 
-                Upto ₹50.00 cashback as Amazon Pay Balance when you pay with select Credit Cards<br />
+                Upto ₹50.00 cashback as Amazon Pay Balance when you pay with select Cards<br />
                 <span className="text-blue-500 hover:underline cursor-pointer">3 offers</span>
 
                 </div>
 
-                <div className="border h-auto md:h-34 border-gray-400 dark:border-gray-100 rounded-lg px-3 py-2 w-full md:w-50 line-clamp-4"><span className="font-bold">Bank Offers</span>
+                <div className="border h-auto border-gray-300 shadow-sm dark:border-gray-100 rounded-md px-3 py-2 text-sm line-clamp-5"><span className="font-bold">Bank Offer</span>
                     <br />
 
                 10% Instant Discount up to INR 1000 on ICICI Bank Credit Card <br />
                 <span className="text-blue-500 hover:underline cursor-pointer">16 offers</span>
                 </div>
 
+                <div className="hidden border h-auto border-gray-300 shadow-sm dark:border-gray-100 rounded-md px-3 py-2 text-sm line-clamp-5 md:block"><span className="font-bold">No Cost EMI</span>
+                    <br />
+                Upto ₹2,988 EMI interest savings on select cards<br />
+                <span className="text-blue-500 hover:underline cursor-pointer">1 offer</span>
+                </div>
+
                 
             </div>
-            <hr className="md:ml-16 mt-5 border-gray-300 dark:border-gray-600"></hr>
+            <div className="md:ml-[clamp(6px,1.2vw,22px)] mt-4 border-b border-gray-300 pb-5 dark:border-gray-600">
+                <h2 className="text-base font-semibold mb-3">
+                    Colour:
+                    <span className="font-bold ml-2">
+                        {selectedColor}
+                    </span>
+                </h2>
 
-            <h2 className="md:ml-[clamp(16px,3vw,64px)] font-bold text-2xl mt-3">About this item</h2>
+                <div className="flex gap-3 flex-wrap">
+                    {variations.map((item) => (
+                        <div
+                            key={item.variation_id}
+                            onClick={() => setSelectedVariation(item)}
+                            className={`w-[82px] cursor-pointer rounded-xl overflow-hidden transition border ${
+                                selectedVariation?.variation_id === item.variation_id
+                                    ? "border-blue-600 border-2"
+                                    : "border-gray-300"
+                            }`}
+                        >
+                            <img
+                                src={item.image_url}
+                                className="h-20 w-full object-contain border-b"
+                                alt={item.color}
+                            />
 
-            <p className="md:ml-[clamp(16px,3vw,64px)] mt-3 text-lg font-medium text-black dark:text-gray-300">
+                            <div className="p-2 text-sm">
+                                <h2 className="font-bold">
+                                    {item.color}
+                                </h2>
+
+                                <p>
+                                    ₹{item.price}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <hr className="md:ml-[clamp(6px,1.2vw,22px)] mt-4 border-gray-300 dark:border-gray-600"></hr>
+
+            <h2 className="md:ml-[clamp(6px,1.2vw,22px)] font-bold text-xl mt-3">About this item</h2>
+
+            <p className="md:ml-[clamp(6px,1.2vw,22px)] mt-2 text-base font-medium text-black dark:text-gray-300">
                     {product.description}
                 </p>
 
@@ -572,22 +536,22 @@ console.log("Token =", token);
             </div>
 
             
-            <div className="w-full bg-white px-[clamp(16px,1.6vw,24px)] py-[clamp(18px,1.8vw,28px)] dark:bg-gray-800 md:-mt-10">
+            <div className="w-full bg-white px-[clamp(10px,1vw,16px)] py-[clamp(10px,1vw,16px)] dark:bg-gray-800 md:-mt-1">
             
-                <div className=" border mt-1 border-gray-300 dark:border-gray-100 p-6 md:py-2 mb-5 flex-row items-center justify-center
+                <div className="border mt-1 border-gray-300 dark:border-gray-100 p-4 md:py-4 mb-4 flex-row items-center justify-center
                 rounded-lg">
-                    <h2 className="text-4xl font-medium ">
-                    ₹{product.price}
+                    <h2 className="text-[clamp(28px,2vw,36px)] font-medium ">
+                    ₹{selectedPrice}
                 </h2>
-                <p className="mt-4 text-lg lg:hidden">Save <span className="font-bold">₹10</span> extra using <span className="font-bold">💎100</span> <span className="text-blue-500 hover:underline cursor-pointer">Details</span></p>
+                <p className="mt-3 text-base lg:hidden">Save <span className="font-bold">₹10</span> extra using <span className="font-bold">💎100</span> <span className="text-blue-500 hover:underline cursor-pointer">Details</span></p>
 
-                <p className="mt-4 text-lg">FREE delivery tomorrow June to <span className="text-blue-500 hover:underline cursor-pointer underline">Bikaner 334001</span>. <span className="text-blue-500 underline cursor-pointer">Details</span></p>
+                <p className="mt-4 text-base">FREE delivery tomorrow June to <span className="text-blue-500 hover:underline cursor-pointer underline">Bikaner 334001</span>. <span className="text-blue-500 underline cursor-pointer">Details</span></p>
 
-                <p className="mt-4 text-lg text-gray-600 leading-tight">+₹199 service fee. Delivery associate will open and verify item.<span className="text-blue-500 underline cursor-pointer">Details</span> </p>
+                <p className="mt-4 text-base text-gray-600 leading-tight">+₹199 service fee. Delivery associate will open and verify item.<span className="text-blue-500 underline cursor-pointer">Details</span> </p>
 
-                <p className="mt-4 text-lg leading-tight">Or fastest delivery <span className="font-semibold">Wednesday, 8 July.</span> Order within <span className="text-gray-500">10 hr 36 mins.</span><br /><span className="text-blue-500 underline cursor-pointer">Details</span></p>
+                <p className="mt-4 text-base leading-tight">Or fastest delivery <span className="font-semibold">Wednesday, 8 July.</span> Order within <span className="text-gray-500">10 hr 36 mins.</span><br /><span className="text-blue-500 underline cursor-pointer">Details</span></p>
 
-                <p className="mt-4 text-2xl text-green-700">In Stock</p>
+                <p className="mt-4 text-xl text-green-700">In Stock</p>
 
                 <div className=" my-2 border border-gray-500 rounded-lg px-2 py-1 flex items-center justify-between">
                     <button className="text-base">Quantity:1</button>
@@ -609,8 +573,17 @@ console.log("Token =", token);
                     Compare Product
                 </button>
 
-                <button onClick={addWishlist}
-                className="border border-gray-400 mt-3 h-9 font-bold px-2 py-1 rounded-full w-full hover:bg-gray-300 dark:hover:bg-gray-700">❤️ Add to Wishlist</button>
+                <button
+                    onClick={addWishlist}
+                    className="mt-3 flex min-h-9 w-full items-center justify-between overflow-hidden rounded-lg border border-[#ADB1B8] bg-white text-left text-[13px] text-[#0F1111] hover:bg-[#E7E9EC] active:bg-[#D5D9D9]"
+                >
+                    <span className="min-w-0 flex-1 px-3">
+                        {showWishlistBox ? "Added to Wish List" : "Add to Wish List"}
+                    </span>
+                    <span className="flex min-h-9 w-10 shrink-0 items-center justify-center border-l border-[#ADB1B8] bg-white text-[19px]">
+                         ⌵
+                    </span>
+                </button>
 
                 </div>
                 <div className="border border-gray-300 dark:border-gray-100 p-2  flex-row items-center justify-center

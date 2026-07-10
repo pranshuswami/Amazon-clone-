@@ -156,7 +156,7 @@ const Cart = () => {
                                                         This will be a gift <span className="text-[#007185] hover:text-[#C45500] hover:underline cursor-pointer">Learn more</span>
                                                     </label>
                                                 </div>
-                                                <p className="mt-3"><span className="font-bold">Color:</span> White</p>
+                                                <p className="mt-3"><span className="font-bold">Color:</span>{item.color}</p>
 
                                                 {/* Action Panel */}
                                                 <div className="flex flex-wrap items-center gap-3 mt-4 text-[14px]">

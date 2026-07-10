@@ -75,9 +75,11 @@ const getSingleProduct = (req, res) => {
 
     const { id } = req.params;
 
-    const sql ="SELECT p.*,s.ram,s.storage,s.display,s.processor,s.battery,s.rear_camera,s.front_camera, s.refresh_rate,s.operating_system,s.chipset,s.charging,s.network,s.weight,s.color FROM products p LEFT JOIN product_specifications s ON p.product_id = s.product_id WHERE p.product_id = ?"
+    const productSql ="SELECT p.*,s.ram,s.storage,s.display,s.processor,s.battery,s.rear_camera,s.front_camera,s.refresh_rate,s.operating_system,s.chipset,s.charging,s.network,s.weight     FROM products p LEFT JOIN product_specifications s ON p.product_id = s.product_id WHERE p.product_id = ?"
 
-    db.query(sql, [id], (err, result) => {
+    const variationSql ="SELECT variation_id,product_id,color,storage,price,stock,image_url FROM product_variations WHERE product_id = ?"
+
+    db.query(productSql, [id], (err, productResult) => {
 
         if (err) {
             return res.status(500).json({
@@ -86,10 +88,32 @@ const getSingleProduct = (req, res) => {
             });
         }
 
-        
-        res.status(200).json({
-            success: true,
-            data: result[0]
+        if (productResult.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Product not found"
+            });
+        }
+
+        db.query(variationSql, [id], (err, variationResult) => {
+
+            if (err) {
+                return res.status(500).json({
+                    success: false,
+                    message: err.message
+                });
+            }
+
+            const product = productResult[0];
+
+            // Add variations to the product object
+            product.variations = variationResult;
+
+            res.status(200).json({
+                success: true,
+                data: product
+            });
+
         });
 
     });
